@@ -933,6 +933,24 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "skill",
+      "type": "registry:file",
+      "title": "Agent skill",
+      "description": "A skill that teaches coding agents how to pick, install, and compose dashboardcn components.",
+      "files": [
+        {
+          "path": "../../skills/dashboardcn/SKILL.md",
+          "type": "registry:file",
+          "target": "~/.claude/skills/dashboardcn/SKILL.md"
+        },
+        {
+          "path": "../../skills/dashboardcn/references/api.md",
+          "type": "registry:file",
+          "target": "~/.claude/skills/dashboardcn/references/api.md"
+        }
+      ]
     }
   ]
 }

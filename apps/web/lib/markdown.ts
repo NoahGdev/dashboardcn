@@ -1,5 +1,5 @@
 import { getComponentDoc } from "@/config/docs"
-import { publicUrl, registryItemUrl } from "@/config/site"
+import { publicUrl, registryItemUrl, siteConfig } from "@/config/site"
 import { consumerPath, getRegistryItem, readSource } from "@/lib/source"
 
 function fence(code: string, lang = "tsx") {
@@ -119,5 +119,13 @@ export function renderInstallationMarkdown() {
     ),
     "Then install by name:",
     fence("npx shadcn@latest add @dashboardcn/kpi-card", "bash"),
+    "## Agents",
+    `Every docs page is available as Markdown by appending \`.md\` to its URL, and [llms.txt](${publicUrl}/llms.txt) indexes them all.`,
+    "A skill teaches a coding agent how to pick, install, and compose the components. With the namespace registered, install it into `.claude/skills` with the shadcn CLI:",
+    fence("npx shadcn@latest add @dashboardcn/skill", "bash"),
+    "Or for any agent, with the skills CLI:",
+    fence(`npx skills add ${siteConfig.links.githubRepo}`, "bash"),
+    "shadcn's MCP server reads every registry in `components.json`, so once the namespace is registered it can search and install from this registry too:",
+    fence("npx shadcn@latest mcp init --client claude", "bash"),
   ].join("\n\n") + "\n"
 }

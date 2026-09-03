@@ -34,6 +34,13 @@ page as Markdown, [llms-full.txt](https://dashboardcn.com/llms-full.txt) is all
 of it in one file, and any docs page is available as Markdown by appending
 `.md` to its URL.
 
+There is also a [skill](./skills/dashboardcn/SKILL.md) that teaches an agent how
+to pick, install, and compose the components:
+
+```bash
+npx skills add NoahGdev/dashboardcn
+```
+
 ## License
 
 MIT. The docs site and portions of the components are derived from

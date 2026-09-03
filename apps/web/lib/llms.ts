@@ -41,6 +41,7 @@ export function renderLlmsIndex() {
     "## Optional",
     [
       entry("llms-full.txt", `${publicUrl}/llms-full.txt`, "Every page above concatenated into one file, including all component source."),
+      entry("Agent skill", registryItemUrl("skill"), "A skill for coding agents: catalog, data conventions, layout patterns, and a props reference. Install with `npx shadcn@latest add @dashboardcn/skill` or `npx skills add " + siteConfig.links.githubRepo + "`."),
       entry("GitHub", siteConfig.links.github, "Source repository."),
     ].join("\n"),
   ].join("\n\n") + "\n"
