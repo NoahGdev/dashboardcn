@@ -36,6 +36,14 @@ import PeriodBarChartCardDemo from "@/registry/dashboardcn/examples/period-bar-c
 import MetricTabsChartCardDemo from "@/registry/dashboardcn/examples/metric-tabs-chart-card-demo"
 import BarListDemo from "@/registry/dashboardcn/examples/bar-list-demo"
 import DataTableDemo from "@/registry/dashboardcn/examples/data-table-demo"
+import DataTableCardDemo from "@/registry/dashboardcn/examples/data-table-card-demo"
+import DataTableCompactDemo from "@/registry/dashboardcn/examples/data-table-compact-demo"
+import DataTableComposedDemo from "@/registry/dashboardcn/examples/data-table-composed-demo"
+import DataTableLoadingDemo from "@/registry/dashboardcn/examples/data-table-loading-demo"
+import DataTableReorderDemo from "@/registry/dashboardcn/examples/data-table-reorder-demo"
+import DataTableRowActionsDemo from "@/registry/dashboardcn/examples/data-table-row-actions-demo"
+import DataTableSelectionDemo from "@/registry/dashboardcn/examples/data-table-selection-demo"
+import DataTableStickyDemo from "@/registry/dashboardcn/examples/data-table-sticky-demo"
 import DistributionBarDemo from "@/registry/dashboardcn/examples/distribution-bar-demo"
 import FunnelChartDemo from "@/registry/dashboardcn/examples/funnel-chart-demo"
 import KpiCardDemo from "@/registry/dashboardcn/examples/kpi-card-demo"
@@ -75,6 +83,14 @@ export const examples = {
   "trend-chart-grouped-demo": { component: TrendChartGroupedDemo, path: `${base}/trend-chart-grouped-demo.tsx` },
   "trend-chart-horizontal-demo": { component: TrendChartHorizontalDemo, path: `${base}/trend-chart-horizontal-demo.tsx` },
   "data-table-demo": { component: DataTableDemo, path: `${base}/data-table-demo.tsx` },
+  "data-table-loading-demo": { component: DataTableLoadingDemo, path: `${base}/data-table-loading-demo.tsx` },
+  "data-table-selection-demo": { component: DataTableSelectionDemo, path: `${base}/data-table-selection-demo.tsx` },
+  "data-table-row-actions-demo": { component: DataTableRowActionsDemo, path: `${base}/data-table-row-actions-demo.tsx` },
+  "data-table-sticky-demo": { component: DataTableStickyDemo, path: `${base}/data-table-sticky-demo.tsx` },
+  "data-table-reorder-demo": { component: DataTableReorderDemo, path: `${base}/data-table-reorder-demo.tsx` },
+  "data-table-compact-demo": { component: DataTableCompactDemo, path: `${base}/data-table-compact-demo.tsx` },
+  "data-table-composed-demo": { component: DataTableComposedDemo, path: `${base}/data-table-composed-demo.tsx` },
+  "data-table-card-demo": { component: DataTableCardDemo, path: `${base}/data-table-card-demo.tsx` },
   "delta-badge-demo": { component: DeltaBadgeDemo, path: `${base}/delta-badge-demo.tsx` },
   "metric-value-demo": { component: MetricValueDemo, path: `${base}/metric-value-demo.tsx` },
   "radial-gauge-demo": { component: RadialGaugeDemo, path: `${base}/radial-gauge-demo.tsx` },
