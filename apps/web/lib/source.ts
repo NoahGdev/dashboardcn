@@ -4,8 +4,15 @@ import { cache } from "react"
 
 import registry from "@/registry.json"
 
-export async function readFileFromRoot(relativePath: string) {
-  return fs.readFile(path.join(process.cwd(), relativePath), "utf8")
+const REGISTRY_DIR = path.join(process.cwd(), "registry")
+
+/**
+ * Read a file under `registry/`. The path is scoped to that folder so the
+ * bundler traces only the registry sources into the server output.
+ */
+export async function readRegistryFile(relativePath: string) {
+  const inRegistry = relativePath.replace(/^registry\//, "")
+  return fs.readFile(path.join(REGISTRY_DIR, inRegistry), "utf8")
 }
 
 /**
@@ -20,7 +27,7 @@ export function toConsumerImports(source: string) {
 }
 
 export const readSource = cache(async (relativePath: string) => {
-  return toConsumerImports(await readFileFromRoot(relativePath))
+  return toConsumerImports(await readRegistryFile(relativePath))
 })
 
 export type RegistryItem = (typeof registry.items)[number]
