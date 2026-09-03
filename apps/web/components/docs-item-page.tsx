@@ -1,23 +1,27 @@
 import { notFound } from "next/navigation"
 
 import { getComponentDoc } from "@/config/docs"
+import { registryItemUrl } from "@/config/site"
 import { docHref, slugify, type TocItem } from "@/lib/docs"
+import { renderItemMarkdown } from "@/lib/markdown"
 import { consumerPath, getRegistryItem } from "@/lib/source"
+import { absoluteUrl } from "@/lib/utils"
 import { CodeBlock } from "@/components/code-block"
 import { CodeTabs, CodeTabsList, CodeTabsTrigger } from "@/components/code-tabs"
 import { ComponentPreview } from "@/components/component-preview"
 import { ComponentSource } from "@/components/component-source"
 import { H2, H3 } from "@/components/docs-heading"
+import { DocsCopyPage } from "@/components/docs-copy-page"
 import { DocsPage } from "@/components/docs-page"
 import { InstallCommand, NpmInstallCommand } from "@/components/install-command"
-import { OpenInV0Button } from "@/components/open-in-v0-button"
 import { TabsContent } from "@/components/ui/tabs"
 
 /** Docs page for one registry item, component or block. */
-export function DocsItemPage({ slug }: { slug: string }) {
+export async function DocsItemPage({ slug }: { slug: string }) {
   const doc = getComponentDoc(slug)
   const item = getRegistryItem(slug)
   if (!doc || !item) notFound()
+  const markdown = (await renderItemMarkdown(slug)) ?? ""
 
   const isBlock = doc.kind === "block"
   const [first, ...rest] = doc.examples
@@ -47,7 +51,13 @@ export function DocsItemPage({ slug }: { slug: string }) {
       description={doc.description}
       href={docHref(doc)}
       toc={toc}
-      actions={<OpenInV0Button name={doc.name} />}
+      actions={
+        <DocsCopyPage
+          page={markdown}
+          url={absoluteUrl(docHref(doc))}
+          registryUrl={registryItemUrl(doc.name)}
+        />
+      }
     >
       {first ? <ComponentPreview name={first.name} {...previewProps} /> : null}
 
