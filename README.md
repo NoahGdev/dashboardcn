@@ -29,6 +29,11 @@ and yours to change.
 - [Components](https://dashboardcn.com/docs/components)
 - [Blocks](https://dashboardcn.com/docs/blocks)
 
+For coding agents: [llms.txt](https://dashboardcn.com/llms.txt) indexes every
+page as Markdown, [llms-full.txt](https://dashboardcn.com/llms-full.txt) is all
+of it in one file, and any docs page is available as Markdown by appending
+`.md` to its URL.
+
 ## License
 
 MIT. The docs site and portions of the components are derived from

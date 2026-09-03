@@ -1,5 +1,5 @@
 import { getComponentDoc } from "@/config/docs"
-import { registryItemUrl } from "@/config/site"
+import { publicUrl, registryItemUrl } from "@/config/site"
 import { consumerPath, getRegistryItem, readSource } from "@/lib/source"
 
 function fence(code: string, lang = "tsx") {
@@ -65,4 +65,59 @@ export async function renderItemMarkdown(name: string) {
   ]
 
   return sections.filter(Boolean).join("\n\n") + "\n"
+}
+
+/**
+ * `/docs.md`. Mirrors the prose on `app/docs/page.tsx`; keep the two in sync.
+ */
+export function renderIntroMarkdown() {
+  return [
+    "# Introduction",
+    "Dashboard and analytics components for shadcn/ui, distributed through a shadcn-compatible registry.",
+    "## What it is",
+    "dashboardcn is a set of components for the parts of a product that shadcn/ui leaves to you: KPI cards, time series charts, funnels, ranked lists, calendar heatmaps, and data tables.",
+    "It is not a component library you install from npm. Each component is copied into your project with the shadcn CLI, exactly like shadcn/ui itself. You get the source, the styling lives in your Tailwind theme, and there is nothing to upgrade against.",
+    "## Why",
+    "This project started from a gap. When building a product dashboard, there was no obvious place to find components for presenting data well: KPI tiles, trend charts, funnels, ranked lists, and the cards that combine them. Where such collections existed, they were sold behind a license.",
+    "User interface code should be free. shadcn/ui set that expectation for the base primitives, and dashboardcn extends it to the data-heavy parts of a product. Everything here is MIT licensed, copied into your project as source, and yours to change.",
+    "## Foundations",
+    [
+      "- Tailwind CSS v4 and the shadcn/ui theme variables.",
+      "- shadcn/ui primitives such as Card, Table, and Chart.",
+      "- recharts for charts, through shadcn's chart wrapper.",
+      "- TanStack Table v9 for data tables.",
+    ].join("\n"),
+    "## Radix or Base UI",
+    "Components that render only HTML and CSS work with either the Radix or Base UI flavor of shadcn/ui. Components that depend on shadcn primitives pull the flavor your project already uses.",
+    `Continue to [Installation](${publicUrl}/docs/installation.md).`,
+  ].join("\n\n") + "\n"
+}
+
+/**
+ * `/docs/installation.md`. Mirrors `app/docs/installation/page.tsx`.
+ */
+export function renderInstallationMarkdown() {
+  return [
+    "# Installation",
+    "Add dashboardcn components to any project that has shadcn/ui set up.",
+    "## Prerequisites",
+    "You need a project with shadcn/ui initialized. If you do not have one yet, run:",
+    fence("npx shadcn@latest init", "bash"),
+    "## Add a component by URL",
+    "Every component page shows its install command. The CLI downloads the files, installs any npm dependencies, and pulls in the shadcn/ui components it needs.",
+    fence(`npx shadcn@latest add ${registryItemUrl("kpi-card")}`, "bash"),
+    `The URL form is \`${registryItemUrl("<name>")}\`.`,
+    "## Add the registry namespace",
+    "To use the shorter `@dashboardcn/` form, register the namespace once in your `components.json`:",
+    fence(
+      JSON.stringify(
+        { registries: { "@dashboardcn": `${publicUrl}/r/{name}.json` } },
+        null,
+        2
+      ),
+      "json"
+    ),
+    "Then install by name:",
+    fence("npx shadcn@latest add @dashboardcn/kpi-card", "bash"),
+  ].join("\n\n") + "\n"
 }
