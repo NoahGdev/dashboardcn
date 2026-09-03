@@ -2,6 +2,7 @@ import fs from "node:fs/promises"
 import path from "node:path"
 import { cache } from "react"
 
+import { getComponentDoc, type ComponentDoc } from "@/config/docs"
 import registry from "@/registry.json"
 
 const REGISTRY_DIR = path.join(process.cwd(), "registry")
@@ -42,4 +43,14 @@ export function consumerPath(file: RegistryItem["files"][number]) {
   if (file.type === "registry:lib") return `lib/${base}`
   if (file.type === "registry:component") return `components/${base}`
   return `components/ui/${base}`
+}
+
+/** The registry primitives a block is composed from, as their docs entries. */
+export function getBlockComponentDocs(name: string): ComponentDoc[] {
+  const item = getRegistryItem(name)
+  if (!item) return []
+  return item.files
+    .filter((file) => file.type === "registry:ui")
+    .map((file) => getComponentDoc(path.basename(file.path, ".tsx")))
+    .filter((doc): doc is ComponentDoc => doc !== undefined)
 }
