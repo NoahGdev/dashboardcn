@@ -6,6 +6,8 @@ export interface FormatNumberOptions {
   currency?: string
   locale?: string
   maximumFractionDigits?: number
+  /** Abbreviate large values, e.g. "$158K" instead of "$158,143". */
+  compact?: boolean
 }
 
 const formatterCache = new Map<string, Intl.NumberFormat>()
@@ -26,6 +28,7 @@ function getFormatter(locale: string, options: Intl.NumberFormatOptions) {
  * formatNumber(1234567)                          -> "1,234,567"
  * formatNumber(1234567, { format: "compact" })   -> "1.2M"
  * formatNumber(48.2, { format: "currency" })     -> "$48.20"
+ * formatNumber(158143, { format: "currency", compact: true }) -> "$158K"
  * formatNumber(0.124, { format: "percent" })     -> "12.4%"
  */
 export function formatNumber(
@@ -35,10 +38,17 @@ export function formatNumber(
     currency = "USD",
     locale = "en-US",
     maximumFractionDigits,
+    compact = false,
   }: FormatNumberOptions = {}
 ): string {
   if (!Number.isFinite(value)) return "—"
 
+  // Compact values keep three significant digits: $158K, $1.23M, 41.2K.
+  const compactOptions: Intl.NumberFormatOptions = compact
+    ? maximumFractionDigits === undefined
+      ? { notation: "compact", maximumSignificantDigits: 3 }
+      : { notation: "compact", maximumFractionDigits }
+    : {}
   switch (format) {
     case "compact":
       return getFormatter(locale, {
@@ -50,6 +60,7 @@ export function formatNumber(
         style: "currency",
         currency,
         maximumFractionDigits: maximumFractionDigits ?? 2,
+        ...compactOptions,
       }).format(value)
     case "percent":
       return getFormatter(locale, {
@@ -59,6 +70,7 @@ export function formatNumber(
     default:
       return getFormatter(locale, {
         maximumFractionDigits: maximumFractionDigits ?? 0,
+        ...compactOptions,
       }).format(value)
   }
 }
