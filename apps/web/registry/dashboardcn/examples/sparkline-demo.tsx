@@ -14,6 +14,10 @@ export default function SparklineDemo() {
         <Sparkline data={data} variant="line" className="h-12" />
       </div>
       <div className="flex flex-col gap-1.5">
+        <span className="text-muted-foreground text-xs">Dot grid</span>
+        <Sparkline data={data} fill="dots" color="var(--chart-1)" className="h-12" />
+      </div>
+      <div className="flex flex-col gap-1.5">
         <span className="text-muted-foreground text-xs">Custom color, step curve</span>
         <Sparkline
           data={data}

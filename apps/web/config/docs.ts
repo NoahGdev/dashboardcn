@@ -187,7 +187,12 @@ const columns = helper.columns([
     title: "Sparkline",
     description:
       "A tiny inline area or line chart for showing a trend at a glance.",
-    examples: [{ name: "sparkline-demo" }],
+    examples: [
+      {
+        name: "sparkline-demo",
+        description: "Set fill to \"dots\" to render the area as a dot grid that fades out toward the line.",
+      },
+    ],
     usage: `import { Sparkline } from "@/components/ui/sparkline"
 
 <Sparkline data={[12, 18, 14, 22, 26, 21, 30]} className="h-8 w-24" />`,

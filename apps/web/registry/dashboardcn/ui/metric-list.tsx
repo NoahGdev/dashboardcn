@@ -24,6 +24,8 @@ export interface MetricListProps extends React.ComponentProps<"div"> {
   items: MetricListItem[]
   /** Sparkline variant. */
   variant?: "area" | "line"
+  /** Sparkline area fill. */
+  fill?: "gradient" | "dots"
   showDivider?: boolean
 }
 
@@ -31,6 +33,7 @@ export interface MetricListProps extends React.ComponentProps<"div"> {
 function MetricList({
   items,
   variant = "line",
+  fill,
   showDivider = true,
   className,
   ...props
@@ -69,6 +72,7 @@ function MetricList({
               <Sparkline
                 data={item.trend}
                 variant={variant}
+                fill={fill}
                 color={color}
                 className="h-6 w-20 shrink-0"
               />
