@@ -5,7 +5,15 @@
       "name": "web",
       "runtimeExecutable": "pnpm",
       "runtimeArgs": ["--filter=web", "dev"],
-      "port": 3000
+      "port": 3000,
+      "autoPort": true
+    },
+    {
+      "name": "web-start",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--filter=web", "start"],
+      "port": 3000,
+      "autoPort": true
     }
   ]
 }
