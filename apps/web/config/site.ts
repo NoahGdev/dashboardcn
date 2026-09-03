@@ -21,7 +21,10 @@ export const META_THEME_COLORS = {
   dark: "#0a0a0a",
 }
 
+/** Production origin. Used wherever a URL leaves the site (installs, agents). */
+export const publicUrl = "https://dashboardcn.com"
+
 /** Public URL a consumer uses to install an item. Always the production URL. */
 export function registryItemUrl(name: string) {
-  return `https://dashboardcn.com/r/${name}.json`
+  return `${publicUrl}/r/${name}.json`
 }

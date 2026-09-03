@@ -2,10 +2,12 @@ import Link from "next/link"
 import { ArrowRight, Ellipsis, Gem, Hexagon, Triangle } from "lucide-react"
 
 import { registryItemUrl } from "@/config/site"
+import { buildAgentPrompt } from "@/lib/agent-prompt"
 import { BLOCK_DOCS, COMPONENT_DOCS, docHref } from "@/lib/docs"
 import { Button } from "@/components/ui/button"
 import { BlockShowcase } from "@/components/block-showcase"
 import { ShellCommand } from "@/components/install-command"
+import { OpenInAgent } from "@/components/open-in-agent"
 import { AllocationCard } from "@/registry/dashboardcn/blocks/allocation-card"
 import { BreakdownCard } from "@/registry/dashboardcn/blocks/breakdown-card"
 import { DistributionCard } from "@/registry/dashboardcn/blocks/distribution-card"
@@ -196,6 +198,7 @@ export default function Home() {
               bun={`bunx --bun shadcn@latest add ${url}`}
             />
           </div>
+          <OpenInAgent prompt={buildAgentPrompt()} />
         </section>
 
         <section className="flex flex-col gap-8">
