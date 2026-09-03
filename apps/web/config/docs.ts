@@ -50,7 +50,7 @@ export const componentDocs: ComponentDoc[] = [
       {
         name: "trend-chart-bar-demo",
         title: "Stacked bars",
-        description: "Bars stack when stacked is set. Negative values stack downward.",
+        description: "Bars stack when stacked is set. Series stack bottom-up in the order given; negative values stack below zero.",
       },
     ],
     usage: `import { TrendChart } from "@/components/ui/trend-chart"

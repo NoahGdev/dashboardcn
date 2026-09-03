@@ -9,6 +9,7 @@ import {
   CartesianGrid,
   Line,
   LineChart,
+  ReferenceLine,
   XAxis,
   YAxis,
 } from "recharts"
@@ -57,6 +58,21 @@ function defaultXFormatter(value: unknown) {
   return String(value)
 }
 
+/** Round only the outer corners of a stack; mixed-sign stacks stay square. */
+function stackedRadius(
+  stacked: boolean,
+  hasNegative: boolean,
+  index: number,
+  count: number
+): number | [number, number, number, number] {
+  if (!stacked) return 4
+  if (hasNegative) return 0
+  if (count === 1) return 4
+  if (index === count - 1) return [4, 4, 0, 0]
+  if (index === 0) return [0, 0, 4, 4]
+  return 0
+}
+
 function TrendChart({
   data,
   xKey,
@@ -72,6 +88,16 @@ function TrendChart({
   ...props
 }: TrendChartProps) {
   const id = React.useId()
+  const hasNegative = React.useMemo(
+    () =>
+      data.some((row) =>
+        series.some((s) => {
+          const v = row[s.key]
+          return typeof v === "number" && v < 0
+        })
+      ),
+    [data, series]
+  )
   const config = Object.fromEntries(
     series.map((s, index) => [
       s.key,
@@ -95,9 +121,12 @@ function TrendChart({
           tickLine={false}
           axisLine={false}
           tickMargin={8}
-          width={40}
+          width="auto"
           tickFormatter={yFormatter}
         />
+      ) : null}
+      {hasNegative ? (
+        <ReferenceLine y={0} stroke="var(--border)" strokeWidth={1} />
       ) : null}
       <ChartTooltip
         cursor={false}
@@ -136,14 +165,18 @@ function TrendChart({
       {...props}
     >
       {type === "bar" ? (
-        <BarChart data={data} margin={margin}>
+        <BarChart
+          data={data}
+          margin={margin}
+          stackOffset={stacked ? "sign" : "none"}
+        >
           {axes}
-          {series.map((s) => (
+          {series.map((s, index) => (
             <Bar
               key={s.key}
               dataKey={s.key}
               fill={`var(--color-${s.key})`}
-              radius={stacked ? 0 : 4}
+              radius={stackedRadius(stacked, hasNegative, index, series.length)}
               stackId={stacked ? "stack" : undefined}
             />
           ))}
@@ -163,7 +196,11 @@ function TrendChart({
           ))}
         </LineChart>
       ) : (
-        <AreaChart data={data} margin={margin}>
+        <AreaChart
+          data={data}
+          margin={margin}
+          stackOffset={stacked ? "sign" : "none"}
+        >
           <defs>
             {series.map((s) => (
               <linearGradient
