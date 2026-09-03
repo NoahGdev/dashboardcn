@@ -4,6 +4,7 @@ import * as React from "react"
 import {
   Area,
   AreaChart,
+  AreaRevealShape,
   Bar,
   BarChart,
   CartesianGrid,
@@ -12,6 +13,7 @@ import {
   ReferenceLine,
   XAxis,
   YAxis,
+  type AreaRevealShapeProps,
 } from "recharts"
 
 import { cn } from "@/lib/utils"
@@ -39,10 +41,14 @@ export interface TrendChartProps
   xKey: string
   series: TrendSeries[]
   type?: "area" | "line" | "bar"
+  /** Area fill: a plain gradient, or a dot grid that fades out toward the line. */
+  fill?: "gradient" | "dots"
   stacked?: boolean
   showLegend?: boolean
   showGrid?: boolean
   showYAxis?: boolean
+  /** Recharts y-axis domain, e.g. ["dataMin", "dataMax"] or ["auto", "auto"]. Defaults to [0, "auto"]. */
+  yDomain?: React.ComponentProps<typeof YAxis>["domain"]
   xFormatter?: (value: unknown) => string
   yFormatter?: (value: number) => string
 }
@@ -56,6 +62,21 @@ function defaultXFormatter(value: unknown) {
     })
   }
   return String(value)
+}
+
+/** Area shape that masks the fill to a dot grid while keeping the stroke solid. */
+function DotGridAreaShape({
+  maskId,
+  ...props
+}: AreaRevealShapeProps & { maskId: string }) {
+  return (
+    <>
+      <g mask={`url(#${maskId})`}>
+        <AreaRevealShape {...props} stroke="none" />
+      </g>
+      <AreaRevealShape {...props} id={undefined} fill="none" />
+    </>
+  )
 }
 
 /** Round only the outer corners of a stack; mixed-sign stacks stay square. */
@@ -78,16 +99,19 @@ function TrendChart({
   xKey,
   series,
   type = "area",
+  fill = "gradient",
   stacked = false,
   showLegend = false,
   showGrid = true,
   showYAxis = false,
+  yDomain,
   xFormatter = defaultXFormatter,
   yFormatter,
   className,
   ...props
 }: TrendChartProps) {
   const id = React.useId()
+  const dots = type === "area" && fill === "dots"
   const hasNegative = React.useMemo(
     () =>
       data.some((row) =>
@@ -122,8 +146,11 @@ function TrendChart({
           axisLine={false}
           tickMargin={8}
           width="auto"
+          domain={yDomain}
           tickFormatter={yFormatter}
         />
+      ) : yDomain ? (
+        <YAxis hide domain={yDomain} />
       ) : null}
       {hasNegative ? (
         <ReferenceLine y={0} stroke="var(--border)" strokeWidth={1} />
@@ -214,15 +241,37 @@ function TrendChart({
                 <stop
                   offset="5%"
                   stopColor={`var(--color-${s.key})`}
-                  stopOpacity={0.6}
+                  stopOpacity={dots ? 0.08 : 0.6}
                 />
                 <stop
                   offset="95%"
                   stopColor={`var(--color-${s.key})`}
-                  stopOpacity={0.05}
+                  stopOpacity={dots ? 0.9 : 0.05}
                 />
               </linearGradient>
             ))}
+            {dots ? (
+              <>
+                <pattern
+                  id={`${id}-dots`}
+                  patternUnits="userSpaceOnUse"
+                  width={6}
+                  height={6}
+                >
+                  <circle cx={3} cy={3} r={1.25} fill="#fff" />
+                </pattern>
+                <mask
+                  id={`${id}-mask`}
+                  maskUnits="userSpaceOnUse"
+                  x={0}
+                  y={0}
+                  width="100%"
+                  height="100%"
+                >
+                  <rect width="100%" height="100%" fill={`url(#${id}-dots)`} />
+                </mask>
+              </>
+            ) : null}
           </defs>
           {axes}
           {series.map((s) => (
@@ -232,8 +281,16 @@ function TrendChart({
               dataKey={s.key}
               stroke={`var(--color-${s.key})`}
               fill={`url(#${id}-${s.key})`}
+              fillOpacity={dots ? 1 : undefined}
               strokeWidth={2}
               stackId={stacked ? "stack" : undefined}
+              shape={
+                dots
+                  ? (shapeProps: AreaRevealShapeProps) => (
+                      <DotGridAreaShape {...shapeProps} maskId={`${id}-mask`} />
+                    )
+                  : undefined
+              }
             />
           ))}
         </AreaChart>

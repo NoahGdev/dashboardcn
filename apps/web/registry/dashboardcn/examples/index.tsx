@@ -42,6 +42,7 @@ import KpiCardDemo from "@/registry/dashboardcn/examples/kpi-card-demo"
 import SparklineDemo from "@/registry/dashboardcn/examples/sparkline-demo"
 import TrendChartBarDemo from "@/registry/dashboardcn/examples/trend-chart-bar-demo"
 import TrendChartDemo from "@/registry/dashboardcn/examples/trend-chart-demo"
+import TrendChartDotsDemo from "@/registry/dashboardcn/examples/trend-chart-dots-demo"
 import TrendChartLineDemo from "@/registry/dashboardcn/examples/trend-chart-line-demo"
 
 export interface ExampleEntry {
@@ -64,6 +65,7 @@ export const examples = {
   "trend-chart-demo": { component: TrendChartDemo, path: `${base}/trend-chart-demo.tsx` },
   "trend-chart-bar-demo": { component: TrendChartBarDemo, path: `${base}/trend-chart-bar-demo.tsx` },
   "trend-chart-line-demo": { component: TrendChartLineDemo, path: `${base}/trend-chart-line-demo.tsx` },
+  "trend-chart-dots-demo": { component: TrendChartDotsDemo, path: `${base}/trend-chart-dots-demo.tsx` },
   "data-table-demo": { component: DataTableDemo, path: `${base}/data-table-demo.tsx` },
   "delta-badge-demo": { component: DeltaBadgeDemo, path: `${base}/delta-badge-demo.tsx` },
   "metric-value-demo": { component: MetricValueDemo, path: `${base}/metric-value-demo.tsx` },

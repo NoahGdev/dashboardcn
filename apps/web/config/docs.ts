@@ -48,6 +48,11 @@ export const componentDocs: ComponentDoc[] = [
         description: "Set type to \"line\" and show the y-axis with a unit formatter.",
       },
       {
+        name: "trend-chart-dots-demo",
+        title: "Dot grid",
+        description: "Set fill to \"dots\" to render the area as a dot grid that fades out toward the line.",
+      },
+      {
         name: "trend-chart-bar-demo",
         title: "Stacked bars",
         description: "Bars stack when stacked is set. Series stack bottom-up in the order given; negative values stack below zero.",
