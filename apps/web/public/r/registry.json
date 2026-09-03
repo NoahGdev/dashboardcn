@@ -1,0 +1,610 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "dashboardcn",
+  "homepage": "https://dashboardcn.com",
+  "items": [
+    {
+      "name": "format",
+      "type": "registry:lib",
+      "title": "Format",
+      "description": "Number, currency, percent, and delta formatters for analytics UI.",
+      "files": [
+        {
+          "path": "registry/dashboardcn/lib/format.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "sparkline",
+      "type": "registry:ui",
+      "title": "Sparkline",
+      "description": "A tiny inline area or line chart for showing a trend at a glance.",
+      "dependencies": [
+        "recharts"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboardcn/ui/sparkline.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "kpi-card",
+      "type": "registry:ui",
+      "title": "KPI Card",
+      "description": "A metric card with value, period-over-period delta, and an optional sparkline.",
+      "dependencies": [
+        "recharts",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "card"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboardcn/ui/kpi-card.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/ui/delta-badge.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/ui/sparkline.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/lib/format.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "bar-list",
+      "type": "registry:ui",
+      "title": "Bar List",
+      "description": "A ranked list with proportional bars, for top pages, referrers, or countries.",
+      "files": [
+        {
+          "path": "registry/dashboardcn/ui/bar-list.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/lib/format.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "distribution-bar",
+      "type": "registry:ui",
+      "title": "Distribution Bar",
+      "description": "A single stacked bar showing how a total splits across categories.",
+      "files": [
+        {
+          "path": "registry/dashboardcn/ui/distribution-bar.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/lib/format.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "funnel-chart",
+      "type": "registry:ui",
+      "title": "Funnel Chart",
+      "description": "Step-by-step conversion with drop-off between steps and overall conversion.",
+      "files": [
+        {
+          "path": "registry/dashboardcn/ui/funnel-chart.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/lib/format.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "activity-heatmap",
+      "type": "registry:ui",
+      "title": "Activity Heatmap",
+      "description": "A calendar heatmap of daily activity, in the style of a contribution graph.",
+      "registryDependencies": [
+        "tooltip"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboardcn/ui/activity-heatmap.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/lib/format.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "trend-chart",
+      "type": "registry:ui",
+      "title": "Trend Chart",
+      "description": "Area, line, or bar chart over time with tooltips and legend, built on shadcn's chart primitives.",
+      "dependencies": [
+        "recharts"
+      ],
+      "registryDependencies": [
+        "chart"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboardcn/ui/trend-chart.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "data-table",
+      "type": "registry:ui",
+      "title": "Data Table",
+      "description": "A sortable, filterable, paginated table with column visibility, built on TanStack Table v9.",
+      "dependencies": [
+        "@tanstack/react-table",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "table",
+        "button",
+        "input",
+        "dropdown-menu"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboardcn/ui/data-table.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "delta-badge",
+      "type": "registry:ui",
+      "title": "Delta Badge",
+      "description": "A signed percentage change with a trend icon, colored by whether the change is good.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboardcn/ui/delta-badge.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/lib/format.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "radial-gauge",
+      "type": "registry:ui",
+      "title": "Radial Gauge",
+      "description": "A semicircular or ring gauge, continuous or segmented, with content in the middle.",
+      "files": [
+        {
+          "path": "registry/dashboardcn/ui/radial-gauge.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "donut-chart",
+      "type": "registry:ui",
+      "title": "Donut Chart",
+      "description": "A donut, pie, or half-donut with a center label, tooltip, and legend, on shadcn's chart primitives.",
+      "dependencies": [
+        "recharts"
+      ],
+      "registryDependencies": [
+        "chart"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboardcn/ui/donut-chart.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/lib/format.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "composed-chart",
+      "type": "registry:ui",
+      "title": "Composed Chart",
+      "description": "Mix areas, lines, and bars in one chart with dual axes, reference lines, peak markers, and hatched bars.",
+      "dependencies": [
+        "recharts"
+      ],
+      "registryDependencies": [
+        "chart"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboardcn/ui/composed-chart.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "segmented-meter",
+      "type": "registry:ui",
+      "title": "Segmented Meter",
+      "description": "A zoned bar meter with a marker at the current value, for heart-rate zones, allocations, or thresholds.",
+      "files": [
+        {
+          "path": "registry/dashboardcn/ui/segmented-meter.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/lib/format.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "period-tabs",
+      "type": "registry:ui",
+      "title": "Period Tabs",
+      "description": "A small segmented control for switching a chart between week, month, and year.",
+      "registryDependencies": [
+        "tabs"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboardcn/ui/period-tabs.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "metric-list",
+      "type": "registry:ui",
+      "title": "Metric List",
+      "description": "Compact rows of label, sparkline, value, and delta.",
+      "dependencies": [
+        "recharts",
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboardcn/ui/metric-list.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/ui/delta-badge.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/ui/sparkline.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/lib/format.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "tick-bar",
+      "type": "registry:ui",
+      "title": "Tick Bar",
+      "description": "A progress bar drawn as a row of ticks, lit up to the current value.",
+      "files": [
+        {
+          "path": "registry/dashboardcn/ui/tick-bar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "kpi-row-card",
+      "type": "registry:block",
+      "title": "KPI Row Card",
+      "description": "A card with a period switcher, a row of KPI tiles with sparklines and deltas, and a footer summary.",
+      "categories": [
+        "dashboard",
+        "charts"
+      ],
+      "dependencies": [
+        "recharts",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "card",
+        "tabs"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboardcn/blocks/kpi-row-card.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/dashboardcn/ui/delta-badge.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/ui/period-tabs.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/ui/sparkline.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/lib/format.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "balance-chart-card",
+      "type": "registry:block",
+      "title": "Balance Chart Card",
+      "description": "A balance or price card with a big value, delta, stat row, and a line chart with reference line and peak marker.",
+      "categories": [
+        "dashboard",
+        "charts",
+        "finance"
+      ],
+      "dependencies": [
+        "recharts",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "card",
+        "chart"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboardcn/blocks/balance-chart-card.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/dashboardcn/ui/composed-chart.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/ui/delta-badge.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/lib/format.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "status-gauge-card",
+      "type": "registry:block",
+      "title": "Status Gauge Card",
+      "description": "A status card with a headline word, a metric, an avatar stack, and a segmented semicircular gauge.",
+      "categories": [
+        "dashboard",
+        "charts"
+      ],
+      "registryDependencies": [
+        "card",
+        "button"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboardcn/blocks/status-gauge-card.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/dashboardcn/ui/radial-gauge.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/lib/format.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "ring-kpi-card",
+      "type": "registry:block",
+      "title": "Ring KPI Card",
+      "description": "A card with a row of KPI tiles, each with a segmented ring next to the value and a comparison to the previous value.",
+      "categories": [
+        "dashboard",
+        "charts"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "card"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboardcn/blocks/ring-kpi-card.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/dashboardcn/ui/radial-gauge.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/lib/format.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "distribution-card",
+      "type": "registry:block",
+      "title": "Distribution Card",
+      "description": "A total with delta, a stacked share bar, and a ranked list of the contributors with their values.",
+      "categories": [
+        "dashboard",
+        "charts",
+        "finance"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "card",
+        "button",
+        "dropdown-menu"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboardcn/blocks/distribution-card.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/dashboardcn/ui/delta-badge.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/ui/distribution-bar.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/lib/format.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "tick-kpi-card",
+      "type": "registry:block",
+      "title": "Tick KPI Card",
+      "description": "A card with a row of KPI tiles, each with a value out of a whole and a tick bar showing how far along it is.",
+      "categories": [
+        "dashboard"
+      ],
+      "registryDependencies": [
+        "card"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboardcn/blocks/tick-kpi-card.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/dashboardcn/ui/tick-bar.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/lib/format.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "allocation-card",
+      "type": "registry:block",
+      "title": "Allocation Card",
+      "description": "A share-of-total card with a period switcher, a big percentage with delta, a tick bar, and a footer stat with an avatar stack.",
+      "categories": [
+        "dashboard",
+        "finance"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "card",
+        "tabs",
+        "tooltip"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboardcn/blocks/allocation-card.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/dashboardcn/ui/tick-bar.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/ui/delta-badge.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/ui/period-tabs.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/lib/format.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "dual-metric-card",
+      "type": "registry:block",
+      "title": "Dual Metric Card",
+      "description": "A card with two metrics side by side, each with a value, share badge, meter, and a supporting fact.",
+      "categories": [
+        "dashboard"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "card",
+        "button",
+        "dropdown-menu",
+        "tooltip"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboardcn/blocks/dual-metric-card.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/dashboardcn/ui/tick-bar.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/lib/format.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "progress-card",
+      "type": "registry:block",
+      "title": "Progress Card",
+      "description": "A compact progress card with an icon title, a pill tick bar, and a count with a secondary stat.",
+      "categories": [
+        "dashboard"
+      ],
+      "registryDependencies": [
+        "card"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboardcn/blocks/progress-card.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/dashboardcn/ui/tick-bar.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/lib/format.ts",
+          "type": "registry:lib"
+        }
+      ]
+    }
+  ]
+}

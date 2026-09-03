@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "period-tabs",
+  "title": "Period Tabs",
+  "description": "A small segmented control for switching a chart between week, month, and year.",
+  "registryDependencies": [
+    "tabs"
+  ],
+  "files": [
+    {
+      "path": "registry/dashboardcn/ui/period-tabs.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\nimport { Tabs, TabsList, TabsTrigger } from \"@/components/ui/tabs\"\n\nexport interface PeriodOption {\n  value: string\n  label: string\n}\n\nexport const defaultPeriods: PeriodOption[] = [\n  { value: \"week\", label: \"Week\" },\n  { value: \"month\", label: \"Month\" },\n  { value: \"year\", label: \"Year\" },\n]\n\nexport interface PeriodTabsProps\n  extends Omit<React.ComponentProps<typeof Tabs>, \"children\"> {\n  options?: PeriodOption[]\n  size?: \"sm\" | \"default\"\n}\n\n/** Small segmented control for switching a chart's time range. */\nfunction PeriodTabs({\n  options = defaultPeriods,\n  size = \"sm\",\n  className,\n  ...props\n}: PeriodTabsProps) {\n  return (\n    <Tabs data-slot=\"period-tabs\" className={cn(\"w-fit\", className)} {...props}>\n      <TabsList className={cn(size === \"sm\" && \"h-7 p-0.5\")}>\n        {options.map((option) => (\n          <TabsTrigger\n            key={option.value}\n            value={option.value}\n            className={cn(size === \"sm\" && \"h-6 px-2.5 text-xs\")}\n          >\n            {option.label}\n          </TabsTrigger>\n        ))}\n      </TabsList>\n    </Tabs>\n  )\n}\n\nexport { PeriodTabs }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}
