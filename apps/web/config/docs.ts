@@ -330,7 +330,14 @@ const columns = helper.columns([
     title: "Period Tabs",
     description:
       "A small segmented control for switching a chart between week, month, and year.",
-    examples: [{ name: "period-tabs-demo" }],
+    examples: [
+      { name: "period-tabs-demo" },
+      {
+        name: "period-tabs-animated-demo",
+        title: "Animated",
+        description: "Set animated to slide a single pill between tabs instead of swapping backgrounds.",
+      },
+    ],
     usage: `import { PeriodTabs } from "@/components/ui/period-tabs"
 
 const [period, setPeriod] = React.useState("month")

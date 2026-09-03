@@ -17,6 +17,7 @@ import InsightCardPlainDemo from "@/registry/dashboardcn/examples/insight-card-p
 import InsightCardVariantsDemo from "@/registry/dashboardcn/examples/insight-card-variants-demo"
 import KpiRowCardDemo from "@/registry/dashboardcn/examples/kpi-row-card-demo"
 import MetricListDemo from "@/registry/dashboardcn/examples/metric-list-demo"
+import PeriodTabsAnimatedDemo from "@/registry/dashboardcn/examples/period-tabs-animated-demo"
 import PeriodTabsDemo from "@/registry/dashboardcn/examples/period-tabs-demo"
 import RadialGaugeDemo from "@/registry/dashboardcn/examples/radial-gauge-demo"
 import RadialGaugeInlineDemo from "@/registry/dashboardcn/examples/radial-gauge-inline-demo"
@@ -75,6 +76,7 @@ export const examples = {
   "composed-chart-hatched-demo": { component: ComposedChartHatchedDemo, path: `${base}/composed-chart-hatched-demo.tsx` },
   "segmented-meter-demo": { component: SegmentedMeterDemo, path: `${base}/segmented-meter-demo.tsx` },
   "period-tabs-demo": { component: PeriodTabsDemo, path: `${base}/period-tabs-demo.tsx` },
+  "period-tabs-animated-demo": { component: PeriodTabsAnimatedDemo, path: `${base}/period-tabs-animated-demo.tsx` },
   "tick-bar-demo": { component: TickBarDemo, path: `${base}/tick-bar-demo.tsx` },
   "dot-plot-demo": { component: DotPlotDemo, path: `${base}/dot-plot-demo.tsx` },
   "metric-list-demo": { component: MetricListDemo, path: `${base}/metric-list-demo.tsx` },
