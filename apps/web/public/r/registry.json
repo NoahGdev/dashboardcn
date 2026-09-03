@@ -147,6 +147,24 @@
       ]
     },
     {
+      "name": "bar-chart",
+      "type": "registry:ui",
+      "title": "Bar Chart",
+      "description": "A single-series bar chart with gradient or striped fills, highlighted bars, and a hover marker.",
+      "dependencies": [
+        "recharts"
+      ],
+      "registryDependencies": [
+        "chart"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboardcn/ui/bar-chart.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "data-table",
       "type": "registry:ui",
       "title": "Data Table",
@@ -572,6 +590,48 @@
         },
         {
           "path": "registry/dashboardcn/ui/tick-bar.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/lib/format.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "period-bar-chart-card",
+      "type": "registry:block",
+      "title": "Period Bar Chart Card",
+      "description": "A card with a total for the selected period, a range switcher, and a bar chart that highlights that period.",
+      "categories": [
+        "dashboard",
+        "charts",
+        "finance"
+      ],
+      "dependencies": [
+        "recharts",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "card",
+        "chart",
+        "tabs"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboardcn/blocks/period-bar-chart-card.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/dashboardcn/ui/bar-chart.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/ui/delta-badge.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/ui/period-tabs.tsx",
           "type": "registry:ui"
         },
         {

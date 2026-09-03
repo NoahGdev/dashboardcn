@@ -66,6 +66,31 @@ export const componentDocs: ComponentDoc[] = [
 />`,
   },
   {
+    name: "bar-chart",
+    title: "Bar Chart",
+    description:
+      "A single-series bar chart with gradient or striped fills, highlighted bars, and a hover marker.",
+    examples: [
+      { name: "bar-chart-demo" },
+      {
+        name: "bar-chart-striped-demo",
+        title: "Striped",
+        description: "Set variant to \"striped\" for diagonal bands. mutedColor defaults to gray; pass the bar color for a tint of the same hue.",
+      },
+    ],
+    usage: `import { BarChart } from "@/components/ui/bar-chart"
+
+<BarChart
+  data={data}
+  xKey="week"
+  yKey="spend"
+  groupKey="month"
+  color="var(--color-orange-500)"
+  highlight={(row) => row.month === "Mar"}
+  yFormatter={(value) => formatNumber(value, { format: "currency" })}
+/>`,
+  },
+  {
     name: "data-table",
     title: "Data Table",
     description:
@@ -491,6 +516,31 @@ const [period, setPeriod] = React.useState("month")
     { label: "New leads", value: 54, showShare: true, meter: "bar", detail: { label: "Top source", value: "LinkedIn" } },
     { label: "Returning leads", value: 198, meter: "ticks", detail: { label: "Conversion rate", value: "12.8%" } },
   ]}
+/>`,
+  },
+  {
+    name: "period-bar-chart-card",
+    kind: "block",
+    title: "Period Bar Chart Card",
+    description:
+      "A card with a total for the selected period, a range switcher, and a bar chart that highlights that period. Click a bar to select its period.",
+    examples: [{ name: "period-bar-chart-card-demo" }],
+    usage: `import { PeriodBarChartCard } from "@/components/period-bar-chart-card"
+
+<PeriodBarChartCard
+  title="Spending"
+  data={data}
+  xKey="week"
+  yKey="spend"
+  groupKey="month"
+  valueLabel="spending"
+  color="var(--color-orange-500)"
+  ranges={[
+    { value: "1y", label: "1Y", points: 48 },
+    { value: "6m", label: "6M", points: 24 },
+    { value: "3m", label: "3M", points: 12 },
+  ]}
+  defaultRange="6m"
 />`,
   },
   {

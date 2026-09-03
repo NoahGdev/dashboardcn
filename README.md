@@ -34,6 +34,7 @@ npx shadcn@latest add @dashboardcn/kpi-card
 | Item | What it is |
 | --- | --- |
 | `kpi-card` | Metric card with value, period-over-period delta, and sparkline |
+| `bar-chart` | Single-series bars with gradient or striped fills and highlighted bars |
 | `trend-chart` | Area, line, or bar chart over time on shadcn's chart primitives |
 | `data-table` | Sortable, filterable, paginated table on TanStack Table v9 |
 | `funnel-chart` | Step conversion with drop-off between steps |
@@ -51,6 +52,7 @@ Complete cards composed from the primitives.
 | Item | What it is |
 | --- | --- |
 | `kpi-row-card` | Period switcher, row of KPI tiles with sparklines and deltas, footer summary |
+| `period-bar-chart-card` | Total for the selected period, range switcher, and a bar chart highlighting it |
 | `balance-chart-card` | Big value, delta, stat row, and a line chart with reference line and peak marker |
 | `status-gauge-card` | Status word, metric, avatar stack, and a segmented semicircular gauge |
 | `ring-kpi-card` | Row of KPI tiles with a segmented ring beside each value and a previous-value comparison |

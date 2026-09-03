@@ -22,6 +22,9 @@ import ProgressCardDemo from "@/registry/dashboardcn/examples/progress-card-demo
 import TickBarDemo from "@/registry/dashboardcn/examples/tick-bar-demo"
 import TickKpiCardDemo from "@/registry/dashboardcn/examples/tick-kpi-card-demo"
 import ActivityHeatmapDemo from "@/registry/dashboardcn/examples/activity-heatmap-demo"
+import BarChartDemo from "@/registry/dashboardcn/examples/bar-chart-demo"
+import BarChartStripedDemo from "@/registry/dashboardcn/examples/bar-chart-striped-demo"
+import PeriodBarChartCardDemo from "@/registry/dashboardcn/examples/period-bar-chart-card-demo"
 import BarListDemo from "@/registry/dashboardcn/examples/bar-list-demo"
 import DataTableDemo from "@/registry/dashboardcn/examples/data-table-demo"
 import DistributionBarDemo from "@/registry/dashboardcn/examples/distribution-bar-demo"
@@ -47,6 +50,8 @@ export const examples = {
   "distribution-bar-demo": { component: DistributionBarDemo, path: `${base}/distribution-bar-demo.tsx` },
   "funnel-chart-demo": { component: FunnelChartDemo, path: `${base}/funnel-chart-demo.tsx` },
   "activity-heatmap-demo": { component: ActivityHeatmapDemo, path: `${base}/activity-heatmap-demo.tsx` },
+  "bar-chart-demo": { component: BarChartDemo, path: `${base}/bar-chart-demo.tsx` },
+  "bar-chart-striped-demo": { component: BarChartStripedDemo, path: `${base}/bar-chart-striped-demo.tsx` },
   "trend-chart-demo": { component: TrendChartDemo, path: `${base}/trend-chart-demo.tsx` },
   "trend-chart-bar-demo": { component: TrendChartBarDemo, path: `${base}/trend-chart-bar-demo.tsx` },
   "trend-chart-line-demo": { component: TrendChartLineDemo, path: `${base}/trend-chart-line-demo.tsx` },
@@ -71,6 +76,7 @@ export const examples = {
   "tick-kpi-card-demo": { component: TickKpiCardDemo, path: `${base}/tick-kpi-card-demo.tsx` },
   "allocation-card-demo": { component: AllocationCardDemo, path: `${base}/allocation-card-demo.tsx` },
   "dual-metric-card-demo": { component: DualMetricCardDemo, path: `${base}/dual-metric-card-demo.tsx` },
+  "period-bar-chart-card-demo": { component: PeriodBarChartCardDemo, path: `${base}/period-bar-chart-card-demo.tsx` },
   "progress-card-demo": { component: ProgressCardDemo, path: `${base}/progress-card-demo.tsx` },
 } satisfies Record<string, ExampleEntry>
 
