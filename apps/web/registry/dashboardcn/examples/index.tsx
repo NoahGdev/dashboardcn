@@ -46,6 +46,10 @@ import TrendChartDotsDemo from "@/registry/dashboardcn/examples/trend-chart-dots
 import TrendChartLineDemo from "@/registry/dashboardcn/examples/trend-chart-line-demo"
 
 export interface ExampleEntry {
+import TimelineActivityDemo from "@/registry/dashboardcn/examples/timeline-activity-demo"
+import TimelineCompactDemo from "@/registry/dashboardcn/examples/timeline-compact-demo"
+import TimelineDemo from "@/registry/dashboardcn/examples/timeline-demo"
+import TimelineVersionsDemo from "@/registry/dashboardcn/examples/timeline-versions-demo"
   component: React.ComponentType
   /** Path relative to the app root, used to show the example's source. */
   path: string
@@ -86,6 +90,10 @@ export const examples = {
   "balance-chart-card-demo": { component: BalanceChartCardDemo, path: `${base}/balance-chart-card-demo.tsx` },
   "status-gauge-card-demo": { component: StatusGaugeCardDemo, path: `${base}/status-gauge-card-demo.tsx` },
   "ring-kpi-card-demo": { component: RingKpiCardDemo, path: `${base}/ring-kpi-card-demo.tsx` },
+  "timeline-demo": { component: TimelineDemo, path: `${base}/timeline-demo.tsx` },
+  "timeline-compact-demo": { component: TimelineCompactDemo, path: `${base}/timeline-compact-demo.tsx` },
+  "timeline-activity-demo": { component: TimelineActivityDemo, path: `${base}/timeline-activity-demo.tsx` },
+  "timeline-versions-demo": { component: TimelineVersionsDemo, path: `${base}/timeline-versions-demo.tsx` },
   "distribution-card-demo": { component: DistributionCardDemo, path: `${base}/distribution-card-demo.tsx` },
   "tick-kpi-card-demo": { component: TickKpiCardDemo, path: `${base}/tick-kpi-card-demo.tsx` },
   "allocation-card-demo": { component: AllocationCardDemo, path: `${base}/allocation-card-demo.tsx` },

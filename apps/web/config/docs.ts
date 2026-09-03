@@ -387,6 +387,59 @@ const [period, setPeriod] = React.useState("month")
     examples: [{ name: "kpi-row-card-demo" }],
     usage: `import { KpiRowCard } from "@/components/kpi-row-card"
 
+  },
+  {
+    name: "timeline",
+    title: "Timeline",
+    description:
+      "A vertical chronology of events, each with a marker, connector, and free-form content. Use it for audit logs, activity feeds, and version history.",
+    examples: [
+      { name: "timeline-demo" },
+      {
+        name: "timeline-compact-demo",
+        title: "Compact log",
+        description: "Tighten the rail and content spacing with classes. Markers take any icon and inherit text color.",
+      },
+      {
+        name: "timeline-activity-demo",
+        title: "Activity feed",
+        description: "Put an avatar in the marker and any content, including cards, inside TimelineContent.",
+      },
+      {
+        name: "timeline-versions-demo",
+        title: "Version history",
+        description: "An empty marker renders a plain ring. status=\"current\" highlights the marker and sets aria-current.",
+      },
+    ],
+    usage: `import {
+  Timeline,
+  TimelineConnector,
+  TimelineContent,
+  TimelineDescription,
+  TimelineHeader,
+  TimelineItem,
+  TimelineMarker,
+  TimelineRail,
+  TimelineTime,
+  TimelineTitle,
+} from "@/components/ui/timeline"
+
+<Timeline>
+  <TimelineItem status="current">
+    <TimelineRail>
+      <TimelineMarker><Rocket /></TimelineMarker>
+      <TimelineConnector />
+    </TimelineRail>
+    <TimelineContent>
+      <TimelineHeader>
+        <TimelineTitle>Canary rollout started</TimelineTitle>
+        <Badge variant="secondary">Canary</Badge>
+        <TimelineTime dateTime="2026-05-22T09:34">09:34</TimelineTime>
+      </TimelineHeader>
+      <TimelineDescription>Enabled for 5% of workspaces.</TimelineDescription>
+    </TimelineContent>
+  </TimelineItem>
+</Timeline>`,
 <KpiRowCard
   title="Catalog health"
   description="SKU coverage, replenishment pressure, and aging stock."

@@ -372,6 +372,18 @@
       ]
     },
     {
+      "name": "timeline",
+      "type": "registry:ui",
+      "title": "Timeline",
+      "description": "A vertical chronology of events, each with a marker, connector, and free-form content. Use it for audit logs, activity feeds, and version history.",
+      "files": [
+        {
+          "path": "registry/dashboardcn/ui/timeline.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "kpi-row-card",
       "type": "registry:block",
       "title": "KPI Row Card",
