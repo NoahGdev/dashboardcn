@@ -7,9 +7,9 @@
       "outputs": ["public/r/**"]
     },
     "build": {
-      "dependsOn": ["^build", "registry:build"],
+      "dependsOn": ["^build"],
       "env": ["NEXT_PUBLIC_BASE_URL"],
-      "outputs": [".next/**", "!.next/cache/**"]
+      "outputs": [".next/**", "!.next/cache/**", "public/r/**"]
     },
     "dev": {
       "dependsOn": ["registry:build"],
