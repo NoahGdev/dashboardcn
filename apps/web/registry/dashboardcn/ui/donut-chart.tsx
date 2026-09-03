@@ -137,8 +137,9 @@ function DonutChart({
         </Pie>
         {showLegend ? (
           <ChartLegend
-            content={<ChartLegendContent nameKey="key" />}
-            className="flex-wrap gap-x-4 gap-y-1"
+            content={
+              <ChartLegendContent nameKey="key" className="flex-wrap gap-x-4 gap-y-1" />
+            }
           />
         ) : null}
       </PieChart>
