@@ -4,9 +4,10 @@ import * as React from "react"
 import { TrendingDown, TrendingUp } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { formatNumber, type NumberFormat } from "@/registry/dashboardcn/lib/format"
+import { type NumberFormat } from "@/registry/dashboardcn/lib/format"
 import { Card, CardContent } from "@/components/ui/card"
 import { RadialGauge } from "@/registry/dashboardcn/ui/radial-gauge"
+import { MetricValue } from "@/registry/dashboardcn/ui/metric-value"
 
 export interface RingKpiMetric {
   label: string
@@ -31,13 +32,25 @@ export interface RingKpiCardProps extends React.ComponentProps<typeof Card> {
   metrics: RingKpiMetric[]
 }
 
-function formatValue(metric: RingKpiMetric, value: number) {
-  const text = formatNumber(value, {
-    format: metric.format,
-    currency: metric.currency,
-    maximumFractionDigits: metric.format ? undefined : 1,
-  })
-  return metric.unit ? `${text} ${metric.unit}` : text
+function RingKpiValue({
+  metric,
+  value,
+  className,
+}: {
+  metric: RingKpiMetric
+  value: number
+  className?: string
+}) {
+  return (
+    <MetricValue
+      value={value}
+      format={metric.format}
+      currency={metric.currency}
+      maximumFractionDigits={metric.format ? undefined : 1}
+      suffix={metric.unit ? ` ${metric.unit}` : undefined}
+      className={className}
+    />
+  )
 }
 
 /** A card with a row of KPI tiles, each with a segmented ring next to the value and a comparison to the previous value. */
@@ -86,9 +99,11 @@ function RingKpiCard({ metrics, className, ...props }: RingKpiCardProps) {
                     gap={7}
                     color={color}
                   />
-                  <span className="truncate text-2xl font-semibold tabular-nums tracking-tight">
-                    {formatValue(metric, metric.value)}
-                  </span>
+                  <RingKpiValue
+                    metric={metric}
+                    value={metric.value}
+                    className="truncate text-2xl font-semibold tracking-tight"
+                  />
                 </div>
                 {metric.previous !== undefined ? (
                   <span
@@ -104,9 +119,12 @@ function RingKpiCard({ metrics, className, ...props }: RingKpiCardProps) {
                       <Icon data-accent="" className="size-3.5" aria-hidden="true" />
                     ) : null}
                     {direction === "flat" ? "unchanged from" : direction === "up" ? "up from" : "down from"}{" "}
-                    <span data-accent="" className="font-medium tabular-nums">
-                      {formatValue(metric, metric.previous)}
-                    </span>
+                    <RingKpiValue
+                      metric={metric}
+                      value={metric.previous}
+                      data-accent=""
+                      className="font-medium"
+                    />
                   </span>
                 ) : null}
               </div>

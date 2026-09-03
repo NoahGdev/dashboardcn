@@ -40,7 +40,8 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "card"
+        "card",
+        "tooltip"
       ],
       "files": [
         {
@@ -53,6 +54,10 @@
         },
         {
           "path": "registry/dashboardcn/ui/sparkline.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/ui/metric-value.tsx",
           "type": "registry:ui"
         },
         {
@@ -206,11 +211,6 @@
       ]
     },
     {
-      "name": "radial-gauge",
-      "type": "registry:ui",
-      "title": "Radial Gauge",
-      "description": "A semicircular or ring gauge, continuous or segmented, with content in the middle.",
-    {
       "name": "metric-value",
       "type": "registry:ui",
       "title": "Metric Value",
@@ -229,6 +229,11 @@
         }
       ]
     },
+    {
+      "name": "radial-gauge",
+      "type": "registry:ui",
+      "title": "Radial Gauge",
+      "description": "A semicircular or ring gauge, continuous or segmented, with content in the middle.",
       "files": [
         {
           "path": "registry/dashboardcn/ui/radial-gauge.tsx",
@@ -330,9 +335,16 @@
           "type": "registry:ui"
         },
         {
+          "path": "registry/dashboardcn/ui/metric-value.tsx",
+          "type": "registry:ui"
+        },
+        {
           "path": "registry/dashboardcn/lib/format.ts",
           "type": "registry:lib"
         }
+      ],
+      "registryDependencies": [
+        "tooltip"
       ]
     },
     {
@@ -374,7 +386,8 @@
       ],
       "registryDependencies": [
         "card",
-        "tabs"
+        "tabs",
+        "tooltip"
       ],
       "files": [
         {
@@ -391,6 +404,10 @@
         },
         {
           "path": "registry/dashboardcn/ui/sparkline.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/ui/metric-value.tsx",
           "type": "registry:ui"
         },
         {
@@ -415,7 +432,8 @@
       ],
       "registryDependencies": [
         "card",
-        "chart"
+        "chart",
+        "tooltip"
       ],
       "files": [
         {
@@ -428,6 +446,10 @@
         },
         {
           "path": "registry/dashboardcn/ui/delta-badge.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/ui/metric-value.tsx",
           "type": "registry:ui"
         },
         {
@@ -447,7 +469,8 @@
       ],
       "registryDependencies": [
         "card",
-        "button"
+        "button",
+        "tooltip"
       ],
       "files": [
         {
@@ -456,6 +479,10 @@
         },
         {
           "path": "registry/dashboardcn/ui/radial-gauge.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/ui/metric-value.tsx",
           "type": "registry:ui"
         },
         {
@@ -477,7 +504,8 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "card"
+        "card",
+        "tooltip"
       ],
       "files": [
         {
@@ -486,6 +514,10 @@
         },
         {
           "path": "registry/dashboardcn/ui/radial-gauge.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/ui/metric-value.tsx",
           "type": "registry:ui"
         },
         {
@@ -510,7 +542,8 @@
       "registryDependencies": [
         "card",
         "button",
-        "dropdown-menu"
+        "dropdown-menu",
+        "tooltip"
       ],
       "files": [
         {
@@ -523,6 +556,10 @@
         },
         {
           "path": "registry/dashboardcn/ui/distribution-bar.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/ui/metric-value.tsx",
           "type": "registry:ui"
         },
         {
@@ -540,7 +577,8 @@
         "dashboard"
       ],
       "registryDependencies": [
-        "card"
+        "card",
+        "tooltip"
       ],
       "files": [
         {
@@ -549,6 +587,10 @@
         },
         {
           "path": "registry/dashboardcn/ui/tick-bar.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/ui/metric-value.tsx",
           "type": "registry:ui"
         },
         {
@@ -592,6 +634,10 @@
           "type": "registry:ui"
         },
         {
+          "path": "registry/dashboardcn/ui/metric-value.tsx",
+          "type": "registry:ui"
+        },
+        {
           "path": "registry/dashboardcn/lib/format.ts",
           "type": "registry:lib"
         }
@@ -621,6 +667,10 @@
         },
         {
           "path": "registry/dashboardcn/ui/tick-bar.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/ui/metric-value.tsx",
           "type": "registry:ui"
         },
         {
@@ -680,7 +730,8 @@
         "dashboard"
       ],
       "registryDependencies": [
-        "card"
+        "card",
+        "tooltip"
       ],
       "files": [
         {
@@ -689,6 +740,10 @@
         },
         {
           "path": "registry/dashboardcn/ui/tick-bar.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/ui/metric-value.tsx",
           "type": "registry:ui"
         },
         {
@@ -710,7 +765,8 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "card"
+        "card",
+        "tooltip"
       ],
       "files": [
         {
@@ -719,6 +775,10 @@
         },
         {
           "path": "registry/dashboardcn/ui/delta-badge.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/ui/metric-value.tsx",
           "type": "registry:ui"
         },
         {
@@ -737,7 +797,8 @@
         "charts"
       ],
       "registryDependencies": [
-        "card"
+        "card",
+        "tooltip"
       ],
       "files": [
         {
@@ -746,6 +807,10 @@
         },
         {
           "path": "registry/dashboardcn/ui/dot-plot.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/ui/metric-value.tsx",
           "type": "registry:ui"
         },
         {
@@ -766,12 +831,17 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "card"
+        "card",
+        "tooltip"
       ],
       "files": [
         {
           "path": "registry/dashboardcn/blocks/insight-card.tsx",
           "type": "registry:component"
+        },
+        {
+          "path": "registry/dashboardcn/ui/metric-value.tsx",
+          "type": "registry:ui"
         },
         {
           "path": "registry/dashboardcn/lib/format.ts",
@@ -795,7 +865,8 @@
       ],
       "registryDependencies": [
         "card",
-        "chart"
+        "chart",
+        "tooltip"
       ],
       "files": [
         {
@@ -808,6 +879,10 @@
         },
         {
           "path": "registry/dashboardcn/ui/delta-badge.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/ui/metric-value.tsx",
           "type": "registry:ui"
         },
         {

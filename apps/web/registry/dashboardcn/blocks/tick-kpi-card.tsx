@@ -3,9 +3,10 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
-import { formatNumber, type NumberFormat } from "@/registry/dashboardcn/lib/format"
+import { type NumberFormat } from "@/registry/dashboardcn/lib/format"
 import { Card, CardContent } from "@/components/ui/card"
 import { TickBar } from "@/registry/dashboardcn/ui/tick-bar"
+import { MetricValue } from "@/registry/dashboardcn/ui/metric-value"
 
 export interface TickKpiMetric {
   label: string
@@ -69,12 +70,18 @@ function TickKpiCard({ metrics, segments = 40, className, ...props }: TickKpiCar
                   {metric.action ? <span className="shrink-0">{metric.action}</span> : null}
                 </div>
                 <div className="flex flex-wrap items-baseline gap-x-1.5">
-                  <span className="text-2xl font-semibold tabular-nums tracking-tight">
-                    {formatNumber(metric.value, options)}
-                  </span>
+                  <MetricValue
+                    value={metric.value}
+                    {...options}
+                    className="text-2xl font-semibold tracking-tight"
+                  />
                   <span className="text-muted-foreground text-sm tabular-nums">
-                    of {formatNumber(metric.max, options)}
-                    {metric.unit ? ` ${metric.unit}` : null}
+                    of{" "}
+                    <MetricValue
+                      value={metric.max}
+                      {...options}
+                      suffix={metric.unit ? ` ${metric.unit}` : undefined}
+                    />
                   </span>
                 </div>
                 <TickBar

@@ -3,7 +3,7 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
-import { formatNumber, type NumberFormat } from "@/registry/dashboardcn/lib/format"
+import { type NumberFormat } from "@/registry/dashboardcn/lib/format"
 import {
   Card,
   CardAction,
@@ -12,6 +12,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { DeltaBadge } from "@/registry/dashboardcn/ui/delta-badge"
+import { MetricValue } from "@/registry/dashboardcn/ui/metric-value"
 
 export interface BreakdownCardItem {
   name: string
@@ -73,9 +74,13 @@ function BreakdownCard({
       </CardHeader>
       <CardContent className="flex flex-col gap-5">
         <div className="flex flex-wrap items-center gap-3">
-          <span className="text-4xl font-semibold tabular-nums tracking-tight">
-            {formatNumber(sum, { format, currency, maximumFractionDigits: 0 })}
-          </span>
+          <MetricValue
+            value={sum}
+            format={format}
+            currency={currency}
+            maximumFractionDigits={0}
+            className="text-4xl font-semibold tracking-tight"
+          />
           {delta !== undefined ? (
             <DeltaBadge delta={delta} invert={invertDelta} variant="soft" className="rounded-full px-2 py-1" />
           ) : null}
@@ -88,9 +93,13 @@ function BreakdownCard({
               <li key={item.name} data-slot="breakdown-card-item" className="flex flex-col gap-2">
                 <div className="flex items-baseline justify-between gap-4 text-sm">
                   <span className="text-muted-foreground min-w-0 truncate">{item.name}</span>
-                  <span className="shrink-0 font-semibold tabular-nums">
-                    {formatNumber(item.value, { format, currency, maximumFractionDigits: 0 })}
-                  </span>
+                  <MetricValue
+                    value={item.value}
+                    format={format}
+                    currency={currency}
+                    maximumFractionDigits={0}
+                    className="shrink-0 font-semibold"
+                  />
                 </div>
                 <div
                   role="progressbar"

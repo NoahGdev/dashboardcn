@@ -3,9 +3,10 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
-import { formatNumber, type NumberFormat } from "@/registry/dashboardcn/lib/format"
+import { type NumberFormat } from "@/registry/dashboardcn/lib/format"
 import { Card, CardAction, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { DotPlot } from "@/registry/dashboardcn/ui/dot-plot"
+import { MetricValue } from "@/registry/dashboardcn/ui/metric-value"
 
 export interface DotPlotCardProps extends Omit<React.ComponentProps<typeof Card>, "children"> {
   title: string
@@ -88,9 +89,6 @@ function DotPlotCard({
         {peakLabel}: <span className="text-foreground font-medium">{peak}</span>
       </>
     ) : null
-  const displayValue =
-    typeof value === "number" ? formatNumber(value, { format, currency }) : value
-
   return (
     <Card data-slot="dot-plot-card" className={cn("gap-4 py-5", className)} {...props}>
       <CardHeader className="px-5">
@@ -108,9 +106,12 @@ function DotPlotCard({
               {pill}
             </span>
           ) : null}
-          <span className="col-start-1 row-start-2 text-4xl font-semibold tabular-nums tracking-tight">
-            {displayValue}
-          </span>
+          <MetricValue
+            value={value}
+            format={format}
+            currency={currency}
+            className="col-start-1 row-start-2 text-4xl font-semibold tracking-tight"
+          />
           <DotPlot
             data={data}
             labels={labels}

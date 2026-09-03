@@ -3,10 +3,7 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
-import {
-  formatNumber,
-  type NumberFormat,
-} from "@/registry/dashboardcn/lib/format"
+import { type NumberFormat } from "@/registry/dashboardcn/lib/format"
 import {
   Card,
   CardAction,
@@ -17,6 +14,7 @@ import {
 } from "@/components/ui/card"
 import { DeltaBadge, getDeltaDirection } from "@/registry/dashboardcn/ui/delta-badge"
 import { Sparkline } from "@/registry/dashboardcn/ui/sparkline"
+import { MetricValue } from "@/registry/dashboardcn/ui/metric-value"
 
 export interface KpiCardProps extends Omit<
   React.ComponentProps<typeof Card>,
@@ -59,8 +57,6 @@ function KpiCard({
   const direction = getDeltaDirection(delta)
   const isPositive =
     direction === "flat" ? null : (direction === "up") !== invertDelta
-  const displayValue =
-    typeof value === "number" ? formatNumber(value, { format, currency }) : value
   const trendColor =
     isPositive === true
       ? "var(--color-emerald-500)"
@@ -81,7 +77,7 @@ function KpiCard({
           {label}
         </CardDescription>
         <CardTitle className="text-2xl font-semibold tabular-nums tracking-tight">
-          {displayValue}
+          <MetricValue value={value} format={format} currency={currency} />
         </CardTitle>
         {delta !== undefined ? (
           <CardAction>

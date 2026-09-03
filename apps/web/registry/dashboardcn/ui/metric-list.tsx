@@ -3,9 +3,10 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
-import { formatNumber, type NumberFormat } from "@/registry/dashboardcn/lib/format"
+import { type NumberFormat } from "@/registry/dashboardcn/lib/format"
 import { DeltaBadge, getDeltaDirection } from "@/registry/dashboardcn/ui/delta-badge"
 import { Sparkline } from "@/registry/dashboardcn/ui/sparkline"
+import { MetricValue } from "@/registry/dashboardcn/ui/metric-value"
 
 export interface MetricListItem {
   label: string
@@ -50,11 +51,6 @@ function MetricList({
             : positive === false
               ? "var(--color-red-500)"
               : "var(--muted-foreground)"
-        const value =
-          typeof item.value === "number"
-            ? formatNumber(item.value, { format: item.format, currency: item.currency })
-            : item.value
-
         return (
           <div
             key={item.key ?? item.label}
@@ -78,7 +74,12 @@ function MetricList({
               />
             ) : null}
             <div className="flex w-28 shrink-0 items-center justify-end gap-2 tabular-nums">
-              <span className="font-medium">{value}</span>
+              <MetricValue
+                value={item.value}
+                format={item.format}
+                currency={item.currency}
+                className="font-medium"
+              />
               {item.delta !== undefined ? (
                 <DeltaBadge
                   delta={item.delta}

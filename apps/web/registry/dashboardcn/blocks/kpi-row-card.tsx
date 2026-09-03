@@ -4,7 +4,7 @@ import * as React from "react"
 import { ArrowRight } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { formatNumber, type NumberFormat } from "@/registry/dashboardcn/lib/format"
+import { type NumberFormat } from "@/registry/dashboardcn/lib/format"
 import {
   Card,
   CardAction,
@@ -17,6 +17,7 @@ import {
 import { DeltaBadge, getDeltaDirection } from "@/registry/dashboardcn/ui/delta-badge"
 import { PeriodTabs, type PeriodOption } from "@/registry/dashboardcn/ui/period-tabs"
 import { Sparkline } from "@/registry/dashboardcn/ui/sparkline"
+import { MetricValue } from "@/registry/dashboardcn/ui/metric-value"
 
 export interface KpiRowMetric {
   label: string
@@ -91,13 +92,6 @@ function KpiRowCard({
                   : positive === false
                     ? "var(--color-red-500)"
                     : "var(--muted-foreground)"
-              const value =
-                typeof metric.value === "number"
-                  ? formatNumber(metric.value, {
-                      format: metric.format,
-                      currency: metric.currency,
-                    })
-                  : metric.value
               return (
                 <div
                   key={metric.label}
@@ -110,9 +104,12 @@ function KpiRowCard({
                   </div>
                   <div className="flex items-end justify-between gap-3">
                     <div className="flex flex-col gap-1">
-                      <span className="text-2xl font-semibold tabular-nums tracking-tight">
-                        {value}
-                      </span>
+                      <MetricValue
+                        value={metric.value}
+                        format={metric.format}
+                        currency={metric.currency}
+                        className="text-2xl font-semibold tracking-tight"
+                      />
                       <span className="flex items-center gap-1.5 text-xs">
                         {metric.delta !== undefined ? (
                           <DeltaBadge

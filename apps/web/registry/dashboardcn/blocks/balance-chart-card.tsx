@@ -7,6 +7,7 @@ import { formatNumber, type NumberFormat } from "@/registry/dashboardcn/lib/form
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { ComposedChart, type ReferenceLineSpec } from "@/registry/dashboardcn/ui/composed-chart"
 import { DeltaBadge } from "@/registry/dashboardcn/ui/delta-badge"
+import { MetricValue } from "@/registry/dashboardcn/ui/metric-value"
 
 export interface BalanceStat {
   label: string
@@ -71,7 +72,7 @@ function BalanceChartCard({
       <CardHeader>
         <CardDescription>{title}</CardDescription>
         <CardTitle className="flex flex-wrap items-baseline gap-x-3 gap-y-1 text-3xl font-semibold tabular-nums tracking-tight">
-          {formatNumber(value, { format, currency })}
+          <MetricValue value={value} format={format} currency={currency} />
           {delta !== undefined ? (
             <span className="flex items-center gap-1.5 text-sm font-normal">
               <DeltaBadge delta={delta} variant="text" />
@@ -87,11 +88,13 @@ function BalanceChartCard({
           {stats.map((stat) => (
             <div key={stat.label} className="flex items-center gap-1.5">
               <span className="text-muted-foreground">{stat.label}</span>
-              <span className="font-medium tabular-nums" style={{ color: stat.color }}>
-                {typeof stat.value === "number"
-                  ? formatNumber(stat.value, { format: stat.format ?? format, currency })
-                  : stat.value}
-              </span>
+              <MetricValue
+                value={stat.value}
+                format={stat.format ?? format}
+                currency={currency}
+                className="font-medium"
+                style={{ color: stat.color }}
+              />
               {stat.delta !== undefined ? (
                 <DeltaBadge delta={stat.delta} variant="text" showIcon={false} />
               ) : null}

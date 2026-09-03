@@ -11,6 +11,7 @@ import {
 import { Card, CardContent } from "@/components/ui/card"
 import { ComposedChart, type ComposedChartProps } from "@/registry/dashboardcn/ui/composed-chart"
 import { DeltaBadge } from "@/registry/dashboardcn/ui/delta-badge"
+import { MetricValue } from "@/registry/dashboardcn/ui/metric-value"
 
 export interface MetricTab {
   /** Key of this metric in each data row. */
@@ -150,7 +151,7 @@ function MetricTabsChartCard({
               data-state={isSelected ? "active" : "inactive"}
               onClick={() => select(metric.key)}
               className={cn(
-                "flex min-w-36 flex-1 flex-col gap-1.5 border-t-2 px-4 py-3 text-left outline-none transition-colors",
+                "flex flex-[1_0_auto] flex-col gap-1.5 border-t-2 px-4 py-3 text-left outline-none transition-colors",
                 "focus-visible:ring-ring/50 focus-visible:ring-2 focus-visible:ring-inset",
                 isSelected
                   ? "border-t-foreground bg-card"
@@ -159,15 +160,13 @@ function MetricTabsChartCard({
             >
               <span className="text-muted-foreground text-sm whitespace-nowrap">{metric.label}</span>
               <span className="flex items-center justify-between gap-3">
-                <span className="text-lg font-semibold tabular-nums tracking-tight">
-                  {typeof value === "number"
-                    ? formatNumber(value, {
-                        format: metric.format,
-                        currency: metric.currency,
-                        maximumFractionDigits: metric.fractionDigits,
-                      })
-                    : value}
-                </span>
+                <MetricValue
+                  value={value}
+                  format={metric.format}
+                  currency={metric.currency}
+                  maximumFractionDigits={metric.fractionDigits}
+                  className="text-lg font-semibold tracking-tight"
+                />
                 {delta !== undefined ? (
                   <DeltaBadge
                     delta={delta}

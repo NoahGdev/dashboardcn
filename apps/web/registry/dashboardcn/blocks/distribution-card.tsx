@@ -4,7 +4,7 @@ import * as React from "react"
 import { ChevronDown } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { formatNumber, type NumberFormat } from "@/registry/dashboardcn/lib/format"
+import { type NumberFormat } from "@/registry/dashboardcn/lib/format"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import {
@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { DeltaBadge } from "@/registry/dashboardcn/ui/delta-badge"
 import { DistributionBar } from "@/registry/dashboardcn/ui/distribution-bar"
+import { MetricValue } from "@/registry/dashboardcn/ui/metric-value"
 
 export interface DistributionCardItem {
   name: string
@@ -171,9 +172,13 @@ function DistributionCard({
                 {valueLabel ? (
                   <span className="text-muted-foreground text-xs">{valueLabel}</span>
                 ) : null}
-                <span className="text-sm font-semibold tabular-nums">
-                  {formatNumber(item.value, { format, currency, maximumFractionDigits: 0 })}
-                </span>
+                <MetricValue
+                  value={item.value}
+                  format={format}
+                  currency={currency}
+                  maximumFractionDigits={0}
+                  className="text-sm font-semibold"
+                />
               </div>
             </li>
           ))}

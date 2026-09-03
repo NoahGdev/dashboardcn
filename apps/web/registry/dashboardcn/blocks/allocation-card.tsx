@@ -4,7 +4,7 @@ import * as React from "react"
 import { Info } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { formatNumber, type NumberFormat } from "@/registry/dashboardcn/lib/format"
+import { type NumberFormat } from "@/registry/dashboardcn/lib/format"
 import {
   Card,
   CardAction,
@@ -22,6 +22,7 @@ import {
 import { DeltaBadge } from "@/registry/dashboardcn/ui/delta-badge"
 import { PeriodTabs, type PeriodOption } from "@/registry/dashboardcn/ui/period-tabs"
 import { TickBar } from "@/registry/dashboardcn/ui/tick-bar"
+import { MetricValue } from "@/registry/dashboardcn/ui/metric-value"
 
 export interface AllocationCardPerson {
   name: string
@@ -122,9 +123,13 @@ function AllocationCard({
       </CardHeader>
       <CardContent className="flex flex-col gap-4">
         <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
-          <span className="text-4xl font-semibold tabular-nums tracking-tight">
-            {formatNumber(value, { format, currency, maximumFractionDigits: 0 })}
-          </span>
+          <MetricValue
+            value={value}
+            format={format}
+            currency={currency}
+            maximumFractionDigits={0}
+            className="text-4xl font-semibold tracking-tight"
+          />
           {delta !== undefined ? (
             <DeltaBadge delta={delta} invert={invertDelta} variant="text" showIcon={false} className="text-sm" />
           ) : null}

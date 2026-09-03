@@ -3,7 +3,6 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
-import { formatNumber } from "@/registry/dashboardcn/lib/format"
 import {
   Card,
   CardAction,
@@ -13,6 +12,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { TickBar } from "@/registry/dashboardcn/ui/tick-bar"
+import { MetricValue } from "@/registry/dashboardcn/ui/metric-value"
 
 export interface ProgressCardProps extends React.ComponentProps<typeof Card> {
   title: string
@@ -62,7 +62,7 @@ function ProgressCard({
       {label || detail ? (
         <CardFooter className="justify-between gap-4 text-sm">
           <span className="text-muted-foreground tabular-nums">
-            {formatNumber(value)}/{formatNumber(max)}
+            <MetricValue value={value} />/<MetricValue value={max} />
             {label ? ` ${label}` : null}
           </span>
           {detail ? <span className="shrink-0 font-semibold">{detail}</span> : null}

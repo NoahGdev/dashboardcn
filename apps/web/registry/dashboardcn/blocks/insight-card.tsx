@@ -4,8 +4,9 @@ import * as React from "react"
 import { Lightbulb } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { formatNumber, type NumberFormat } from "@/registry/dashboardcn/lib/format"
+import { type NumberFormat } from "@/registry/dashboardcn/lib/format"
 import { Card } from "@/components/ui/card"
+import { MetricValue } from "@/registry/dashboardcn/ui/metric-value"
 
 export type InsightCardVariant =
   | "aurora"
@@ -135,14 +136,6 @@ function InsightCard({
   if (!item) return null
   const plain = variant === "plain"
   const palette = plain ? null : variants[variant]
-  const display =
-    typeof item.value === "number"
-      ? formatNumber(item.value, {
-          format: item.format,
-          currency: item.currency,
-          maximumFractionDigits: item.format === "percent" ? 0 : undefined,
-        })
-      : item.value
 
   return (
     <Card
@@ -234,14 +227,16 @@ function InsightCard({
           key={active}
           className="mt-auto flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-2 duration-500"
         >
-          <span
+          <MetricValue
+            value={item.value}
+            format={item.format}
+            currency={item.currency}
+            maximumFractionDigits={item.format === "percent" ? 0 : undefined}
             className={cn(
-              "font-semibold leading-none tracking-tighter tabular-nums",
+              "font-semibold leading-none tracking-tighter",
               size === "lg" ? "text-7xl @sm/card:text-8xl" : "text-5xl @sm/card:text-6xl"
             )}
-          >
-            {display}
-          </span>
+          />
           <p className="text-xl leading-snug font-semibold text-balance @sm/card:text-2xl">
             {item.headline}
           </p>

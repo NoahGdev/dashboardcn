@@ -21,6 +21,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 import { TickBar } from "@/registry/dashboardcn/ui/tick-bar"
+import { MetricValue } from "@/registry/dashboardcn/ui/metric-value"
 
 export interface DualMetricCardMetric {
   label: string
@@ -131,9 +132,12 @@ function DualMetricCard({
                   className="flex min-w-0 flex-col gap-1 @xs:px-5 @xs:first:pl-0 @xs:last:pr-0"
                 >
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="text-3xl font-semibold tabular-nums tracking-tight">
-                      {formatNumber(metric.value, { format: metric.format, currency: metric.currency })}
-                    </span>
+                    <MetricValue
+                      value={metric.value}
+                      format={metric.format}
+                      currency={metric.currency}
+                      className="text-3xl font-semibold tracking-tight"
+                    />
                     {metric.showShare ? (
                       <span
                         className="rounded-md px-1.5 py-0.5 text-xs font-medium tabular-nums"

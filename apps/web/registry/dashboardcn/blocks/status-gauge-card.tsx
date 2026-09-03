@@ -4,10 +4,11 @@ import * as React from "react"
 import { ArrowUpRight } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { formatNumber, type NumberFormat } from "@/registry/dashboardcn/lib/format"
+import { type NumberFormat } from "@/registry/dashboardcn/lib/format"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { RadialGauge } from "@/registry/dashboardcn/ui/radial-gauge"
+import { MetricValue } from "@/registry/dashboardcn/ui/metric-value"
 
 export interface StatusGaugePerson {
   name: string
@@ -72,7 +73,6 @@ function StatusGaugeCard({
   const numeric = typeof value === "number"
   const gauge =
     progress ?? (numeric ? (format === "percent" ? value * 100 : value) : 0)
-  const display = numeric ? formatNumber(value, { format, currency }) : value
 
   return (
     <Card
@@ -114,9 +114,12 @@ function StatusGaugeCard({
             <span className="text-lg font-semibold">{status}</span>
             <span className="text-muted-foreground text-sm">
               {metricLabel}:{" "}
-              <span className="text-foreground font-semibold tabular-nums">
-                {display}
-              </span>
+              <MetricValue
+                value={value}
+                format={format}
+                currency={currency}
+                className="text-foreground font-semibold"
+              />
             </span>
             {people.length || peopleLabel ? (
               <div className="mt-4 flex items-center gap-2">
