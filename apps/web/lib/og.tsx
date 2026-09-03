@@ -7,9 +7,9 @@ import { siteConfig } from "@/config/site"
 export const OG_SIZE = { width: 1200, height: 630 }
 export const OG_CONTENT_TYPE = "image/png"
 
-const logoSrc = Uint8Array.from(
-  readFileSync(join(process.cwd(), "public/dashboardcn.png"))
-).buffer
+const logoSrc = `data:image/png;base64,${readFileSync(
+  join(process.cwd(), "public/dashboardcn.png")
+).toString("base64")}`
 
 /** The social card: site name, page title, and description on a dark ground. */
 export function ogImage({
@@ -37,6 +37,7 @@ export function ogImage({
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 16, fontSize: 28 }}>
+          {/* eslint-disable-next-line @next/next/no-img-element -- Satori renders raw <img>; next/image is not supported here */}
           <img
             src={logoSrc}
             width={40}
