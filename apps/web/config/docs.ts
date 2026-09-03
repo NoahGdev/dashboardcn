@@ -313,6 +313,19 @@ const columns = helper.columns([
 <DeltaBadge delta={-0.032} variant="soft" />`,
   },
   {
+    name: "metric-value",
+    title: "Metric Value",
+    description:
+      "A formatted number that abbreviates large values (e.g. $158K) and shows the full value in a tooltip on hover. Every card in this registry renders its numbers through it.",
+    examples: [{ name: "metric-value-demo" }],
+    usage: `import { MetricValue } from "@/components/ui/metric-value"
+
+<MetricValue value={158143} format="currency" maximumFractionDigits={0} />
+<MetricValue value={1234567} />
+<MetricValue value={41194} format="currency" maximumFractionDigits={0} />
+<MetricValue value={1234567} compactFrom={Infinity} />`,
+  },
+  {
     name: "period-tabs",
     title: "Period Tabs",
     description:

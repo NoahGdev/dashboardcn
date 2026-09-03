@@ -6,6 +6,7 @@ import ComposedChartDemo from "@/registry/dashboardcn/examples/composed-chart-de
 import ComposedChartDualAxisDemo from "@/registry/dashboardcn/examples/composed-chart-dual-axis-demo"
 import ComposedChartHatchedDemo from "@/registry/dashboardcn/examples/composed-chart-hatched-demo"
 import DeltaBadgeDemo from "@/registry/dashboardcn/examples/delta-badge-demo"
+import MetricValueDemo from "@/registry/dashboardcn/examples/metric-value-demo"
 import DistributionCardDemo from "@/registry/dashboardcn/examples/distribution-card-demo"
 import DotPlotCardDemo from "@/registry/dashboardcn/examples/dot-plot-card-demo"
 import DotPlotDemo from "@/registry/dashboardcn/examples/dot-plot-demo"
@@ -64,6 +65,7 @@ export const examples = {
   "trend-chart-line-demo": { component: TrendChartLineDemo, path: `${base}/trend-chart-line-demo.tsx` },
   "data-table-demo": { component: DataTableDemo, path: `${base}/data-table-demo.tsx` },
   "delta-badge-demo": { component: DeltaBadgeDemo, path: `${base}/delta-badge-demo.tsx` },
+  "metric-value-demo": { component: MetricValueDemo, path: `${base}/metric-value-demo.tsx` },
   "radial-gauge-demo": { component: RadialGaugeDemo, path: `${base}/radial-gauge-demo.tsx` },
   "radial-gauge-inline-demo": { component: RadialGaugeInlineDemo, path: `${base}/radial-gauge-inline-demo.tsx` },
   "donut-chart-demo": { component: DonutChartDemo, path: `${base}/donut-chart-demo.tsx` },

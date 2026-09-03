@@ -44,6 +44,7 @@ npx shadcn@latest add @dashboardcn/kpi-card
 | `sparkline` | Tiny inline area or line chart |
 | `tick-bar` | Progress bar drawn as a row of ticks |
 | `dot-plot` | Distribution as columns of stacked dots with the peak columns at full strength |
+| `metric-value` | Formatted number that abbreviates large values and shows the full value on hover |
 | `format` | Number, currency, percent, and delta formatters (lib) |
 
 ## Blocks

@@ -210,6 +210,25 @@
       "type": "registry:ui",
       "title": "Radial Gauge",
       "description": "A semicircular or ring gauge, continuous or segmented, with content in the middle.",
+    {
+      "name": "metric-value",
+      "type": "registry:ui",
+      "title": "Metric Value",
+      "description": "A formatted number that abbreviates large values and shows the full value in a tooltip on hover.",
+      "registryDependencies": [
+        "tooltip"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboardcn/ui/metric-value.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/lib/format.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
       "files": [
         {
           "path": "registry/dashboardcn/ui/radial-gauge.tsx",
