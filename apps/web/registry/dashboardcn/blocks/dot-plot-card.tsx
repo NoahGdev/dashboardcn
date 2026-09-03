@@ -30,6 +30,8 @@ export interface DotPlotCardProps extends Omit<React.ComponentProps<typeof Card>
   color?: string
   /** Number of dots in the tallest column. */
   rows?: number
+  /** Formats a column's value in the pill while it is hovered. Defaults to a plain grouped number. */
+  valueFormatter?: (value: number) => string
   /** Slot in the top-right corner, e.g. a menu button. */
   action?: React.ReactNode
 }
@@ -67,11 +69,25 @@ function DotPlotCard({
   deltaFormat = format === "compact" ? "number" : format,
   color = "var(--chart-1)",
   rows = 6,
+  valueFormatter = (columnValue) => columnValue.toLocaleString("en-US"),
   action,
   className,
   ...props
 }: DotPlotCardProps) {
+  const [active, setActive] = React.useState<number | null>(null)
   const peak = labels?.[data.indexOf(Math.max(...data))]
+  // The pill doubles as the hover readout: it shows the peak by default and the hovered column's value while hovering.
+  const pill =
+    active !== null ? (
+      <>
+        {labels?.[active] !== undefined ? `${labels[active]}: ` : null}
+        <span className="text-foreground font-medium">{valueFormatter(data[active] ?? 0)}</span>
+      </>
+    ) : peak !== undefined ? (
+      <>
+        {peakLabel}: <span className="text-foreground font-medium">{peak}</span>
+      </>
+    ) : null
   const displayValue =
     typeof value === "number" ? formatNumber(value, { format, currency }) : value
 
@@ -87,9 +103,9 @@ function DotPlotCard({
           From 24rem: value | plot | delta on one row with the pill centered above the plot.
         */}
         <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-4 gap-y-3 @sm:grid-cols-[auto_minmax(0,1fr)_auto]">
-          {peak !== undefined ? (
+          {pill !== null ? (
             <span className="bg-muted text-muted-foreground col-span-2 justify-self-center rounded-full px-3 py-1.5 text-xs whitespace-nowrap @sm:col-span-1 @sm:col-start-2">
-              {peakLabel}: <span className="text-foreground font-medium">{peak}</span>
+              {pill}
             </span>
           ) : null}
           <span className="col-start-1 row-start-2 text-4xl font-semibold tabular-nums tracking-tight">
@@ -100,6 +116,8 @@ function DotPlotCard({
             labels={labels}
             rows={rows}
             color={color}
+            showTooltip={false}
+            onActiveIndexChange={setActive}
             className="col-span-2 row-start-3 @sm:col-span-1 @sm:col-start-2 @sm:row-start-2"
           />
           {delta !== undefined ? (
