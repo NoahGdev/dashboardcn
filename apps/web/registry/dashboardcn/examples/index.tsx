@@ -11,6 +11,9 @@ import DotPlotCardDemo from "@/registry/dashboardcn/examples/dot-plot-card-demo"
 import DotPlotDemo from "@/registry/dashboardcn/examples/dot-plot-demo"
 import DonutChartDemo from "@/registry/dashboardcn/examples/donut-chart-demo"
 import DonutChartHalfDemo from "@/registry/dashboardcn/examples/donut-chart-half-demo"
+import InsightCardDemo from "@/registry/dashboardcn/examples/insight-card-demo"
+import InsightCardPlainDemo from "@/registry/dashboardcn/examples/insight-card-plain-demo"
+import InsightCardVariantsDemo from "@/registry/dashboardcn/examples/insight-card-variants-demo"
 import KpiRowCardDemo from "@/registry/dashboardcn/examples/kpi-row-card-demo"
 import MetricListDemo from "@/registry/dashboardcn/examples/metric-list-demo"
 import PeriodTabsDemo from "@/registry/dashboardcn/examples/period-tabs-demo"
@@ -82,6 +85,9 @@ export const examples = {
   "dual-metric-card-demo": { component: DualMetricCardDemo, path: `${base}/dual-metric-card-demo.tsx` },
   "period-bar-chart-card-demo": { component: PeriodBarChartCardDemo, path: `${base}/period-bar-chart-card-demo.tsx` },
   "progress-card-demo": { component: ProgressCardDemo, path: `${base}/progress-card-demo.tsx` },
+  "insight-card-demo": { component: InsightCardDemo, path: `${base}/insight-card-demo.tsx` },
+  "insight-card-variants-demo": { component: InsightCardVariantsDemo, path: `${base}/insight-card-variants-demo.tsx` },
+  "insight-card-plain-demo": { component: InsightCardPlainDemo, path: `${base}/insight-card-plain-demo.tsx` },
   "dot-plot-card-demo": { component: DotPlotCardDemo, path: `${base}/dot-plot-card-demo.tsx` },
   "breakdown-card-demo": { component: BreakdownCardDemo, path: `${base}/breakdown-card-demo.tsx` },
 } satisfies Record<string, ExampleEntry>

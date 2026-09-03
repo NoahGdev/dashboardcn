@@ -614,6 +614,45 @@ const [period, setPeriod] = React.useState("month")
   action={<Button variant="outline" size="icon-sm" className="rounded-full"><Ellipsis /></Button>}
 />`,
   },
+  {
+    name: "insight-card",
+    kind: "block",
+    title: "Insight Card",
+    description:
+      "A hero card with a badge, a very large number, a headline, and a paged set of insights over a soft gradient.",
+    examples: [
+      { name: "insight-card-demo" },
+      {
+        name: "insight-card-variants-demo",
+        title: "Variants",
+        description: "variant picks the gradient: aurora, sunset, ocean, or graphite. size=\"md\" shrinks the number for narrower columns.",
+      },
+      {
+        name: "insight-card-plain-demo",
+        title: "Plain",
+        description: "variant=\"plain\" drops the gradient and uses the card colors, so it sits next to other blocks.",
+      },
+    ],
+    usage: `import { InsightCard } from "@/components/insight-card"
+
+<InsightCard
+  badge="Insights"
+  variant="aurora"
+  interval={6000}
+  items={[
+    {
+      value: 0.75,
+      format: "percent",
+      headline: "Authorization rate increased by 4% compared to last week.",
+      description: "This improvement reduced failed transactions by 950 and is projected to recover $12,400.",
+    },
+    {
+      value: 38,
+      headline: "38 high-value customers have not ordered in 60 days.",
+    },
+  ]}
+/>`,
+  },
 ]
 
 export function getComponentDoc(name: string) {

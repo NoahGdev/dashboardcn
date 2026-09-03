@@ -734,6 +734,31 @@
           "type": "registry:lib"
         }
       ]
+    },
+    {
+      "name": "insight-card",
+      "type": "registry:block",
+      "title": "Insight Card",
+      "description": "A hero card with a badge, a very large number, a headline, and a paged set of insights over a soft gradient.",
+      "categories": [
+        "dashboard"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "card"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboardcn/blocks/insight-card.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/dashboardcn/lib/format.ts",
+          "type": "registry:lib"
+        }
+      ]
     }
   ]
 }
