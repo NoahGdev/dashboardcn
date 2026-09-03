@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
+import { Analytics } from "@vercel/analytics/next"
 
 import { META_THEME_COLORS, siteConfig } from "@/config/site"
 import { DOCS_SIDEBAR_SCROLL_RESTORE_SCRIPT } from "@/lib/docs-sidebar-scroll"
@@ -111,6 +112,7 @@ export default function RootLayout({
             </div>
           </TooltipProvider>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   )
