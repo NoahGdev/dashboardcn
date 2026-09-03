@@ -1,6 +1,7 @@
 import type * as React from "react"
 
 import BalanceChartCardDemo from "@/registry/dashboardcn/examples/balance-chart-card-demo"
+import BreakdownCardDemo from "@/registry/dashboardcn/examples/breakdown-card-demo"
 import ComposedChartDemo from "@/registry/dashboardcn/examples/composed-chart-demo"
 import ComposedChartDualAxisDemo from "@/registry/dashboardcn/examples/composed-chart-dual-axis-demo"
 import ComposedChartHatchedDemo from "@/registry/dashboardcn/examples/composed-chart-hatched-demo"
@@ -78,6 +79,7 @@ export const examples = {
   "dual-metric-card-demo": { component: DualMetricCardDemo, path: `${base}/dual-metric-card-demo.tsx` },
   "period-bar-chart-card-demo": { component: PeriodBarChartCardDemo, path: `${base}/period-bar-chart-card-demo.tsx` },
   "progress-card-demo": { component: ProgressCardDemo, path: `${base}/progress-card-demo.tsx` },
+  "breakdown-card-demo": { component: BreakdownCardDemo, path: `${base}/breakdown-card-demo.tsx` },
 } satisfies Record<string, ExampleEntry>
 
 export type ExampleName = keyof typeof examples

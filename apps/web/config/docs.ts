@@ -561,6 +561,26 @@ const [period, setPeriod] = React.useState("month")
   detail="67% assigned"
 />`,
   },
+  {
+    name: "breakdown-card",
+    kind: "block",
+    title: "Breakdown Card",
+    description:
+      "A total with delta and a list of contributors, each with a value and a hatched bar showing its share.",
+    examples: [{ name: "breakdown-card-demo" }],
+    usage: `import { BreakdownCard } from "@/components/breakdown-card"
+
+<BreakdownCard
+  title="Gross volume"
+  total={41540}
+  delta={0.15}
+  items={[
+    { name: "Online payments", value: 26800, color: "var(--color-emerald-500)" },
+    { name: "Subscriptions", value: 10400, color: "var(--color-blue-500)" },
+    { name: "In-store sales", value: 4340, color: "var(--color-pink-500)" },
+  ]}
+/>`,
+  },
 ]
 
 export function getComponentDoc(name: string) {

@@ -61,6 +61,7 @@ Complete cards composed from the primitives.
 | `allocation-card` | Period switcher, big percentage with delta, tick bar, footer stat and avatar stack |
 | `dual-metric-card` | Two metrics side by side with share badge, meter, and a supporting fact |
 | `progress-card` | Icon title, pill tick bar, and a count with a secondary stat |
+| `breakdown-card` | Total with delta and a list of contributors, each with a value and a hatched share bar |
 
 ## Repository layout
 

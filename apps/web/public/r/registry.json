@@ -665,6 +665,36 @@
           "type": "registry:lib"
         }
       ]
+    },
+    {
+      "name": "breakdown-card",
+      "type": "registry:block",
+      "title": "Breakdown Card",
+      "description": "A total with delta and a list of contributors, each with a value and a hatched bar showing its share.",
+      "categories": [
+        "dashboard",
+        "finance"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "card"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboardcn/blocks/breakdown-card.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/dashboardcn/ui/delta-badge.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/lib/format.ts",
+          "type": "registry:lib"
+        }
+      ]
     }
   ]
 }
