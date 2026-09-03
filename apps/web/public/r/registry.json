@@ -173,7 +173,7 @@
       "name": "data-table",
       "type": "registry:ui",
       "title": "Data Table",
-      "description": "A sortable, filterable, paginated table with column visibility, built on TanStack Table v9.",
+      "description": "A sortable, filterable, paginated table with column visibility, row selection, sticky and reorderable columns, and loading states, built on TanStack Table v9.",
       "dependencies": [
         "@tanstack/react-table",
         "lucide-react"
@@ -182,7 +182,9 @@
         "table",
         "button",
         "input",
-        "dropdown-menu"
+        "dropdown-menu",
+        "checkbox",
+        "skeleton"
       ],
       "files": [
         {
@@ -900,6 +902,35 @@
         {
           "path": "registry/dashboardcn/lib/format.ts",
           "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "data-table-card",
+      "type": "registry:block",
+      "title": "Data Table Card",
+      "description": "A card around a data table: title, toolbar, rows, and pagination in the footer.",
+      "dependencies": [
+        "@tanstack/react-table",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "card",
+        "table",
+        "button",
+        "input",
+        "dropdown-menu",
+        "checkbox",
+        "skeleton"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboardcn/blocks/data-table-card.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/dashboardcn/ui/data-table.tsx",
+          "type": "registry:ui"
         }
       ]
     }

@@ -109,8 +109,52 @@ export const componentDocs: ComponentDoc[] = [
     name: "data-table",
     title: "Data Table",
     description:
-      "A sortable, filterable, paginated table with column visibility, built on TanStack Table v9.",
-    examples: [{ name: "data-table-demo" }],
+      "A sortable, filterable, paginated table with column visibility, row selection, sticky and reorderable columns, and loading states, built on TanStack Table v9.",
+    examples: [
+      { name: "data-table-demo" },
+      {
+        name: "data-table-loading-demo",
+        title: "Loading and refreshing",
+        description:
+          "loading swaps the rows for a skeleton. pending keeps the rows and dims them, which is what a filter change wants — the table reports it is busy without collapsing and jumping.",
+      },
+      {
+        name: "data-table-selection-demo",
+        title: "Row selection",
+        description:
+          "Put createSelectionColumn() first in the column list and set enableRowSelection. A bar with your actions appears while rows are selected. Pass getRowId so a selection survives sorting and paging, and shift-click a checkbox to take a range.",
+      },
+      {
+        name: "data-table-row-actions-demo",
+        title: "Row actions",
+        description:
+          "A trailing column with a \u22ef menu. Right-clicking anywhere in a row offers the same actions through shadcn's ContextMenu — not a table feature: renderRow wraps the row in a trigger, and one array of actions feeds both menus. Drop it if you do not want it.",
+      },
+      {
+        name: "data-table-sticky-demo",
+        title: "Sticky columns",
+        description:
+          "pinnedColumns holds columns against either edge while the rest scroll sideways, so the actions menu stays reachable at any scroll position. stickyHeader and maxHeight do the same vertically. Pinned columns need a size on the column def, because the sticky offsets are measured from it. The right-click menu from the previous example is in here too — it is written in the example, not a table feature, so take it or leave it.",
+      },
+      {
+        name: "data-table-reorder-demo",
+        title: "Reorderable columns",
+        description:
+          "reorderable puts a handle on each header. Drag one header onto another to move it, or focus a handle and use the arrow keys. Pass an array of column ids to limit which columns move.",
+      },
+      {
+        name: "data-table-compact-demo",
+        title: "Compact",
+        description:
+          "density=\"compact\" tightens the rows. With the toolbar and pagination off the table is only rows, and onRowClick with rowClassName makes them behave like a list.",
+      },
+      {
+        name: "data-table-composed-demo",
+        title: "Composed",
+        description:
+          "DataTable is a preset over parts that are all exported. Call useDataTable yourself and place the toolbar, search, view options, content, and pagination wherever the design puts them.",
+      },
+    ],
     usage: `import {
   DataTable,
   DataTableColumnHeader,
@@ -131,7 +175,17 @@ const columns = helper.columns([
   }),
 ])
 
-<DataTable columns={columns} data={rows} searchKey="path" />`,
+<DataTable columns={columns} data={rows} searchKey="path" />
+
+// Or own the instance and lay the parts out yourself.
+const table = useDataTable({ columns, data: rows, pageSize: 5 })
+
+<DataTableToolbar>
+  <DataTableSearch table={table} column="path" />
+  <DataTableViewOptions table={table} className="ml-auto" />
+</DataTableToolbar>
+<DataTableContent table={table} pending={isFetching} stickyHeader maxHeight={340} />
+<DataTablePagination table={table} pageSizeOptions={[5, 10, 25]} />`,
   },
   {
     name: "funnel-chart",
@@ -764,6 +818,28 @@ const [period, setPeriod] = React.useState("month")
     { key: "roas", compareKey: "roasPrev", label: "ROAS", aggregate: "average", fractionDigits: 2 },
     { key: "customers", compareKey: "customersPrev", label: "New customers" },
   ]}
+/>`,
+  },
+  {
+    name: "data-table-card",
+    kind: "block",
+    title: "Data Table Card",
+    description:
+      "A card around a data table: title, description, toolbar, rows, and pagination in the footer.",
+    examples: [{ name: "data-table-card-demo" }],
+    usage: `import { DataTableCard } from "@/components/data-table-card"
+
+<DataTableCard
+  title="Top products"
+  description="Units sold and revenue, ranked."
+  columns={columns}
+  data={products}
+  searchKey="product"
+  initialSorting={[{ id: "revenue", desc: true }]}
+  density="compact"
+  pageSize={5}
+  pageSizeOptions={[5, 10, 25]}
+  toolbar={<PeriodTabs value={period} onValueChange={setPeriod} size="sm" />}
 />`,
   },
 ]
