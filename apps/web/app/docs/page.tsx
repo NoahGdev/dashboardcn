@@ -14,6 +14,7 @@ export const metadata = pageMetadata({
 
 const toc = [
   { title: "What it is", url: "#what-it-is", depth: 2 },
+  { title: "Why", url: "#why", depth: 2 },
   { title: "Foundations", url: "#foundations", depth: 2 },
   { title: "Radix or Base UI", url: "#radix-or-base-ui", depth: 2 },
 ]
@@ -37,6 +38,20 @@ export default function IntroductionPage() {
         copied into your project with the shadcn CLI, exactly like shadcn/ui
         itself. You get the source, the styling lives in your Tailwind theme,
         and there is nothing to upgrade against.
+      </p>
+      <H2>Why</H2>
+      <p>
+        This project started from a gap. When building a product dashboard,
+        there was no obvious place to find components for presenting data well:
+        KPI tiles, trend charts, funnels, ranked lists, and the cards that
+        combine them. Where such collections existed, they were sold behind a
+        license.
+      </p>
+      <p>
+        User interface code should be free. shadcn/ui set that expectation for
+        the base primitives, and {siteConfig.name} extends it to the data-heavy
+        parts of a product. Everything here is MIT licensed, copied into your
+        project as source, and yours to change.
       </p>
       <H2>Foundations</H2>
       <ul>
