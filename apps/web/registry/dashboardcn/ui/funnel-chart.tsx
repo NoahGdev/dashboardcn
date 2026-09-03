@@ -66,7 +66,7 @@ function FunnelChart({
                   </span>
                 </span>
               </div>
-              <div className="bg-muted h-6 w-full overflow-hidden rounded-md pl-6">
+              <div className="bg-muted h-6 w-full overflow-hidden rounded-md">
                 <div
                   className="h-full rounded-md transition-[width] duration-300"
                   style={{
