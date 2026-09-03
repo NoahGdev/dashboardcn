@@ -43,11 +43,20 @@ export interface TrendChartProps
   type?: "area" | "line" | "bar"
   /** Area fill: a plain gradient, or a dot grid that fades out toward the line. */
   fill?: "gradient" | "dots"
+  /** Bars only: "horizontal" runs bars left to right with categories down the side. */
+  layout?: "vertical" | "horizontal"
+  /** Bars only: corner radius in px, or "full" for pill-shaped bars. */
+  barRadius?: number | "full"
+  /** Bars only: thickness of each bar in px. Defaults to a share of the category width. */
+  barSize?: number
   stacked?: boolean
   showLegend?: boolean
+  legendPosition?: "top" | "bottom"
+  legendAlign?: "left" | "center" | "right"
   showGrid?: boolean
+  /** Show the value axis. In the horizontal layout this is the axis along the bottom. */
   showYAxis?: boolean
-  /** Recharts y-axis domain, e.g. ["dataMin", "dataMax"] or ["auto", "auto"]. Defaults to [0, "auto"]. */
+  /** Recharts domain for the value axis, e.g. ["dataMin", "dataMax"] or ["auto", "auto"]. Defaults to [0, "auto"]. */
   yDomain?: React.ComponentProps<typeof YAxis>["domain"]
   xFormatter?: (value: unknown) => string
   yFormatter?: (value: number) => string
@@ -79,18 +88,26 @@ function DotGridAreaShape({
   )
 }
 
+/** Recharts clamps corner radii to half the bar, so an oversized radius draws a pill. */
+const PILL = 9999
+
+type Radius = number | [number, number, number, number]
+
 /** Round only the outer corners of a stack; mixed-sign stacks stay square. */
-function stackedRadius(
+function barCorners(
+  radius: number | "full",
   stacked: boolean,
   hasNegative: boolean,
+  horizontal: boolean,
   index: number,
   count: number
-): number | [number, number, number, number] {
-  if (!stacked) return 4
+): Radius {
+  const r = radius === "full" ? PILL : radius
+  if (!stacked || count === 1) return r
   if (hasNegative) return 0
-  if (count === 1) return 4
-  if (index === count - 1) return [4, 4, 0, 0]
-  if (index === 0) return [0, 0, 4, 4]
+  // Corners run [top-left, top-right, bottom-right, bottom-left].
+  if (index === count - 1) return horizontal ? [0, r, r, 0] : [r, r, 0, 0]
+  if (index === 0) return horizontal ? [r, 0, 0, r] : [0, 0, r, r]
   return 0
 }
 
@@ -100,8 +117,13 @@ function TrendChart({
   series,
   type = "area",
   fill = "gradient",
+  layout = "vertical",
+  barRadius = 4,
+  barSize,
   stacked = false,
   showLegend = false,
+  legendPosition = "bottom",
+  legendAlign = "center",
   showGrid = true,
   showYAxis = false,
   yDomain,
@@ -112,6 +134,7 @@ function TrendChart({
 }: TrendChartProps) {
   const id = React.useId()
   const dots = type === "area" && fill === "dots"
+  const horizontal = type === "bar" && layout === "horizontal"
   const hasNegative = React.useMemo(
     () =>
       data.some((row) =>
@@ -131,29 +154,60 @@ function TrendChart({
 
   const axes = (
     <>
-      {showGrid ? <CartesianGrid vertical={false} /> : null}
-      <XAxis
-        dataKey={xKey}
-        tickLine={false}
-        axisLine={false}
-        tickMargin={8}
-        minTickGap={32}
-        tickFormatter={xFormatter}
-      />
-      {showYAxis ? (
-        <YAxis
-          tickLine={false}
-          axisLine={false}
-          tickMargin={8}
-          width="auto"
-          domain={yDomain}
-          tickFormatter={yFormatter}
-        />
-      ) : yDomain ? (
-        <YAxis hide domain={yDomain} />
+      {showGrid ? (
+        <CartesianGrid vertical={horizontal} horizontal={!horizontal} />
       ) : null}
+      {horizontal ? (
+        <>
+          <XAxis
+            type="number"
+            hide={!showYAxis}
+            tickLine={false}
+            axisLine={false}
+            tickMargin={8}
+            domain={yDomain}
+            tickFormatter={yFormatter}
+          />
+          <YAxis
+            type="category"
+            dataKey={xKey}
+            tickLine={false}
+            axisLine={false}
+            tickMargin={8}
+            width="auto"
+            tickFormatter={xFormatter}
+          />
+        </>
+      ) : (
+        <>
+          <XAxis
+            dataKey={xKey}
+            tickLine={false}
+            axisLine={false}
+            tickMargin={8}
+            minTickGap={32}
+            tickFormatter={xFormatter}
+          />
+          {showYAxis ? (
+            <YAxis
+              tickLine={false}
+              axisLine={false}
+              tickMargin={8}
+              width="auto"
+              domain={yDomain}
+              tickFormatter={yFormatter}
+            />
+          ) : yDomain ? (
+            <YAxis hide domain={yDomain} />
+          ) : null}
+        </>
+      )}
       {hasNegative ? (
-        <ReferenceLine y={0} stroke="var(--border)" strokeWidth={1} />
+        <ReferenceLine
+          {...(horizontal ? { x: 0 } : { y: 0 })}
+          stroke="var(--border)"
+          strokeWidth={1}
+        />
       ) : null}
       <ChartTooltip
         cursor={false}
@@ -178,11 +232,32 @@ function TrendChart({
           />
         }
       />
-      {showLegend ? <ChartLegend content={<ChartLegendContent />} /> : null}
+      {showLegend ? (
+        <ChartLegend
+          verticalAlign={legendPosition}
+          align={legendAlign}
+          content={
+            <ChartLegendContent
+              className={
+                legendAlign === "right"
+                  ? "justify-end"
+                  : legendAlign === "left"
+                    ? "justify-start"
+                    : undefined
+              }
+            />
+          }
+        />
+      ) : null}
     </>
   )
 
-  const margin = { top: 8, right: 8, bottom: 0, left: showYAxis ? 0 : 8 }
+  const margin = {
+    top: 8,
+    right: 8,
+    bottom: 0,
+    left: showYAxis || horizontal ? 0 : 8,
+  }
 
   return (
     <ChartContainer
@@ -194,6 +269,7 @@ function TrendChart({
       {type === "bar" ? (
         <BarChart
           data={data}
+          layout={horizontal ? "vertical" : "horizontal"}
           margin={margin}
           stackOffset={stacked ? "sign" : "none"}
         >
@@ -203,7 +279,15 @@ function TrendChart({
               key={s.key}
               dataKey={s.key}
               fill={`var(--color-${s.key})`}
-              radius={stackedRadius(stacked, hasNegative, index, series.length)}
+              barSize={barSize}
+              radius={barCorners(
+                barRadius,
+                stacked,
+                hasNegative,
+                horizontal,
+                index,
+                series.length
+              )}
               stackId={stacked ? "stack" : undefined}
             />
           ))}

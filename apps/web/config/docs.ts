@@ -57,6 +57,16 @@ export const componentDocs: ComponentDoc[] = [
         title: "Stacked bars",
         description: "Bars stack when stacked is set. Series stack bottom-up in the order given; negative values stack below zero.",
       },
+      {
+        name: "trend-chart-grouped-demo",
+        title: "Grouped pill bars",
+        description: "Unstacked series sit side by side. Set barRadius to \"full\" and a small barSize for pills, and place the legend with legendPosition and legendAlign.",
+      },
+      {
+        name: "trend-chart-horizontal-demo",
+        title: "Horizontal bars",
+        description: "Set layout to \"horizontal\" to run bars left to right with categories down the side. Works with any number of series, stacked or not.",
+      },
     ],
     usage: `import { TrendChart } from "@/components/ui/trend-chart"
 
@@ -379,16 +389,6 @@ const [period, setPeriod] = React.useState("month")
 <DotPlot data={[2, 3, 5, 4, 6, 3, 2]} emphasis={0} className="[--dot-size:0.875rem]" />`,
   },
   {
-    name: "kpi-row-card",
-    kind: "block",
-    title: "KPI Row Card",
-    description:
-      "A card with a period switcher, a row of KPI tiles with sparklines and deltas, and a footer summary.",
-    examples: [{ name: "kpi-row-card-demo" }],
-    usage: `import { KpiRowCard } from "@/components/kpi-row-card"
-
-  },
-  {
     name: "timeline",
     title: "Timeline",
     description:
@@ -440,6 +440,16 @@ const [period, setPeriod] = React.useState("month")
     </TimelineContent>
   </TimelineItem>
 </Timeline>`,
+  },
+  {
+    name: "kpi-row-card",
+    kind: "block",
+    title: "KPI Row Card",
+    description:
+      "A card with a period switcher, a row of KPI tiles with sparklines and deltas, and a footer summary.",
+    examples: [{ name: "kpi-row-card-demo" }],
+    usage: `import { KpiRowCard } from "@/components/kpi-row-card"
+
 <KpiRowCard
   title="Catalog health"
   description="SKU coverage, replenishment pressure, and aging stock."
