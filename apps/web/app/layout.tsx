@@ -3,7 +3,9 @@ import { Geist, Geist_Mono } from "next/font/google"
 
 import { META_THEME_COLORS, siteConfig } from "@/config/site"
 import { DOCS_SIDEBAR_SCROLL_RESTORE_SCRIPT } from "@/lib/docs-sidebar-scroll"
+import { siteJsonLd } from "@/lib/seo"
 import { cn } from "@/lib/utils"
+import { JsonLd } from "@/components/json-ld"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
 import { ThemeProvider } from "@/components/theme-provider"
@@ -16,19 +18,52 @@ const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"]
 
 export const metadata: Metadata = {
   title: {
-    default: siteConfig.name,
+    default: `${siteConfig.name} - Dashboard components for shadcn/ui`,
     template: `%s - ${siteConfig.name}`,
   },
   metadataBase: new URL(siteConfig.url),
   description: siteConfig.description,
-  keywords: ["Next.js", "React", "Tailwind CSS", "Components", "shadcn", "dashboard", "analytics"],
+  applicationName: siteConfig.name,
+  keywords: [
+    "shadcn",
+    "shadcn/ui",
+    "shadcn registry",
+    "dashboard components",
+    "analytics components",
+    "KPI card",
+    "charts",
+    "recharts",
+    "Next.js",
+    "React",
+    "Tailwind CSS",
+  ],
+  authors: [{ name: "Noah Gomes", url: "https://github.com/NoahGdev" }],
+  creator: "Noah Gomes",
+  category: "technology",
+  alternates: { canonical: siteConfig.url },
   openGraph: {
     type: "website",
     locale: "en_US",
     url: siteConfig.url,
-    title: siteConfig.name,
+    title: `${siteConfig.name} - Dashboard components for shadcn/ui`,
     description: siteConfig.description,
     siteName: siteConfig.name,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${siteConfig.name} - Dashboard components for shadcn/ui`,
+    description: siteConfig.description,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 }
 
@@ -61,6 +96,7 @@ export default function RootLayout({
           }}
         />
         <meta name="theme-color" content={META_THEME_COLORS.light} />
+        <JsonLd data={siteJsonLd()} />
       </head>
       <body className="group/body overscroll-none antialiased [--footer-height:calc(var(--spacing)*14)] xl:[--footer-height:calc(var(--spacing)*24)]">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>

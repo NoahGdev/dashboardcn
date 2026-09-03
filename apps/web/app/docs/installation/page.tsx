@@ -3,8 +3,14 @@ import { CodeBlock } from "@/components/code-block"
 import { H2 } from "@/components/docs-heading"
 import { DocsPage } from "@/components/docs-page"
 import { InstallCommand, ShellCommand } from "@/components/install-command"
+import { pageMetadata } from "@/lib/seo"
 
-export const metadata = { title: "Installation" }
+export const metadata = pageMetadata({
+  title: "Installation",
+  description:
+    "Add dashboardcn components to any project that has shadcn/ui set up.",
+  path: "/docs/installation",
+})
 
 const toc = [
   { title: "Prerequisites", url: "#prerequisites", depth: 2 },

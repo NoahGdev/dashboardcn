@@ -3,8 +3,14 @@ import Link from "next/link"
 import { siteConfig } from "@/config/site"
 import { H2 } from "@/components/docs-heading"
 import { DocsPage } from "@/components/docs-page"
+import { pageMetadata } from "@/lib/seo"
 
-export const metadata = { title: "Introduction" }
+export const metadata = pageMetadata({
+  title: "Introduction",
+  description:
+    "Dashboard and analytics components for shadcn/ui, distributed through a shadcn-compatible registry.",
+  path: "/docs",
+})
 
 const toc = [
   { title: "What it is", url: "#what-it-is", depth: 2 },

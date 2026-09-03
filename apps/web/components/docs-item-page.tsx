@@ -4,6 +4,7 @@ import { getComponentDoc } from "@/config/docs"
 import { registryItemUrl } from "@/config/site"
 import { docHref, slugify, type TocItem } from "@/lib/docs"
 import { renderItemMarkdown } from "@/lib/markdown"
+import { breadcrumbJsonLd, registryItemJsonLd } from "@/lib/seo"
 import { consumerPath, getRegistryItem } from "@/lib/source"
 import { absoluteUrl } from "@/lib/utils"
 import { CodeBlock } from "@/components/code-block"
@@ -13,6 +14,7 @@ import { ComponentSource } from "@/components/component-source"
 import { H2, H3 } from "@/components/docs-heading"
 import { DocsCopyPage } from "@/components/docs-copy-page"
 import { DocsPage } from "@/components/docs-page"
+import { JsonLd } from "@/components/json-ld"
 import { InstallCommand, NpmInstallCommand } from "@/components/install-command"
 import { TabsContent } from "@/components/ui/tabs"
 
@@ -59,6 +61,16 @@ export async function DocsItemPage({ slug }: { slug: string }) {
         />
       }
     >
+      <JsonLd
+        data={[
+          registryItemJsonLd({ name: doc.name, title: doc.title, description: doc.description, path: docHref(doc) }),
+          breadcrumbJsonLd([
+            { name: "Docs", path: "/docs" },
+            { name: isBlock ? "Blocks" : "Components", path: isBlock ? "/docs/blocks" : "/docs/components" },
+            { name: doc.title, path: docHref(doc) },
+          ]),
+        ]}
+      />
       {first ? <ComponentPreview name={first.name} {...previewProps} /> : null}
 
       <H2>Installation</H2>

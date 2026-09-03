@@ -1,8 +1,14 @@
 import { BLOCK_DOCS } from "@/lib/docs"
 import { DocsIndexGrid } from "@/components/docs-index-grid"
 import { DocsPage } from "@/components/docs-page"
+import { pageMetadata } from "@/lib/seo"
 
-export const metadata = { title: "Blocks" }
+export const metadata = pageMetadata({
+  title: "Blocks",
+  description:
+    "Complete dashboard cards for shadcn/ui, composed from the primitives.",
+  path: "/docs/blocks",
+})
 
 export default function BlocksPage() {
   return (

@@ -1,5 +1,6 @@
 import { getComponentDoc } from "@/config/docs"
-import { COMPONENT_DOCS } from "@/lib/docs"
+import { pageMetadata } from "@/lib/seo"
+import { COMPONENT_DOCS, docHref } from "@/lib/docs"
 import { DocsItemPage } from "@/components/docs-item-page"
 
 export const dynamicParams = false
@@ -11,7 +12,8 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const doc = getComponentDoc(slug)
-  return { title: doc?.title, description: doc?.description }
+  if (!doc) return {}
+  return pageMetadata({ title: doc.title, description: doc.description, path: docHref(doc) })
 }
 
 export default async function ComponentPage({ params }: { params: Promise<{ slug: string }> }) {
