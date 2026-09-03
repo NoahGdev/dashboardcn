@@ -337,6 +337,18 @@ const [period, setPeriod] = React.useState("month")
 <TickBar value={16} max={24} segments={24} shape="pill" />`,
   },
   {
+    name: "dot-plot",
+    title: "Dot Plot",
+    description:
+      "A distribution drawn as columns of stacked dots, with the peak columns at full strength.",
+    examples: [{ name: "dot-plot-demo" }],
+    usage: `import { DotPlot } from "@/components/ui/dot-plot"
+
+<DotPlot data={[1, 1, 2, 1, 2, 4, 6, 4, 2, 1, 2, 1, 1, 1]} color="var(--color-green-600)" />
+<DotPlot data={[3, 5, 8, 12, 7, 4, 2]} labels={days} rows={6} />
+<DotPlot data={[2, 3, 5, 4, 6, 3, 2]} emphasis={0} className="[--dot-size:0.875rem]" />`,
+  },
+  {
     name: "kpi-row-card",
     kind: "block",
     title: "KPI Row Card",
@@ -579,6 +591,27 @@ const [period, setPeriod] = React.useState("month")
     { name: "Subscriptions", value: 10400, color: "var(--color-blue-500)" },
     { name: "In-store sales", value: 4340, color: "var(--color-pink-500)" },
   ]}
+/>`,
+  },
+  {
+    name: "dot-plot-card",
+    kind: "block",
+    title: "Dot Plot Card",
+    description:
+      "A metric card with a big value, a dot-plot distribution with its peak called out, and the change vs the previous period.",
+    examples: [{ name: "dot-plot-card-demo" }],
+    usage: `import { DotPlotCard } from "@/components/dot-plot-card"
+
+<DotPlotCard
+  title="Transactions"
+  value={106000}
+  format="compact"
+  data={[1, 1, 2, 1, 2, 4, 6, 4, 2, 1, 2, 1, 1, 1]}
+  labels={["Sat", "Sun", "Mon", "Tue", "Tue", "Wed", "Wed", "Wed", "Thu", "Thu", "Fri", "Fri", "Sat", "Sat"]}
+  delta={34002}
+  deltaLabel="vs last period"
+  color="var(--color-green-600)"
+  action={<Button variant="outline" size="icon-sm" className="rounded-full"><Ellipsis /></Button>}
 />`,
   },
 ]

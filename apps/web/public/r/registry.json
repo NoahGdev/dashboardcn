@@ -329,6 +329,18 @@
       ]
     },
     {
+      "name": "dot-plot",
+      "type": "registry:ui",
+      "title": "Dot Plot",
+      "description": "A distribution drawn as columns of stacked dots, with the peak columns at full strength.",
+      "files": [
+        {
+          "path": "registry/dashboardcn/ui/dot-plot.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "kpi-row-card",
       "type": "registry:block",
       "title": "KPI Row Card",
@@ -688,6 +700,33 @@
         },
         {
           "path": "registry/dashboardcn/ui/delta-badge.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/lib/format.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "dot-plot-card",
+      "type": "registry:block",
+      "title": "Dot Plot Card",
+      "description": "A metric card with a big value, a dot-plot distribution with its peak called out, and the change vs the previous period.",
+      "categories": [
+        "dashboard",
+        "charts"
+      ],
+      "registryDependencies": [
+        "card"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboardcn/blocks/dot-plot-card.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/dashboardcn/ui/dot-plot.tsx",
           "type": "registry:ui"
         },
         {

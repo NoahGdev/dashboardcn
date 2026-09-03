@@ -43,6 +43,7 @@ npx shadcn@latest add @dashboardcn/kpi-card
 | `activity-heatmap` | Contribution-graph style calendar heatmap |
 | `sparkline` | Tiny inline area or line chart |
 | `tick-bar` | Progress bar drawn as a row of ticks |
+| `dot-plot` | Distribution as columns of stacked dots with the peak columns at full strength |
 | `format` | Number, currency, percent, and delta formatters (lib) |
 
 ## Blocks
@@ -61,6 +62,7 @@ Complete cards composed from the primitives.
 | `allocation-card` | Period switcher, big percentage with delta, tick bar, footer stat and avatar stack |
 | `dual-metric-card` | Two metrics side by side with share badge, meter, and a supporting fact |
 | `progress-card` | Icon title, pill tick bar, and a count with a secondary stat |
+| `dot-plot-card` | Big value, dot-plot distribution with its peak called out, and change vs last period |
 | `breakdown-card` | Total with delta and a list of contributors, each with a value and a hatched share bar |
 
 ## Repository layout

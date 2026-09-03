@@ -7,6 +7,8 @@ import ComposedChartDualAxisDemo from "@/registry/dashboardcn/examples/composed-
 import ComposedChartHatchedDemo from "@/registry/dashboardcn/examples/composed-chart-hatched-demo"
 import DeltaBadgeDemo from "@/registry/dashboardcn/examples/delta-badge-demo"
 import DistributionCardDemo from "@/registry/dashboardcn/examples/distribution-card-demo"
+import DotPlotCardDemo from "@/registry/dashboardcn/examples/dot-plot-card-demo"
+import DotPlotDemo from "@/registry/dashboardcn/examples/dot-plot-demo"
 import DonutChartDemo from "@/registry/dashboardcn/examples/donut-chart-demo"
 import DonutChartHalfDemo from "@/registry/dashboardcn/examples/donut-chart-half-demo"
 import KpiRowCardDemo from "@/registry/dashboardcn/examples/kpi-row-card-demo"
@@ -68,6 +70,7 @@ export const examples = {
   "segmented-meter-demo": { component: SegmentedMeterDemo, path: `${base}/segmented-meter-demo.tsx` },
   "period-tabs-demo": { component: PeriodTabsDemo, path: `${base}/period-tabs-demo.tsx` },
   "tick-bar-demo": { component: TickBarDemo, path: `${base}/tick-bar-demo.tsx` },
+  "dot-plot-demo": { component: DotPlotDemo, path: `${base}/dot-plot-demo.tsx` },
   "metric-list-demo": { component: MetricListDemo, path: `${base}/metric-list-demo.tsx` },
   "kpi-row-card-demo": { component: KpiRowCardDemo, path: `${base}/kpi-row-card-demo.tsx` },
   "balance-chart-card-demo": { component: BalanceChartCardDemo, path: `${base}/balance-chart-card-demo.tsx` },
@@ -79,6 +82,7 @@ export const examples = {
   "dual-metric-card-demo": { component: DualMetricCardDemo, path: `${base}/dual-metric-card-demo.tsx` },
   "period-bar-chart-card-demo": { component: PeriodBarChartCardDemo, path: `${base}/period-bar-chart-card-demo.tsx` },
   "progress-card-demo": { component: ProgressCardDemo, path: `${base}/progress-card-demo.tsx` },
+  "dot-plot-card-demo": { component: DotPlotCardDemo, path: `${base}/dot-plot-card-demo.tsx` },
   "breakdown-card-demo": { component: BreakdownCardDemo, path: `${base}/breakdown-card-demo.tsx` },
 } satisfies Record<string, ExampleEntry>
 
