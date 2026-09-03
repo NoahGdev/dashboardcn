@@ -4,8 +4,8 @@ export const siteConfig = {
   description:
     "Dashboard and analytics components for shadcn/ui. KPI cards, charts, funnels, tables, and the pieces around them. Installed with the shadcn CLI, so you own the code.",
   links: {
-    github: "https://github.com/dashboardcn/dashboardcn",
-    githubRepo: "dashboardcn/dashboardcn",
+    github: "https://github.com/NoahGdev/dashboardcn",
+    githubRepo: "NoahGdev/dashboardcn",
   },
   navItems: [
     { href: "/", label: "Home" },
