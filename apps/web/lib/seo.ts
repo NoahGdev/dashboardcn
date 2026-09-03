@@ -75,6 +75,7 @@ export function registryItemJsonLd({
 }
 
 export function siteJsonLd() {
+  const logo = absoluteUrl(siteConfig.logo)
   return [
     {
       "@context": "https://schema.org",
@@ -82,6 +83,14 @@ export function siteJsonLd() {
       name: siteConfig.name,
       url: siteConfig.url,
       description: siteConfig.description,
+      image: logo,
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.url,
+      logo,
     },
     {
       "@context": "https://schema.org",
@@ -89,6 +98,7 @@ export function siteJsonLd() {
       name: siteConfig.name,
       description: siteConfig.description,
       url: siteConfig.url,
+      image: logo,
       codeRepository: siteConfig.links.github,
       programmingLanguage: "TypeScript",
       runtimePlatform: "React",

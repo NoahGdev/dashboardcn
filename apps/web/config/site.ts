@@ -3,6 +3,7 @@ export const siteConfig = {
   url: process.env.NEXT_PUBLIC_BASE_URL ?? "https://dashboardcn.com",
   description:
     "Dashboard and analytics components for shadcn/ui. KPI cards, charts, funnels, tables, and the pieces around them. Installed with the shadcn CLI, so you own the code.",
+  logo: "/dashboardcn.png",
   links: {
     github: "https://github.com/NoahGdev/dashboardcn",
     githubRepo: "NoahGdev/dashboardcn",

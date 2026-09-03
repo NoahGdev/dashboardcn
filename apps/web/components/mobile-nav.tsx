@@ -49,9 +49,6 @@ export function MobileNav({
             </div>
             <span className="sr-only">Toggle Menu</span>
           </div>
-          <span className="flex h-8 items-center text-lg leading-none font-medium">
-            Menu
-          </span>
         </Button>
       </PopoverTrigger>
       <PopoverContent

@@ -1,11 +1,6 @@
-import { LayoutDashboard } from "lucide-react"
-
 type IconProps = React.SVGProps<SVGSVGElement>
 
 export const Icons = {
-  logo: (props: React.ComponentProps<typeof LayoutDashboard>) => (
-    <LayoutDashboard {...props} />
-  ),
   gitHub: (props: IconProps) => (
     <svg viewBox="0 0 438.549 438.549" {...props}>
       <path

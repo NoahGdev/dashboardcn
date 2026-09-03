@@ -1,9 +1,15 @@
+import { readFileSync } from "node:fs"
+import { join } from "node:path"
 import { ImageResponse } from "next/og"
 
 import { siteConfig } from "@/config/site"
 
 export const OG_SIZE = { width: 1200, height: 630 }
 export const OG_CONTENT_TYPE = "image/png"
+
+const logoSrc = Uint8Array.from(
+  readFileSync(join(process.cwd(), "public/dashboardcn.png"))
+).buffer
 
 /** The social card: site name, page title, and description on a dark ground. */
 export function ogImage({
@@ -31,13 +37,12 @@ export function ogImage({
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 16, fontSize: 28 }}>
-          <div
-            style={{
-              width: 20,
-              height: 20,
-              borderRadius: 4,
-              background: "#fafafa",
-            }}
+          <img
+            src={logoSrc}
+            width={40}
+            height={40}
+            alt=""
+            style={{ borderRadius: 8 }}
           />
           <span style={{ fontWeight: 600 }}>{siteConfig.name}</span>
           {eyebrow ? (
