@@ -7,6 +7,18 @@ shadcn/ui: Tailwind v4, Radix primitives, recharts, and TanStack Table.
 Every component is distributed through a shadcn-compatible registry, so you own
 the code once it lands in your project.
 
+## Why
+
+This project started from a gap. When building a product dashboard, there was
+no obvious place to find components for presenting data well: KPI tiles,
+trend charts, funnels, ranked lists, and the cards that combine them. Where
+such collections existed, they were sold behind a license.
+
+User interface code should be free. shadcn/ui set that expectation for the
+base primitives, and dashboardcn extends it to the data-heavy parts of a
+product. Everything here is MIT licensed, copied into your project as source,
+and yours to change.
+
 ## Install a component
 
 ```bash
