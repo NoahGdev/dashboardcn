@@ -54,6 +54,7 @@ Complete cards composed from the primitives.
 | --- | --- |
 | `kpi-row-card` | Period switcher, row of KPI tiles with sparklines and deltas, footer summary |
 | `period-bar-chart-card` | Total for the selected period, range switcher, and a bar chart highlighting it |
+| `metric-tabs-chart-card` | Row of metric tabs with value and delta, and a line chart of the selected one vs the previous period |
 | `balance-chart-card` | Big value, delta, stat row, and a line chart with reference line and peak marker |
 | `status-gauge-card` | Status word, metric, avatar stack, and a segmented semicircular gauge |
 | `ring-kpi-card` | Row of KPI tiles with a segmented ring beside each value and a previous-value comparison |
@@ -62,8 +63,8 @@ Complete cards composed from the primitives.
 | `allocation-card` | Period switcher, big percentage with delta, tick bar, footer stat and avatar stack |
 | `dual-metric-card` | Two metrics side by side with share badge, meter, and a supporting fact |
 | `progress-card` | Icon title, pill tick bar, and a count with a secondary stat |
-| `dot-plot-card` | Big value, dot-plot distribution with its peak called out, and change vs last period |
 | `breakdown-card` | Total with delta and a list of contributors, each with a value and a hatched share bar |
+| `dot-plot-card` | Big value, dot-plot distribution with its peak called out, and change vs last period |
 
 ## Repository layout
 

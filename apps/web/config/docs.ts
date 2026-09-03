@@ -653,6 +653,26 @@ const [period, setPeriod] = React.useState("month")
   ]}
 />`,
   },
+  {
+    name: "metric-tabs-chart-card",
+    kind: "block",
+    title: "Metric Tabs Chart Card",
+    description:
+      "A row of metric tabs, each with a value and delta, above a line chart of the selected metric against the previous period. Click a tab to switch the chart.",
+    examples: [{ name: "metric-tabs-chart-card-demo" }],
+    usage: `import { MetricTabsChartCard } from "@/components/metric-tabs-chart-card"
+
+<MetricTabsChartCard
+  data={data}
+  xKey="date"
+  metrics={[
+    { key: "revenue", compareKey: "revenuePrev", label: "Revenue", format: "currency", fractionDigits: 0 },
+    { key: "spend", compareKey: "spendPrev", label: "Ad spend", format: "currency", fractionDigits: 0, invertDelta: true },
+    { key: "roas", compareKey: "roasPrev", label: "ROAS", aggregate: "average", fractionDigits: 2 },
+    { key: "customers", compareKey: "customersPrev", label: "New customers" },
+  ]}
+/>`,
+  },
 ]
 
 export function getComponentDoc(name: string) {

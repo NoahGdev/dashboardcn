@@ -31,6 +31,7 @@ import ActivityHeatmapDemo from "@/registry/dashboardcn/examples/activity-heatma
 import BarChartDemo from "@/registry/dashboardcn/examples/bar-chart-demo"
 import BarChartStripedDemo from "@/registry/dashboardcn/examples/bar-chart-striped-demo"
 import PeriodBarChartCardDemo from "@/registry/dashboardcn/examples/period-bar-chart-card-demo"
+import MetricTabsChartCardDemo from "@/registry/dashboardcn/examples/metric-tabs-chart-card-demo"
 import BarListDemo from "@/registry/dashboardcn/examples/bar-list-demo"
 import DataTableDemo from "@/registry/dashboardcn/examples/data-table-demo"
 import DistributionBarDemo from "@/registry/dashboardcn/examples/distribution-bar-demo"
@@ -90,6 +91,7 @@ export const examples = {
   "insight-card-plain-demo": { component: InsightCardPlainDemo, path: `${base}/insight-card-plain-demo.tsx` },
   "dot-plot-card-demo": { component: DotPlotCardDemo, path: `${base}/dot-plot-card-demo.tsx` },
   "breakdown-card-demo": { component: BreakdownCardDemo, path: `${base}/breakdown-card-demo.tsx` },
+  "metric-tabs-chart-card-demo": { component: MetricTabsChartCardDemo, path: `${base}/metric-tabs-chart-card-demo.tsx` },
 } satisfies Record<string, ExampleEntry>
 
 export type ExampleName = keyof typeof examples

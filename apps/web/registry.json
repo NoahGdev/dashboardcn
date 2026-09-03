@@ -759,6 +759,43 @@
           "type": "registry:lib"
         }
       ]
+    },
+    {
+      "name": "metric-tabs-chart-card",
+      "type": "registry:block",
+      "title": "Metric Tabs Chart Card",
+      "description": "A row of metric tabs, each with a value and delta, above a line chart of the selected metric against the previous period.",
+      "categories": [
+        "dashboard",
+        "charts",
+        "marketing"
+      ],
+      "dependencies": [
+        "recharts",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "card",
+        "chart"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboardcn/blocks/metric-tabs-chart-card.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/dashboardcn/ui/composed-chart.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/ui/delta-badge.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/lib/format.ts",
+          "type": "registry:lib"
+        }
+      ]
     }
   ]
 }
