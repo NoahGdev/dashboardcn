@@ -398,6 +398,25 @@
       ]
     },
     {
+      "name": "heatmap-chart",
+      "type": "registry:ui",
+      "title": "Heatmap Chart",
+      "description": "A matrix heatmap with a row per line and a column per label, e.g. weekday by hour, with hover highlighting and tooltips.",
+      "registryDependencies": [
+        "tooltip"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboardcn/ui/heatmap-chart.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/lib/format.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
       "name": "kpi-row-card",
       "type": "registry:block",
       "title": "KPI Row Card",
@@ -1075,6 +1094,50 @@
         },
         {
           "path": "registry/dashboardcn/ui/activity-heatmap.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/ui/delta-badge.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/ui/metric-value.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/ui/period-tabs.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/lib/format.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "heatmap-chart-card",
+      "type": "registry:block",
+      "title": "Heatmap Chart Card",
+      "description": "A card with a headline total, a delta, an optional period switcher, and a matrix heatmap whose hovered cell swaps into the headline.",
+      "categories": [
+        "dashboard",
+        "charts"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "card",
+        "tooltip",
+        "tabs"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboardcn/blocks/heatmap-chart-card.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/dashboardcn/ui/heatmap-chart.tsx",
           "type": "registry:ui"
         },
         {

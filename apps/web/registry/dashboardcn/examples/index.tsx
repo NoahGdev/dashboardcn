@@ -66,6 +66,9 @@ import FunnelChartSharpDemo from "@/registry/dashboardcn/examples/funnel-chart-s
 import FunnelChartCardDemo from "@/registry/dashboardcn/examples/funnel-chart-card-demo"
 import StageBarsCardDemo from "@/registry/dashboardcn/examples/stage-bars-card-demo"
 import ContributionsCardDemo from "@/registry/dashboardcn/examples/contributions-card-demo"
+import HeatmapChartDemo from "@/registry/dashboardcn/examples/heatmap-chart-demo"
+import HeatmapChartRegionsDemo from "@/registry/dashboardcn/examples/heatmap-chart-regions-demo"
+import HeatmapChartCardDemo from "@/registry/dashboardcn/examples/heatmap-chart-card-demo"
 
 export interface ExampleEntry {
   component: React.ComponentType
@@ -142,6 +145,9 @@ export const examples = {
   "funnel-chart-card-demo": { component: FunnelChartCardDemo, path: `${base}/funnel-chart-card-demo.tsx` },
   "stage-bars-card-demo": { component: StageBarsCardDemo, path: `${base}/stage-bars-card-demo.tsx` },
   "contributions-card-demo": { component: ContributionsCardDemo, path: `${base}/contributions-card-demo.tsx` },
+  "heatmap-chart-demo": { component: HeatmapChartDemo, path: `${base}/heatmap-chart-demo.tsx` },
+  "heatmap-chart-regions-demo": { component: HeatmapChartRegionsDemo, path: `${base}/heatmap-chart-regions-demo.tsx` },
+  "heatmap-chart-card-demo": { component: HeatmapChartCardDemo, path: `${base}/heatmap-chart-card-demo.tsx` },
 } satisfies Record<string, ExampleEntry>
 
 export type ExampleName = keyof typeof examples

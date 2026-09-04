@@ -536,6 +536,30 @@ const [period, setPeriod] = React.useState("month")
 </ActivityRings>`,
   },
   {
+    name: "heatmap-chart",
+    title: "Heatmap Chart",
+    description:
+      "A matrix heatmap with a row per line and a column per label, e.g. weekday by hour, with hover highlighting and tooltips.",
+    examples: [
+      { name: "heatmap-chart-demo" },
+      {
+        name: "heatmap-chart-regions-demo",
+        title: "Regions by month",
+        description: "Any two axes work. Set color for the accent and scale to \"sqrt\" to spread out small values.",
+      },
+    ],
+    usage: `import { HeatmapChart } from "@/components/ui/heatmap-chart"
+
+<HeatmapChart
+  rows={[
+    { label: "Mon", values: [12, 48, 210, 320, 260, 80] },
+    { label: "Tue", values: [10, 52, 230, 340, 250, 70] },
+  ]}
+  columns={["00", "04", "08", "12", "16", "20"]}
+  unit="sessions"
+/>`,
+  },
+  {
     name: "kpi-row-card",
     kind: "block",
     title: "KPI Row Card",
@@ -990,6 +1014,32 @@ const [period, setPeriod] = React.useState("month")
     { date: "2026-09-02", value: 3 },
   ]}
   unit="commits"
+/>`,
+  },
+  {
+    name: "heatmap-chart-card",
+    kind: "block",
+    title: "Heatmap Chart Card",
+    description:
+      "A card with a headline total, a delta, an optional period switcher, and a matrix heatmap whose hovered cell swaps into the headline.",
+    examples: [{ name: "heatmap-chart-card-demo" }],
+    usage: `import { HeatmapChartCard } from "@/components/heatmap-chart-card"
+
+<HeatmapChartCard
+  title="Active users"
+  rows={[
+    { label: "Mon", values: [12, 48, 210, 320, 260, 80] },
+    { label: "Tue", values: [10, 52, 230, 340, 250, 70] },
+  ]}
+  columns={["00", "04", "08", "12", "16", "20"]}
+  unit="sessions"
+  delta={0.082}
+  deltaLabel="vs previous 7 days"
+  periods={[
+    { value: "7d", label: "7D" },
+    { value: "30d", label: "30D" },
+  ]}
+  onPeriodChange={setPeriod}
 />`,
   },
 ]
