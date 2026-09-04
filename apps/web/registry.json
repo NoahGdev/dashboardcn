@@ -1052,6 +1052,50 @@
       ]
     },
     {
+      "name": "contributions-card",
+      "type": "registry:block",
+      "title": "Contributions Card",
+      "description": "A contribution-graph card: a headline total with delta, a row of stat tiles, a period switcher, and a year of daily activity.",
+      "categories": [
+        "dashboard",
+        "charts"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "card",
+        "tabs",
+        "tooltip"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboardcn/blocks/contributions-card.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/dashboardcn/ui/activity-heatmap.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/ui/delta-badge.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/ui/metric-value.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/ui/period-tabs.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/lib/format.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
       "name": "skill",
       "type": "registry:file",
       "title": "Agent skill",

@@ -65,6 +65,7 @@ import FunnelChartFlowDemo from "@/registry/dashboardcn/examples/funnel-chart-fl
 import FunnelChartSharpDemo from "@/registry/dashboardcn/examples/funnel-chart-sharp-demo"
 import FunnelChartCardDemo from "@/registry/dashboardcn/examples/funnel-chart-card-demo"
 import StageBarsCardDemo from "@/registry/dashboardcn/examples/stage-bars-card-demo"
+import ContributionsCardDemo from "@/registry/dashboardcn/examples/contributions-card-demo"
 
 export interface ExampleEntry {
   component: React.ComponentType
@@ -140,6 +141,7 @@ export const examples = {
   "funnel-chart-sharp-demo": { component: FunnelChartSharpDemo, path: `${base}/funnel-chart-sharp-demo.tsx` },
   "funnel-chart-card-demo": { component: FunnelChartCardDemo, path: `${base}/funnel-chart-card-demo.tsx` },
   "stage-bars-card-demo": { component: StageBarsCardDemo, path: `${base}/stage-bars-card-demo.tsx` },
+  "contributions-card-demo": { component: ContributionsCardDemo, path: `${base}/contributions-card-demo.tsx` },
 } satisfies Record<string, ExampleEntry>
 
 export type ExampleName = keyof typeof examples

@@ -963,6 +963,35 @@ const [period, setPeriod] = React.useState("month")
   ]}
 />`,
   },
+  {
+    name: "contributions-card",
+    kind: "block",
+    title: "Contributions Card",
+    description:
+      "A contribution-graph card: a headline total with delta, a row of stat tiles, a period switcher, and a year of daily activity.",
+    examples: [{ name: "contributions-card-demo" }],
+    usage: `import { ContributionsCard } from "@/components/contributions-card"
+
+<ContributionsCard
+  title="Contributions this year"
+  delta={0.148}
+  deltaLabel="vs last year"
+  stats={[
+    { label: "Lifetime tokens", value: 9000000000, format: "compact" },
+    { label: "Longest task", value: "12h 54m" },
+    { label: "Top streak", value: 62, unit: "days" },
+  ]}
+  periods={[
+    { value: "month", label: "Monthly" },
+    { value: "year", label: "Yearly" },
+  ]}
+  data={[
+    { date: "2026-09-01", value: 12 },
+    { date: "2026-09-02", value: 3 },
+  ]}
+  unit="commits"
+/>`,
+  },
 ]
 
 export function getComponentDoc(name: string) {
