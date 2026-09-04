@@ -560,6 +560,37 @@ const [period, setPeriod] = React.useState("month")
 />`,
   },
   {
+    name: "radar-chart",
+    title: "Radar Chart",
+    description:
+      "A filled, outlined, or dotted radar chart with polygon or circle grids, for scores and multi-series comparisons.",
+    examples: [
+      { name: "radar-chart-demo" },
+      {
+        name: "radar-chart-multi-demo",
+        title: "Multiple series",
+        description: "Each series draws its own polygon. variant=\"line\" drops the fill so overlaps stay readable.",
+      },
+      {
+        name: "radar-chart-dots-demo",
+        title: "Score radar",
+        description: "variant=\"dots\" marks every vertex. Set grid to \"circle\", a fixed domain, and showRadiusAxis for a scorecard.",
+      },
+    ],
+    usage: `import { RadarChart } from "@/components/ui/radar-chart"
+
+<RadarChart
+  data={data}
+  angleKey="month"
+  series={[
+    { key: "desktop", label: "Desktop" },
+    { key: "mobile", label: "Mobile" },
+  ]}
+  variant="line"
+  showLegend
+/>`,
+  },
+  {
     name: "kpi-row-card",
     kind: "block",
     title: "KPI Row Card",

@@ -69,6 +69,9 @@ import ContributionsCardDemo from "@/registry/dashboardcn/examples/contributions
 import HeatmapChartDemo from "@/registry/dashboardcn/examples/heatmap-chart-demo"
 import HeatmapChartRegionsDemo from "@/registry/dashboardcn/examples/heatmap-chart-regions-demo"
 import HeatmapChartCardDemo from "@/registry/dashboardcn/examples/heatmap-chart-card-demo"
+import RadarChartDemo from "@/registry/dashboardcn/examples/radar-chart-demo"
+import RadarChartMultiDemo from "@/registry/dashboardcn/examples/radar-chart-multi-demo"
+import RadarChartDotsDemo from "@/registry/dashboardcn/examples/radar-chart-dots-demo"
 
 export interface ExampleEntry {
   component: React.ComponentType
@@ -148,6 +151,9 @@ export const examples = {
   "heatmap-chart-demo": { component: HeatmapChartDemo, path: `${base}/heatmap-chart-demo.tsx` },
   "heatmap-chart-regions-demo": { component: HeatmapChartRegionsDemo, path: `${base}/heatmap-chart-regions-demo.tsx` },
   "heatmap-chart-card-demo": { component: HeatmapChartCardDemo, path: `${base}/heatmap-chart-card-demo.tsx` },
+  "radar-chart-demo": { component: RadarChartDemo, path: `${base}/radar-chart-demo.tsx` },
+  "radar-chart-multi-demo": { component: RadarChartMultiDemo, path: `${base}/radar-chart-multi-demo.tsx` },
+  "radar-chart-dots-demo": { component: RadarChartDotsDemo, path: `${base}/radar-chart-dots-demo.tsx` },
 } satisfies Record<string, ExampleEntry>
 
 export type ExampleName = keyof typeof examples

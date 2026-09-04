@@ -417,6 +417,28 @@
       ]
     },
     {
+      "name": "radar-chart",
+      "type": "registry:ui",
+      "title": "Radar Chart",
+      "description": "A filled, outlined, or dotted radar chart with polygon or circle grids, for scores and multi-series comparisons.",
+      "dependencies": [
+        "recharts"
+      ],
+      "registryDependencies": [
+        "chart"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboardcn/ui/radar-chart.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/lib/format.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
       "name": "kpi-row-card",
       "type": "registry:block",
       "title": "KPI Row Card",
