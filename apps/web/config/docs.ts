@@ -591,6 +591,34 @@ const [period, setPeriod] = React.useState("month")
 />`,
   },
   {
+    name: "scatter-chart",
+    title: "Scatter Chart",
+    description:
+      "Correlation dots per series that become bubbles when a size key is set, with a per-point tooltip and legend.",
+    examples: [
+      { name: "scatter-chart-demo" },
+      {
+        name: "scatter-chart-bubbles-demo",
+        title: "Bubbles",
+        description: "Set sizeKey to scale each point by a third value, and nameKey to title the tooltip with the point's label.",
+      },
+    ],
+    usage: `import { ScatterChart } from "@/components/ui/scatter-chart"
+
+<ScatterChart
+  series={[
+    { label: "Free", data: free },
+    { label: "Pro", data: pro },
+    { label: "Enterprise", data: enterprise },
+  ]}
+  xKey="sessions"
+  yKey="revenue"
+  xLabel="Sessions"
+  yLabel="Revenue"
+  showLegend
+/>`,
+  },
+  {
     name: "kpi-row-card",
     kind: "block",
     title: "KPI Row Card",
