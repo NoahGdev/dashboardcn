@@ -7,6 +7,7 @@ import {
   CartesianGrid,
   Cell,
   Rectangle,
+  ReferenceLine,
   XAxis,
   YAxis,
 } from "recharts"
@@ -15,6 +16,16 @@ import { cn } from "@/lib/utils"
 import { ChartContainer, ChartTooltip } from "@/components/ui/chart"
 
 export type BarRow = Record<string, unknown>
+
+export interface BarReferenceLine {
+  /** Horizontal line at this y value. */
+  y: number
+  label?: string
+  /** Any CSS color. Defaults to the muted foreground. */
+  color?: string
+  /** Defaults to dashed. */
+  dashed?: boolean
+}
 
 export interface BarChartProps
   extends Omit<React.ComponentProps<typeof ChartContainer>, "config" | "children"> {
@@ -42,6 +53,8 @@ export interface BarChartProps
   /** Draw a hollow ring on top of the hovered bar. */
   showActiveMarker?: boolean
   barRadius?: number
+  /** Horizontal lines, e.g. a goal or an average. The y-axis extends to fit them. */
+  referenceLines?: BarReferenceLine[]
   xFormatter?: (value: unknown) => string
   yFormatter?: (value: number) => string
   /** Secondary line of the tooltip. Defaults to the formatted x value. */
@@ -96,6 +109,7 @@ function BarChart({
   showTooltip = true,
   showActiveMarker = true,
   barRadius = 6,
+  referenceLines = [],
   xFormatter = defaultXFormatter,
   yFormatter,
   tooltipLabel,
@@ -259,6 +273,25 @@ function BarChart({
             <Cell key={index} fill={fillFor(index)} />
           ))}
         </Bar>
+        {referenceLines.map((line, index) => (
+          <ReferenceLine
+            key={index}
+            y={line.y}
+            ifOverflow="extendDomain"
+            stroke={line.color ?? "var(--muted-foreground)"}
+            strokeDasharray={line.dashed === false ? undefined : "4 4"}
+            label={
+              line.label
+                ? {
+                    value: line.label,
+                    position: "insideTopRight",
+                    fill: line.color ?? "var(--muted-foreground)",
+                    fontSize: 11,
+                  }
+                : undefined
+            }
+          />
+        ))}
       </RechartsBarChart>
     </ChartContainer>
   )

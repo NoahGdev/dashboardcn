@@ -1131,6 +1131,32 @@ const [period, setPeriod] = React.useState("month")
   onPeriodChange={setPeriod}
 />`,
   },
+  {
+    name: "goal-chart-card",
+    kind: "block",
+    title: "Goal Chart Card",
+    description:
+      "A card with a total, a period switcher, and a bar chart with a dashed goal line that colors the bars reaching it.",
+    examples: [{ name: "goal-chart-card-demo" }],
+    usage: `import { GoalChartCard } from "@/components/goal-chart-card"
+
+<GoalChartCard
+  title="Steps"
+  unit="total steps"
+  data={steps}
+  xKey="day"
+  yKey="steps"
+  goal={4000}
+  color="var(--color-emerald-500)"
+  delta={0.12}
+  deltaLabel="vs last week"
+  periods={[
+    { value: "week", label: "Week" },
+    { value: "month", label: "Month" },
+  ]}
+  onPeriodChange={setPeriod}
+/>`,
+  },
 ]
 
 export function getComponentDoc(name: string) {
