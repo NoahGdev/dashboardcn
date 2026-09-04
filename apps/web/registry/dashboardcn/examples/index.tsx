@@ -58,6 +58,9 @@ import TimelineActivityDemo from "@/registry/dashboardcn/examples/timeline-activ
 import TimelineCompactDemo from "@/registry/dashboardcn/examples/timeline-compact-demo"
 import TimelineDemo from "@/registry/dashboardcn/examples/timeline-demo"
 import TimelineVersionsDemo from "@/registry/dashboardcn/examples/timeline-versions-demo"
+import ActivityRingsDemo from "@/registry/dashboardcn/examples/activity-rings-demo"
+import ActivityRingsCardDemo from "@/registry/dashboardcn/examples/activity-rings-card-demo"
+import ActivityRingsCardSideDemo from "@/registry/dashboardcn/examples/activity-rings-card-side-demo"
 
 export interface ExampleEntry {
   component: React.ComponentType
@@ -126,6 +129,9 @@ export const examples = {
   "dot-plot-card-demo": { component: DotPlotCardDemo, path: `${base}/dot-plot-card-demo.tsx` },
   "breakdown-card-demo": { component: BreakdownCardDemo, path: `${base}/breakdown-card-demo.tsx` },
   "metric-tabs-chart-card-demo": { component: MetricTabsChartCardDemo, path: `${base}/metric-tabs-chart-card-demo.tsx` },
+  "activity-rings-demo": { component: ActivityRingsDemo, path: `${base}/activity-rings-demo.tsx` },
+  "activity-rings-card-demo": { component: ActivityRingsCardDemo, path: `${base}/activity-rings-card-demo.tsx` },
+  "activity-rings-card-side-demo": { component: ActivityRingsCardSideDemo, path: `${base}/activity-rings-card-side-demo.tsx` },
 } satisfies Record<string, ExampleEntry>
 
 export type ExampleName = keyof typeof examples

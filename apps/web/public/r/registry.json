@@ -386,6 +386,18 @@
       ]
     },
     {
+      "name": "activity-rings",
+      "type": "registry:ui",
+      "title": "Activity Rings",
+      "description": "Concentric progress rings, one per goal, in the style of a fitness watch.",
+      "files": [
+        {
+          "path": "registry/dashboardcn/ui/activity-rings.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "kpi-row-card",
       "type": "registry:block",
       "title": "KPI Row Card",
@@ -931,6 +943,33 @@
         {
           "path": "registry/dashboardcn/ui/data-table.tsx",
           "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "activity-rings-card",
+      "type": "registry:block",
+      "title": "Activity Rings Card",
+      "description": "A card with concentric goal rings and a tile per ring with its value. Hovering a tile or a ring focuses the pair.",
+      "categories": [
+        "dashboard",
+        "charts"
+      ],
+      "registryDependencies": [
+        "card"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboardcn/blocks/activity-rings-card.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/dashboardcn/ui/activity-rings.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/lib/format.ts",
+          "type": "registry:lib"
         }
       ]
     },

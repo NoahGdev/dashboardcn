@@ -496,6 +496,25 @@ const [period, setPeriod] = React.useState("month")
 </Timeline>`,
   },
   {
+    name: "activity-rings",
+    title: "Activity Rings",
+    description:
+      "Concentric progress rings, one per goal, in the style of a fitness watch.",
+    examples: [{ name: "activity-rings-demo" }],
+    usage: `import { ActivityRings } from "@/components/ui/activity-rings"
+
+<ActivityRings
+  rings={[
+    { label: "Move", value: 1592, max: 1800, color: "var(--color-pink-500)" },
+    { label: "Exercise", value: 105, max: 120, color: "var(--color-lime-500)" },
+    { label: "Stand", value: 9, max: 12, color: "var(--color-sky-500)" },
+  ]}
+>
+  <span className="text-2xl font-semibold">82%</span>
+  <span className="text-muted-foreground text-xs">of goals</span>
+</ActivityRings>`,
+  },
+  {
     name: "kpi-row-card",
     kind: "block",
     title: "KPI Row Card",
@@ -840,6 +859,32 @@ const [period, setPeriod] = React.useState("month")
   pageSize={5}
   pageSizeOptions={[5, 10, 25]}
   toolbar={<PeriodTabs value={period} onValueChange={setPeriod} size="sm" />}
+/>`,
+  },
+  {
+    name: "activity-rings-card",
+    kind: "block",
+    title: "Activity Rings Card",
+    description:
+      "A card with concentric goal rings and a tile per ring with its value. Hovering a tile or a ring focuses the pair.",
+    examples: [
+      { name: "activity-rings-card-demo" },
+      {
+        name: "activity-rings-card-side-demo",
+        title: "Side by side",
+        description: "layout=\"side\" puts the tiles next to the rings. center renders content in the middle of the rings.",
+      },
+    ],
+    usage: `import { ActivityRingsCard } from "@/components/activity-rings-card"
+
+<ActivityRingsCard
+  title="Activity"
+  caption="Today"
+  metrics={[
+    { label: "Move", value: 1592, max: 1800, unit: "kcal", color: "var(--color-pink-500)" },
+    { label: "Exercise", value: 105, max: 120, display: "1h 45m", color: "var(--color-lime-500)" },
+    { label: "Running", value: 5.2, max: 8, unit: "km", color: "var(--color-sky-500)" },
+  ]}
 />`,
   },
 ]
