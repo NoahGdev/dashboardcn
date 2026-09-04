@@ -461,6 +461,28 @@
       ]
     },
     {
+      "name": "sankey-chart",
+      "type": "registry:ui",
+      "title": "Sankey Chart",
+      "description": "A flow diagram with tinted links, colored node bars, and share labels, on shadcn's chart primitives.",
+      "dependencies": [
+        "recharts"
+      ],
+      "registryDependencies": [
+        "chart"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboardcn/ui/sankey-chart.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/lib/format.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
       "name": "kpi-row-card",
       "type": "registry:block",
       "title": "KPI Row Card",

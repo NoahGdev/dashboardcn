@@ -74,6 +74,8 @@ import RadarChartMultiDemo from "@/registry/dashboardcn/examples/radar-chart-mul
 import RadarChartDotsDemo from "@/registry/dashboardcn/examples/radar-chart-dots-demo"
 import ScatterChartDemo from "@/registry/dashboardcn/examples/scatter-chart-demo"
 import ScatterChartBubblesDemo from "@/registry/dashboardcn/examples/scatter-chart-bubbles-demo"
+import SankeyChartDemo from "@/registry/dashboardcn/examples/sankey-chart-demo"
+import SankeyChartCashflowDemo from "@/registry/dashboardcn/examples/sankey-chart-cashflow-demo"
 
 export interface ExampleEntry {
   component: React.ComponentType
@@ -158,6 +160,8 @@ export const examples = {
   "radar-chart-dots-demo": { component: RadarChartDotsDemo, path: `${base}/radar-chart-dots-demo.tsx` },
   "scatter-chart-demo": { component: ScatterChartDemo, path: `${base}/scatter-chart-demo.tsx` },
   "scatter-chart-bubbles-demo": { component: ScatterChartBubblesDemo, path: `${base}/scatter-chart-bubbles-demo.tsx` },
+  "sankey-chart-demo": { component: SankeyChartDemo, path: `${base}/sankey-chart-demo.tsx` },
+  "sankey-chart-cashflow-demo": { component: SankeyChartCashflowDemo, path: `${base}/sankey-chart-cashflow-demo.tsx` },
 } satisfies Record<string, ExampleEntry>
 
 export type ExampleName = keyof typeof examples

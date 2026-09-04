@@ -619,6 +619,36 @@ const [period, setPeriod] = React.useState("month")
 />`,
   },
   {
+    name: "sankey-chart",
+    title: "Sankey Chart",
+    description:
+      "A flow diagram with tinted links, colored node bars, and share labels, on shadcn's chart primitives.",
+    examples: [
+      { name: "sankey-chart-demo" },
+      {
+        name: "sankey-chart-cashflow-demo",
+        title: "Cash flow",
+        description: "Income sources flowing into budget categories, with a currency formatter.",
+      },
+    ],
+    usage: `import { SankeyChart } from "@/components/ui/sankey-chart"
+
+<SankeyChart
+  nodes={[
+    { name: "Focus" },
+    { name: "Meetings" },
+    { name: "Writing" },
+    { name: "Calls" },
+  ]}
+  links={[
+    { source: "Focus", target: "Writing", value: 12 },
+    { source: "Meetings", target: "Calls", value: 7 },
+    { source: "Meetings", target: "Writing", value: 2 },
+  ]}
+  valueFormatter={(value) => \`\${value}h\`}
+/>`,
+  },
+  {
     name: "kpi-row-card",
     kind: "block",
     title: "KPI Row Card",
