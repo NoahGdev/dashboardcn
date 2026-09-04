@@ -1225,6 +1225,42 @@
       ]
     },
     {
+      "name": "score-gauge-card",
+      "type": "registry:block",
+      "title": "Score Gauge Card",
+      "description": "A score card with a headline word, a radial gauge around the score, and a breakdown list of labelled bars.",
+      "categories": [
+        "dashboard",
+        "charts"
+      ],
+      "registryDependencies": [
+        "card",
+        "tooltip"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboardcn/blocks/score-gauge-card.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/dashboardcn/ui/radial-gauge.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/ui/tick-bar.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/ui/metric-value.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/lib/format.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
       "name": "goal-chart-card",
       "type": "registry:block",
       "title": "Goal Chart Card",

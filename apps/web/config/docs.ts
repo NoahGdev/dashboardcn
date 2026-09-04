@@ -1132,6 +1132,28 @@ const [period, setPeriod] = React.useState("month")
 />`,
   },
   {
+    name: "score-gauge-card",
+    kind: "block",
+    title: "Score Gauge Card",
+    description:
+      "A score card with a headline word, a radial gauge around the score, and a breakdown list of labelled bars.",
+    examples: [{ name: "score-gauge-card-demo" }],
+    usage: `import { ScoreGaugeCard } from "@/components/score-gauge-card"
+
+<ScoreGaugeCard
+  title="Sleep score"
+  status="Excellent"
+  caption="29 Jun - 5 Jul"
+  score={98}
+  color="var(--color-violet-500)"
+  items={[
+    { label: "Duration", detail: "7h 50m", value: 49, max: 50 },
+    { label: "Bedtime", detail: "11:12 PM", value: 29, max: 30 },
+    { label: "Interruptions", detail: "2 times", value: 20, max: 20 },
+  ]}
+/>`,
+  },
+  {
     name: "goal-chart-card",
     kind: "block",
     title: "Goal Chart Card",
