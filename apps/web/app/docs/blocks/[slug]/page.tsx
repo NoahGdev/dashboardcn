@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params
   const doc = getComponentDoc(slug)
   if (!doc) return {}
-  return pageMetadata({ title: doc.title, description: doc.description, path: docHref(doc) })
+  return pageMetadata({ title: `${doc.title} for shadcn/ui`, description: doc.description, path: docHref(doc) })
 }
 
 export default async function BlockPage({ params }: { params: Promise<{ slug: string }> }) {

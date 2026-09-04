@@ -106,3 +106,47 @@ export function siteJsonLd() {
     },
   ]
 }
+
+/** A blog post as a BlogPosting. */
+export function articleJsonLd(post: {
+  slug: string
+  title: string
+  description: string
+  date: string
+  keywords?: string[]
+}) {
+  const url = absoluteUrl(`/blog/${post.slug}`)
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.description,
+    url,
+    mainEntityOfPage: url,
+    datePublished: post.date,
+    dateModified: post.date,
+    keywords: post.keywords?.join(", "),
+    image: `${url}/opengraph-image`,
+    author: { "@type": "Person", name: "Noah Gomes", url: "https://github.com/NoahGdev" },
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.url,
+      logo: { "@type": "ImageObject", url: absoluteUrl(siteConfig.logo) },
+    },
+    isPartOf: { "@type": "WebSite", name: siteConfig.name, url: siteConfig.url },
+  }
+}
+
+/** Question and answer pairs as an FAQPage. Answers are plain text. */
+export function faqJsonLd(items: { question: string; answer: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  }
+}

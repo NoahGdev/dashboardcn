@@ -3,8 +3,10 @@ import { ArrowRight, Ellipsis, Gem, Hexagon, Triangle } from "lucide-react"
 
 import { registryItemUrl } from "@/config/site"
 import { buildAgentPrompt } from "@/lib/agent-prompt"
+import { faqJsonLd } from "@/lib/seo"
 import { BLOCK_DOCS, COMPONENT_DOCS, docHref } from "@/lib/docs"
 import { Button } from "@/components/ui/button"
+import { JsonLd } from "@/components/json-ld"
 import { BlockShowcase } from "@/components/block-showcase"
 import { ShellCommand } from "@/components/install-command"
 import { OpenInAgent } from "@/components/open-in-agent"
@@ -16,6 +18,39 @@ import { DualMetricCard } from "@/registry/dashboardcn/blocks/dual-metric-card"
 import { InsightCard } from "@/registry/dashboardcn/blocks/insight-card"
 
 const url = registryItemUrl("kpi-card")
+
+const faq = [
+  {
+    question: "Is dashboardcn free?",
+    answer:
+      "Yes. Every component and block is MIT licensed, with no Pro tier, no license key, and no account. You can use it in commercial products and redistribute the source.",
+  },
+  {
+    question: "How is it different from shadcn/ui?",
+    answer:
+      "shadcn/ui covers the base primitives: buttons, dialogs, forms, and the chart wrapper. dashboardcn adds the data components a dashboard needs, such as KPI cards, trend and composed charts, funnels, gauges, heatmaps, and a full data table, built on those same primitives and installed with the same CLI.",
+  },
+  {
+    question: "How is it different from BoardUI or Tremor?",
+    answer:
+      "BoardUI and Tremor are complete design systems with their own tokens and primitives. dashboardcn only ships dashboard components and uses your existing shadcn/ui theme, so the pieces look like the rest of your app. BoardUI sells its Pro components; dashboardcn is entirely free.",
+  },
+  {
+    question: "Does it work with Base UI as well as Radix?",
+    answer:
+      "Yes. Components that render only HTML and CSS work with either flavor of shadcn/ui, and components that depend on shadcn primitives pull the flavor your project already uses.",
+  },
+  {
+    question: "Do I need Next.js?",
+    answer:
+      "No. The components are plain React with Tailwind CSS v4 and work in any project where the shadcn CLI works, including Vite, Remix, and Next.js.",
+  },
+  {
+    question: "Can coding agents use it?",
+    answer:
+      "Yes. Every docs page is available as Markdown, llms.txt indexes them, and there is a skill that teaches an agent how to pick, install, and compose the components. shadcn's MCP server can install from the registry once the namespace is registered.",
+  },
+]
 
 const menu = (
   <Button variant="outline" size="icon-sm" className="text-muted-foreground rounded-full">
@@ -246,6 +281,26 @@ export default function Home() {
               </li>
             ))}
           </ul>
+        </section>
+
+        <section className="flex flex-col gap-6">
+          <JsonLd data={faqJsonLd(faq)} />
+          <div className="flex flex-col gap-1">
+            <h2 className="text-xl font-semibold tracking-tight">Questions</h2>
+            <p className="text-muted-foreground text-balance">
+              What people ask before adding dashboardcn to a shadcn/ui project.
+            </p>
+          </div>
+          <dl className="grid gap-x-8 gap-y-6 sm:grid-cols-2">
+            {faq.map((item) => (
+              <div key={item.question} className="flex flex-col gap-1.5">
+                <dt className="font-medium">{item.question}</dt>
+                <dd className="text-muted-foreground text-sm leading-relaxed">
+                  {item.answer}
+                </dd>
+              </div>
+            ))}
+          </dl>
         </section>
       </div>
     </div>

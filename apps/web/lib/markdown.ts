@@ -1,4 +1,5 @@
 import { getComponentDoc } from "@/config/docs"
+import { docOverviews } from "@/config/docs-overviews"
 import { publicUrl, registryItemUrl, siteConfig } from "@/config/site"
 import { consumerPath, getRegistryItem, readSource } from "@/lib/source"
 
@@ -50,6 +51,7 @@ export async function renderItemMarkdown(name: string) {
   const sections = [
     `# ${doc.title}`,
     doc.description,
+    docOverviews[doc.name] ?? "",
     "## Installation",
     fence(`npx shadcn@latest add ${registryItemUrl(doc.name)}`, "bash"),
     registryDeps.length

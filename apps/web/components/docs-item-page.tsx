@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation"
 
 import { getComponentDoc } from "@/config/docs"
+import { docOverviews } from "@/config/docs-overviews"
 import { registryItemUrl } from "@/config/site"
 import { docHref, slugify, type TocItem } from "@/lib/docs"
 import { renderItemMarkdown } from "@/lib/markdown"
@@ -72,6 +73,7 @@ export async function DocsItemPage({ slug }: { slug: string }) {
         ]}
       />
       {first ? <ComponentPreview name={first.name} {...previewProps} /> : null}
+      {docOverviews[doc.name] ? <p>{docOverviews[doc.name]}</p> : null}
 
       <H2>Installation</H2>
       <CodeTabs>
