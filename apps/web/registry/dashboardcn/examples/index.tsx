@@ -61,6 +61,10 @@ import TimelineVersionsDemo from "@/registry/dashboardcn/examples/timeline-versi
 import ActivityRingsDemo from "@/registry/dashboardcn/examples/activity-rings-demo"
 import ActivityRingsCardDemo from "@/registry/dashboardcn/examples/activity-rings-card-demo"
 import ActivityRingsCardSideDemo from "@/registry/dashboardcn/examples/activity-rings-card-side-demo"
+import FunnelChartFlowDemo from "@/registry/dashboardcn/examples/funnel-chart-flow-demo"
+import FunnelChartSharpDemo from "@/registry/dashboardcn/examples/funnel-chart-sharp-demo"
+import FunnelChartCardDemo from "@/registry/dashboardcn/examples/funnel-chart-card-demo"
+import StageBarsCardDemo from "@/registry/dashboardcn/examples/stage-bars-card-demo"
 
 export interface ExampleEntry {
   component: React.ComponentType
@@ -132,6 +136,10 @@ export const examples = {
   "activity-rings-demo": { component: ActivityRingsDemo, path: `${base}/activity-rings-demo.tsx` },
   "activity-rings-card-demo": { component: ActivityRingsCardDemo, path: `${base}/activity-rings-card-demo.tsx` },
   "activity-rings-card-side-demo": { component: ActivityRingsCardSideDemo, path: `${base}/activity-rings-card-side-demo.tsx` },
+  "funnel-chart-flow-demo": { component: FunnelChartFlowDemo, path: `${base}/funnel-chart-flow-demo.tsx` },
+  "funnel-chart-sharp-demo": { component: FunnelChartSharpDemo, path: `${base}/funnel-chart-sharp-demo.tsx` },
+  "funnel-chart-card-demo": { component: FunnelChartCardDemo, path: `${base}/funnel-chart-card-demo.tsx` },
+  "stage-bars-card-demo": { component: StageBarsCardDemo, path: `${base}/stage-bars-card-demo.tsx` },
 } satisfies Record<string, ExampleEntry>
 
 export type ExampleName = keyof typeof examples

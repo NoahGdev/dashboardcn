@@ -102,7 +102,7 @@
       "name": "funnel-chart",
       "type": "registry:ui",
       "title": "Funnel Chart",
-      "description": "Step-by-step conversion with drop-off between steps and overall conversion.",
+      "description": "Step-by-step conversion, as stacked bars with drop-off or as a flow of tapering stages with a tile per step.",
       "files": [
         {
           "path": "registry/dashboardcn/ui/funnel-chart.tsx",
@@ -965,6 +965,84 @@
         },
         {
           "path": "registry/dashboardcn/ui/activity-rings.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/lib/format.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "funnel-chart-card",
+      "type": "registry:block",
+      "title": "Funnel Chart Card",
+      "description": "A conversion card with a flow funnel: a headline value with delta, a range picker that carries its own steps, and a tile per stage. Hovering a stage swaps the headline.",
+      "categories": [
+        "dashboard",
+        "charts"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "card",
+        "button",
+        "dropdown-menu",
+        "tooltip"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboardcn/blocks/funnel-chart-card.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/dashboardcn/ui/funnel-chart.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/ui/delta-badge.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/ui/metric-value.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/lib/format.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "stage-bars-card",
+      "type": "registry:block",
+      "title": "Stage Bars Card",
+      "description": "The funnel as a list: a rounded bar per stage with its name, value, and share of the first stage, a range picker, and a tile per stage.",
+      "categories": [
+        "dashboard",
+        "charts"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "card",
+        "button",
+        "dropdown-menu",
+        "tooltip"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboardcn/blocks/stage-bars-card.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/dashboardcn/ui/delta-badge.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/ui/metric-value.tsx",
           "type": "registry:ui"
         },
         {

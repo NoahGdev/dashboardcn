@@ -191,8 +191,20 @@ const table = useDataTable({ columns, data: rows, pageSize: 5 })
     name: "funnel-chart",
     title: "Funnel Chart",
     description:
-      "Step-by-step conversion with drop-off between steps and overall conversion.",
-    examples: [{ name: "funnel-chart-demo" }],
+      "Step-by-step conversion, as stacked bars with drop-off or as a flow of tapering stages with a tile per step.",
+    examples: [
+      { name: "funnel-chart-demo" },
+      {
+        name: "funnel-chart-flow-demo",
+        title: "Flow",
+        description: "Set variant to \"flow\" to run the steps left to right, each sized to its share of the first and tapering into the next. Give each step a color, or none for the chart palette. Hover a stage to focus it.",
+      },
+      {
+        name: "funnel-chart-sharp-demo",
+        title: "Sharp and single color",
+        description: "shape=\"sharp\" draws straight trapezoids. A single color fades from stage to stage, so pass the foreground for a one-ink funnel. height sets the stage height in pixels.",
+      },
+    ],
     usage: `import { FunnelChart } from "@/components/ui/funnel-chart"
 
 <FunnelChart
@@ -200,6 +212,15 @@ const table = useDataTable({ columns, data: rows, pageSize: 5 })
     { name: "Visited pricing", value: 12480 },
     { name: "Started signup", value: 4920 },
     { name: "Upgraded to Pro", value: 412 },
+  ]}
+/>
+
+<FunnelChart
+  variant="flow"
+  steps={[
+    { name: "Link opened", value: 197, color: "var(--color-lime-400)" },
+    { name: "Started", value: 110, color: "var(--color-blue-500)" },
+    { name: "Converted", value: 38, color: "var(--color-pink-500)" },
   ]}
 />`,
   },
@@ -884,6 +905,61 @@ const [period, setPeriod] = React.useState("month")
     { label: "Move", value: 1592, max: 1800, unit: "kcal", color: "var(--color-pink-500)" },
     { label: "Exercise", value: 105, max: 120, display: "1h 45m", color: "var(--color-lime-500)" },
     { label: "Running", value: 5.2, max: 8, unit: "km", color: "var(--color-sky-500)" },
+  ]}
+/>`,
+  },
+  {
+    name: "funnel-chart-card",
+    kind: "block",
+    title: "Funnel Chart Card",
+    description:
+      "A conversion card with a flow funnel: a headline value with delta, a range picker that carries its own steps, and a tile per stage. Hovering a stage swaps the headline.",
+    examples: [{ name: "funnel-chart-card-demo" }],
+    usage: `import { FunnelChartCard } from "@/components/funnel-chart-card"
+
+// A static funnel with a caption.
+<FunnelChartCard
+  title="Sign-up funnel"
+  caption="Last 7 days"
+  delta={0.052}
+  deltaLabel="vs previous period"
+  steps={[
+    { name: "Link opened", value: 197, color: "var(--color-lime-400)" },
+    { name: "Started", value: 110, color: "var(--color-blue-500)" },
+    { name: "Completed", value: 77, color: "var(--color-violet-500)" },
+    { name: "Converted", value: 38, color: "var(--color-pink-500)" },
+  ]}
+/>
+
+// Or a range picker where each range carries its own steps and delta.
+<FunnelChartCard
+  title="Sign-up funnel"
+  ranges={[
+    { value: "7d", label: "Last 7 days", steps: week, delta: 0.052 },
+    { value: "30d", label: "Last 30 days", steps: month, delta: 0.118 },
+  ]}
+/>`,
+  },
+  {
+    name: "stage-bars-card",
+    kind: "block",
+    title: "Stage Bars Card",
+    description:
+      "The funnel as a list: a rounded bar per stage with its name, value, and share of the first stage, a range picker, and a tile per stage.",
+    examples: [{ name: "stage-bars-card-demo" }],
+    usage: `import { StageBarsCard } from "@/components/stage-bars-card"
+
+<StageBarsCard
+  title="Pipeline"
+  caption="Last 30 days"
+  delta={0.024}
+  stages={[
+    { name: "Visits", value: 4820, icon: <Eye /> },
+    { name: "Sign-up", value: 3260, icon: <UserPlus /> },
+    { name: "Active", value: 2010 },
+    { name: "Pro", value: 1160 },
+    { name: "Team", value: 540 },
+    { name: "Enterprise", value: 180 },
   ]}
 />`,
   },
