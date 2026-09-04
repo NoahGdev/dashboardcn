@@ -43,7 +43,7 @@ computeDelta(current: number, previous: number): number  // fractional; 0 when p
 `data: Record<string, unknown>[]`, `xKey: string`, `series: { key, label, color? }[]`, `type?: "area" | "line" | "bar"`, `fill?: "gradient" | "dots"`, `layout?: "vertical" | "horizontal"` (bars), `barRadius?: number | "full"`, `barSize?: number`, `stacked?: boolean`, `showLegend?`, `legendPosition?: "top" | "bottom"`, `legendAlign?: "left" | "center" | "right"`, `showGrid?`, `showYAxis?`, `yDomain?` (recharts domain, default `[0, "auto"]`), `xFormatter?: (value) => string`, `yFormatter?: (value: number) => string`. Default size `h-64 w-full`.
 
 ### bar-chart — `BarChart`
-`data: Record<string, unknown>[]`, `xKey`, `yKey`, `groupKey?` (coarser label, one tick per group), `variant?: "gradient" | "striped" | "solid"`, `color?`, `mutedColor?`, `highlight?: (row, index) => boolean`, `grid?: "dashed" | "solid" | "none"`, `showYAxis?`, `showTooltip?`, `showActiveMarker?`, `barRadius?: number`, `xFormatter?`, `yFormatter?`, `tooltipLabel?: (row, index) => ReactNode`, `onBarClick?: (row, index) => void`.
+`data: Record<string, unknown>[]`, `xKey`, `yKey`, `groupKey?` (coarser label, one tick per group), `variant?: "gradient" | "striped" | "solid"`, `color?`, `mutedColor?`, `highlight?: (row, index) => boolean`, `grid?: "dashed" | "solid" | "none"`, `showYAxis?`, `showTooltip?`, `showActiveMarker?`, `barRadius?: number`, `xFormatter?`, `yFormatter?`, `tooltipLabel?: (row, index) => ReactNode`, `onBarClick?: (row, index) => void`, `referenceLines?: { y, label?, color?, dashed? }[]`.
 
 ### composed-chart — `ComposedChart`
 `data`, `xKey`, `series: ComposedSeries[]` where series is `{ key, label, type?: "area" | "line" | "bar", color?, axis?: "left" | "right", stackId?, pattern?: "solid" | "hatched" (bars), dashed?, curve?, dots?, highlightMax? }`; `referenceLines?: { y?, x?, label?, color?, dashed?, axis? }[]`, `showGrid?`, `showYAxis?`, `showLegend?`, `showTooltip?`, `xFormatter?`, `yFormatter?`, `rightYFormatter?`, `barRadius?`, `yDomain?: "zero" | "auto" | [number, number]`.
@@ -55,7 +55,7 @@ computeDelta(current: number, previous: number): number  // fractional; 0 when p
 `segments: { name, value, color? }[]`, `valueFormatter?`, `showLegend?`, `showValues?`.
 
 ### funnel-chart — `FunnelChart`
-`steps: { name, value }[]`, `valueFormatter?`, `color?`, `showDropoff?: boolean`.
+`steps: { name, value, color? }[]`, `valueFormatter?`, `color?`, `showDropoff?: boolean` (bars), `variant?: "bars" | "flow"`, and for flow: `shape?: "eased" | "sharp"`, `height?: number` (px, default 160), `neckWidth?: number`, `showPercentages?`, `showLabels?` (tile per stage), `activeIndex?: number | null`, `onActiveIndexChange?`.
 
 ### bar-list — `BarList`
 `data: { name, value, href?, icon?, key? }[]`, `valueFormatter?`, `sortOrder?: "descending" | "ascending" | "none"`, `color?`, `showPercentage?`, `onItemClick?: (item) => void`.
@@ -74,6 +74,21 @@ computeDelta(current: number, previous: number): number  // fractional; 0 when p
 
 ### activity-heatmap — `ActivityHeatmap`
 `data: { date: "YYYY-MM-DD", value }[]`, `endDate?: Date`, `weeks?: number`, `startDate?: Date`, `color?`, `colors?: string[]` (explicit levels), `scale?: "linear" | "sqrt"`, `cellSize?`, `gap?`, `valueFormatter?`, `unit?: string`, `showMonthLabels?`, `weekdayLabels?: "mwf" | "all" | "none"`, `showLegend?`, `scrollToEnd?`, `renderTooltip?`, `onCellClick?`.
+
+### activity-rings — `ActivityRings`
+`rings: { label, value, max? (default 100), color? }[]` (outermost first), `size?: number` (px), `thickness?`, `gap?`, `trackOpacity?`, `activeIndex?: number | null`, `onActiveIndexChange?`, `children?` rendered in the middle.
+
+### heatmap-chart — `HeatmapChart`
+`rows: { label, values: number[] }[]`, `columns: string[]`, `color?`, `max?` (value drawn fully saturated), `scale?: "linear" | "sqrt"`, `levels?: number` (quantize the ramp), `gap?` (px; cells are fluid), `valueFormatter?`, `unit?: string`, `showLegend?`, `showRowLabels?`, `showColumnLabels?`, `columnLabelEvery?: number`, `renderTooltip?: (datum: { row, column, rowLabel, columnLabel, value }) => ReactNode`, `onCellClick?`, `activeCell?: { row, column } | null`, `onActiveCellChange?`.
+
+### radar-chart — `RadarChart`
+`data: Record<string, unknown>[]`, `angleKey: string`, `series: { key, label, color? }[]`, `variant?: "filled" | "line" | "dots"`, `grid?: "polygon" | "circle" | "none"`, `showAngleLabels?`, `showRadiusAxis?`, `showLegend?`, `showTooltip?`, `domain?` (recharts domain, default `[0, "auto"]`), `valueFormatter?: (value: number) => string`. Default size `h-64 w-full`.
+
+### scatter-chart — `ScatterChart`
+`series: { key?, label, data: Record<string, unknown>[], color? }[]`, `xKey`, `yKey`, `sizeKey?` (bubbles), `nameKey?` (tooltip title per point), `xLabel?`, `yLabel?`, `sizeLabel?`, `showGrid?`, `showXAxis?`, `showYAxis?`, `showLegend?`, `showTooltip?`, `xFormatter?`, `yFormatter?`, `sizeFormatter?`, `dotRadius?: number`, `sizeRange?: [number, number]` (bubble area, default `[40, 400]`), `xDomain?`, `yDomain?`. Default size `h-64 w-full`.
+
+### sankey-chart — `SankeyChart`
+`nodes: { name, color? }[]`, `links: { source: number | string, target: number | string, value }[]` (names or indexes), `valueFormatter?`, `showShares?` (default true, appends "· 22%" of total flow), `showTooltip?`, `nodeWidth?` (12), `nodePadding?` (16), `linkOpacity?` (0.25, doubles on hover), `labelPosition?: "outside" | "inside"`, `colors?: string[]` (palette for source nodes; targets inherit their largest incoming link's color). Default size `h-72 w-full`.
 
 ### period-tabs — `PeriodTabs`
 Extends shadcn `Tabs` (`value`, `defaultValue`, `onValueChange`). `options?: PeriodOption[]` (default week/month/year), `size?: "sm" | "default"`, `animated?: boolean`.
@@ -132,3 +147,24 @@ Compositional. `TimelineItem` takes `status?: "default" | "current" | "done"`. P
 
 ### data-table-card — `DataTableCard`
 All `useDataTable` options plus `title`, `description?`, `action?`, `searchKey?`, `searchPlaceholder?`, `toolbar?`, `showViewOptions?`, `showPagination?`, `pageSizeOptions?`, `selectionActions?`, `footer?` (replaces pagination), and the `DataTableContent` display props (`loading`, `pending`, `stickyHeader`, `maxHeight`, `reorderable`, `density`, `emptyMessage`, `onRowClick`, `rowClassName`, `rowProps`, `renderRow`).
+
+### activity-rings-card — `ActivityRingsCard`
+`title`, `caption?`, `metrics: { label, value, max?, color?, display?, format?, currency?, unit? }[]` (outermost ring first), `layout?: "stacked" | "side"`, `size?`, `thickness?`, `gap?`, `center?: ReactNode`, `action?: ReactNode`.
+
+### funnel-chart-card — `FunnelChartCard`
+`title`, `steps?: { name, value, color? }[]`, `delta?` (fraction), `deltaLabel?`, `invertDelta?`, `caption?`, `ranges?: { value, label, steps, delta? }[]` (each range carries its own steps), `range?`, `defaultRange?`, `onRangeChange?`, `format?`, `currency?`, `color?`, `shape?`, `height?`, `neckWidth?`, `showPercentages?`, `showLabels?`, `chartClassName?`. Hovering a stage swaps the headline.
+
+### stage-bars-card — `StageBarsCard`
+`title`, `stages?: { name, value, color?, icon? }[]`, `delta?` (fraction), `deltaLabel?`, `invertDelta?`, `caption?`, `ranges?: { value, label, stages, delta? }[]`, `range?`, `defaultRange?`, `onRangeChange?`, `format?`, `currency?`, `color?` (single ink), `showTiles?`, `showIcons?`.
+
+### contributions-card — `ContributionsCard`
+`title`, `value?` (defaults to the sum of data), `format?`, `currency?`, `delta?`, `deltaLabel?`, `invertDelta?`, `stats?: { label, value: number | string, format?, currency?, unit? }[]`, `heatmapLabel?`, `periods?`, `period?`, `defaultPeriod?`, `onPeriodChange?`, `action?`, plus the `activity-heatmap` props `data`, `endDate?`, `weeks?`, `startDate?`, `color?`, `colors?`, `scale?`, `cellSize?`, `gap?`, `unit?`, `weekdayLabels?`, `showLegend?`, `valueFormatter?`, `onCellClick?`.
+
+### heatmap-chart-card — `HeatmapChartCard`
+`title`, `rows`, `columns`, `value?` (defaults to the sum of all cells), `delta?`, `deltaLabel?`, `invertDelta?`, `format?`, `currency?`, `unit?`, `valueFormatter?`, `color?`, `max?`, `scale?`, `periods?: PeriodOption[]`, `period?`, `defaultPeriod?`, `onPeriodChange?`, `chartClassName?`. Hovering a cell swaps the headline to that cell's value.
+
+### score-gauge-card — `ScoreGaugeCard`
+`title`, `status?`, `statuses?: { min, label }[]`, `caption?`, `score: number`, `max?`, `color?`, `gaugeSize?`, `thickness?`, `segments?`, `segmentGap?`, `sweep?` (default 360), `barSegments?` (0 = solid bar), `items: { label, detail?, value, max, color? }[]`, `action?: ReactNode`.
+
+### goal-chart-card — `GoalChartCard`
+`title`, `value?` (defaults to sum of rows), `format?`, `currency?`, `unit?`, `caption?`, `data`, `xKey`, `yKey`, `goal: number`, `goalLabel?`, `color?`, `mutedColor?`, `variant?`, `grid?`, `xFormatter?`, `yFormatter?`, `chartClassName?`, `delta?`, `deltaLabel?`, `invertDelta?`, `periods?`, `period?`, `defaultPeriod?`, `onPeriodChange?`.

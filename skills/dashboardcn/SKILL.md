@@ -1,6 +1,6 @@
 ---
 name: dashboardcn
-description: Build dashboards and analytics UI in React with dashboardcn, a shadcn/ui registry of KPI cards, trend, bar, donut, and composed charts, funnels, ranked lists, gauges, heatmaps, data tables, and composed cards. Use when asked for a dashboard, analytics page, metrics, KPI tiles, charts, or data tables in a project that uses shadcn/ui and Tailwind.
+description: Build dashboards and analytics UI in React with dashboardcn, a shadcn/ui registry of KPI cards, trend, bar, donut, radar, scatter, sankey, and composed charts, funnels, ranked lists, gauges, activity rings, heatmaps, data tables, and composed cards. Use when asked for a dashboard, analytics page, metrics, KPI tiles, charts, or data tables in a project that uses shadcn/ui and Tailwind.
 ---
 
 # dashboardcn
@@ -61,11 +61,16 @@ they need (`card`, `tabs`, `tooltip`, `table`, ...) and npm dependencies
 | Mixed series, dual axes, reference lines | `composed-chart` |
 | Part of a whole | `donut-chart`, `distribution-bar`; as cards: `distribution-card`, `breakdown-card`, `allocation-card` |
 | Two metrics side by side with meters | `dual-metric-card` |
-| Conversion steps and drop-off | `funnel-chart` |
+| Conversion steps and drop-off | `funnel-chart` (bars, or `variant="flow"` for tapering stages); as cards: `funnel-chart-card` (flow), `stage-bars-card` (list of pills) |
 | Ranked list (top pages, referrers) | `bar-list` |
-| Progress toward a goal or capacity | `tick-bar`, `progress-card`, `radial-gauge`, `status-gauge-card`, `segmented-meter` (zones) |
+| Progress toward a goal or capacity | `tick-bar`, `progress-card`, `radial-gauge`, `status-gauge-card`, `segmented-meter` (zones), `score-gauge-card` (score with a breakdown), `goal-chart-card` (daily bars against a goal line) |
+| Several goals at once | `activity-rings`; as a card: `activity-rings-card` |
 | Distribution or histogram | `dot-plot`, `dot-plot-card` |
-| Daily activity calendar | `activity-heatmap` |
+| Daily activity calendar | `activity-heatmap`; as a card with stats: `contributions-card` |
+| Two-axis density (weekday × hour, region × month) | `heatmap-chart`; as a card: `heatmap-chart-card` |
+| Multi-axis comparison or scores | `radar-chart` |
+| Correlation, bubbles | `scatter-chart` |
+| Flows between categories | `sankey-chart` |
 | Tabular data (sort, filter, paginate, select) | `data-table`; in a card: `data-table-card` |
 | Audit log, activity feed, version history | `timeline` |
 | A hero number with a takeaway sentence | `insight-card` |
@@ -166,6 +171,8 @@ For a custom layout use `useDataTable` and lay out `DataTableToolbar`,
 - Do not wrap a registry component to add a prop. Edit the installed file.
 - A half donut needs both `sweep={180}` and `startAngle={180}`; `sweep`
   alone draws it rotated.
-- `activity-heatmap` dates are ISO `YYYY-MM-DD` strings.
+- `activity-heatmap` and `contributions-card` dates are ISO `YYYY-MM-DD` strings.
+- `funnel-chart-card` and `stage-bars-card` take either `steps`/`stages` plus a
+  `caption`, or `ranges` where every range carries its own steps and delta.
 - Foundations are Tailwind v4 and the shadcn theme variables. Projects on
   Tailwind v3 need the v4 upgrade first.
