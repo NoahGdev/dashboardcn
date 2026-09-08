@@ -24,7 +24,7 @@ export function BlockShowcase({ items }: { items: BlockShowcaseItem[] }) {
         if (!doc) return null
         const parts = getBlockComponentDocs(name)
         return (
-          <li key={name} className="group relative flex flex-col gap-4">
+          <li key={name} className="group relative flex min-w-0 flex-col gap-4">
             <div
               inert
               className="bg-muted/40 group-hover:border-foreground/20 flex flex-1 items-center rounded-xl border p-4 transition-colors sm:p-6"

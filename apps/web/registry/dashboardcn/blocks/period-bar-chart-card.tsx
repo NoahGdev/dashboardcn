@@ -121,8 +121,8 @@ function PeriodBarChartCard({
   )
 
   return (
-    <Card data-slot="period-bar-chart-card" className={cn("gap-4", className)} {...props}>
-      <CardHeader>
+    <Card data-slot="period-bar-chart-card" className={cn("@container/card gap-4", className)} {...props}>
+      <CardHeader className="@max-sm/card:[grid-template-columns:minmax(0,1fr)]!">
         <CardDescription>{title}</CardDescription>
         <CardTitle className="text-3xl font-semibold tabular-nums tracking-tight">
           {yFormatter(total)}
@@ -136,7 +136,7 @@ function PeriodBarChartCard({
           </span>
         </div>
         {ranges?.length ? (
-          <CardAction>
+          <CardAction className="@max-sm/card:[grid-area:auto]! @max-sm/card:justify-self-start!">
             <PeriodTabs options={ranges} value={range} onValueChange={setRange} />
           </CardAction>
         ) : null}

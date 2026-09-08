@@ -103,8 +103,8 @@ function GoalChartCard({
   const showCaptionInline = Boolean(caption && periods)
 
   return (
-    <Card data-slot="goal-chart-card" className={cn("gap-4", className)} {...props}>
-      <CardHeader>
+    <Card data-slot="goal-chart-card" className={cn("@container/card gap-4", className)} {...props}>
+      <CardHeader className="@max-sm/card:[grid-template-columns:minmax(0,1fr)]!">
         <CardDescription>{title}</CardDescription>
         <CardTitle className="flex flex-wrap items-baseline gap-x-2 gap-y-1 text-3xl font-semibold tabular-nums tracking-tight">
           <MetricValue value={total} format={format} currency={currency} />
@@ -127,7 +127,7 @@ function GoalChartCard({
           </div>
         ) : null}
         {periods ? (
-          <CardAction>
+          <CardAction className="@max-sm/card:[grid-area:auto]! @max-sm/card:justify-self-start!">
             <PeriodTabs
               options={periods}
               value={period}
@@ -136,7 +136,7 @@ function GoalChartCard({
             />
           </CardAction>
         ) : caption ? (
-          <CardAction>
+          <CardAction className="@max-sm/card:[grid-area:auto]! @max-sm/card:justify-self-start!">
             <span className="text-muted-foreground text-sm tabular-nums">{caption}</span>
           </CardAction>
         ) : null}

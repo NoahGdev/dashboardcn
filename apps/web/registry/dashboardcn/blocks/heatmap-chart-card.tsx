@@ -94,8 +94,8 @@ function HeatmapChartCard({
       : null
 
   return (
-    <Card data-slot="heatmap-chart-card" className={cn("gap-4", className)} {...props}>
-      <CardHeader>
+    <Card data-slot="heatmap-chart-card" className={cn("@container/card gap-4", className)} {...props}>
+      <CardHeader className="@max-sm/card:[grid-template-columns:minmax(0,1fr)]!">
         <CardDescription>{title}</CardDescription>
         <CardTitle className="flex items-baseline gap-2 text-3xl font-semibold tabular-nums tracking-tight">
           <MetricValue
@@ -115,7 +115,7 @@ function HeatmapChartCard({
           {hovered ? hovered.label : deltaLabel}
         </div>
         {periods?.length ? (
-          <CardAction>
+          <CardAction className="@max-sm/card:[grid-area:auto]! @max-sm/card:justify-self-start!">
             <PeriodTabs
               options={periods}
               value={period}
