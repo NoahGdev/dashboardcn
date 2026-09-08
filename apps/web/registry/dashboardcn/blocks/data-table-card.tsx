@@ -121,14 +121,14 @@ function DataTableCard<TData extends RowData>({
   return (
     <Card
       data-slot="data-table-card"
-      className={cn("gap-4", className)}
+      className={cn("@container/card gap-4", className)}
       {...props}
     >
-      <CardHeader>
+      <CardHeader className="@max-sm/card:[grid-template-columns:minmax(0,1fr)]!">
         <CardTitle className="text-base">{title}</CardTitle>
         {description ? <CardDescription>{description}</CardDescription> : null}
         {action || showViewOptions ? (
-          <CardAction className="flex items-center gap-2">
+          <CardAction className="@max-sm/card:[grid-area:auto]! @max-sm/card:justify-self-start! flex items-center gap-2">
             {action}
             {showViewOptions ? (
               <DataTableViewOptions

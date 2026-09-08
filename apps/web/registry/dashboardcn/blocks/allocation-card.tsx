@@ -89,8 +89,8 @@ function AllocationCard({
   const fill = progress ?? (format === "percent" ? value * 100 : value)
 
   return (
-    <Card data-slot="allocation-card" className={cn("gap-4", className)} {...props}>
-      <CardHeader>
+    <Card data-slot="allocation-card" className={cn("@container/card gap-4", className)} {...props}>
+      <CardHeader className="@max-sm/card:[grid-template-columns:minmax(0,1fr)]!">
         <CardTitle className="flex items-center gap-1.5 text-sm">
           <span className="truncate">{title}</span>
           {description ? (
@@ -111,7 +111,7 @@ function AllocationCard({
           ) : null}
         </CardTitle>
         {periods ? (
-          <CardAction>
+          <CardAction className="@max-sm/card:[grid-area:auto]! @max-sm/card:justify-self-start!">
             <PeriodTabs
               options={periods}
               value={period}
@@ -140,7 +140,7 @@ function AllocationCard({
         <TickBar value={fill} segments={segments} color={color} />
       </CardContent>
       {stat || people.length || peopleLabel ? (
-        <CardFooter className="justify-between gap-4 text-sm">
+        <CardFooter className="justify-between gap-4 text-sm @max-sm/card:flex-col @max-sm/card:items-start @max-sm/card:gap-2">
           {stat ? (
             <span className="text-muted-foreground min-w-0 truncate">
               {stat.label}:{" "}

@@ -154,7 +154,7 @@ function ContributionsCard({
         ) : null}
         <div className="flex flex-col gap-3">
           {heatmapLabel || periods?.length ? (
-            <div className="flex items-center justify-between gap-3">
+            <div className="flex flex-wrap items-center justify-between gap-3">
               {heatmapLabel ? (
                 <span className="text-sm font-medium">{heatmapLabel}</span>
               ) : null}

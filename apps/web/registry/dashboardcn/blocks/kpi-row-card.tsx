@@ -62,12 +62,12 @@ function KpiRowCard({
   ...props
 }: KpiRowCardProps) {
   return (
-    <Card data-slot="kpi-row-card" className={cn("gap-4", className)} {...props}>
-      <CardHeader>
+    <Card data-slot="kpi-row-card" className={cn("@container/card gap-4", className)} {...props}>
+      <CardHeader className="@max-sm/card:[grid-template-columns:minmax(0,1fr)]!">
         <CardTitle>{title}</CardTitle>
         {description ? <CardDescription>{description}</CardDescription> : null}
         {periods ? (
-          <CardAction>
+          <CardAction className="@max-sm/card:[grid-area:auto]! @max-sm/card:justify-self-start!">
             <PeriodTabs
               options={periods}
               value={period}

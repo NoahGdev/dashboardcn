@@ -108,8 +108,8 @@ function FunnelChartCard({
   )
 
   return (
-    <Card data-slot="funnel-chart-card" className={cn("gap-4", className)} {...props}>
-      <CardHeader>
+    <Card data-slot="funnel-chart-card" className={cn("@container/card gap-4", className)} {...props}>
+      <CardHeader className="@max-sm/card:[grid-template-columns:minmax(0,1fr)]!">
         <CardDescription>{title}</CardDescription>
         <CardTitle className="text-3xl font-semibold tabular-nums tracking-tight">
           <MetricValue value={headline?.value ?? 0} format={format} currency={currency} />
@@ -138,7 +138,7 @@ function FunnelChartCard({
           )}
         </div>
         {ranges?.length ? (
-          <CardAction>
+          <CardAction className="@max-sm/card:[grid-area:auto]! @max-sm/card:justify-self-start!">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" size="sm">
@@ -158,7 +158,7 @@ function FunnelChartCard({
             </DropdownMenu>
           </CardAction>
         ) : caption ? (
-          <CardAction>
+          <CardAction className="@max-sm/card:[grid-area:auto]! @max-sm/card:justify-self-start!">
             <span className="text-muted-foreground text-sm">{caption}</span>
           </CardAction>
         ) : null}
