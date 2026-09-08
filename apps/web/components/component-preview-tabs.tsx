@@ -38,7 +38,7 @@ export function ComponentPreviewTabs({
         <div
           data-align={align}
           className={cn(
-            "preview relative flex min-h-72 w-full justify-center p-10 data-[align=center]:items-center data-[align=end]:items-start data-[align=start]:items-start sm:data-[align=end]:items-end",
+            "preview relative flex min-h-72 w-full justify-center p-4 sm:p-10 data-[align=center]:items-center data-[align=end]:items-start data-[align=start]:items-start sm:data-[align=end]:items-end",
             previewClassName
           )}
         >
