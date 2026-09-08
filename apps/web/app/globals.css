@@ -166,6 +166,13 @@
   [data-slot="layout"] {
     @apply overscroll-none;
   }
+  /* Thin, themed scrollbars everywhere: muted thumb, no track, no arrows.
+     `scrollbar-color` is inherited, `scrollbar-width` is not, hence `*`. */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in oklab, var(--foreground) 20%, transparent)
+      transparent;
+  }
   a:active,
   button:active {
     @apply opacity-60 md:opacity-100;
