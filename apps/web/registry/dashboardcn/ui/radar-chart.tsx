@@ -79,7 +79,7 @@ function RadarChart({
       className={cn("aspect-auto h-64 w-full", className)}
       {...props}
     >
-      <RechartsRadarChart data={data} margin={{ top: 8, right: 8, bottom: 8, left: 8 }}>
+      <RechartsRadarChart data={data} margin={{ top: 8, right: 24, bottom: 8, left: 24 }}>
         {grid !== "none" ? <PolarGrid gridType={grid} /> : null}
         <PolarAngleAxis
           dataKey={angleKey}

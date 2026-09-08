@@ -91,7 +91,7 @@ export default function TimelineVersionsDemo() {
                   ) : null}
                 </TimelineHeader>
                 <TimelineDescription>{item.description}</TimelineDescription>
-                <div className="text-muted-foreground flex items-center gap-2 text-xs">
+                <div className="text-muted-foreground flex flex-wrap items-center gap-x-2 gap-y-1 text-xs">
                   <span
                     aria-hidden="true"
                     className={`size-4 rounded-full bg-linear-to-br ${item.gradient}`}
