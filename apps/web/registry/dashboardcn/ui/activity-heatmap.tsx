@@ -218,7 +218,7 @@ function ActivityHeatmap({
         ) : null}
         <div
           ref={scrollRef}
-          className="min-w-0 flex-1 overflow-x-auto overscroll-x-contain [scrollbar-width:thin]"
+          className="min-w-0 flex-1 overflow-x-auto overscroll-x-contain [scrollbar-width:thin] [scrollbar-color:color-mix(in_oklab,var(--foreground)_20%,transparent)_transparent]"
         >
           <TooltipProvider delayDuration={100} skipDelayDuration={0}>
             <div

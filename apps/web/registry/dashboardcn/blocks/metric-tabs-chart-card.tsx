@@ -123,7 +123,7 @@ function MetricTabsChartCard({
         role="tablist"
         aria-label="Metrics"
         onKeyDown={onKeyDown}
-        className="flex divide-x overflow-x-auto border-b"
+        className="flex divide-x overflow-x-auto border-b [scrollbar-width:thin] [scrollbar-color:color-mix(in_oklab,var(--foreground)_20%,transparent)_transparent]"
       >
         {metrics.map((metric) => {
           const isSelected = metric.key === active.key

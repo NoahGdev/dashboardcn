@@ -829,6 +829,7 @@ function DataTableContent<TData extends RowData>({
       aria-busy={loading || pending || undefined}
       className={cn(
         "relative overflow-hidden rounded-md border",
+        "[&>[data-slot=table-container]]:[scrollbar-width:thin] [&>[data-slot=table-container]]:[scrollbar-color:color-mix(in_oklab,var(--foreground)_20%,transparent)_transparent]",
         maxHeight !== undefined &&
           "[&>[data-slot=table-container]]:max-h-[var(--data-table-max-height)]",
         densityClasses[density],
