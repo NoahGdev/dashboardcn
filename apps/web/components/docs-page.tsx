@@ -34,7 +34,7 @@ export function DocsPage({
         <div className="text-foreground mx-auto flex w-full max-w-160 min-w-0 flex-1 flex-col gap-6 px-4 py-6 md:px-0 lg:py-8">
           <div className="flex flex-col gap-2">
             <div className="flex items-center justify-between md:items-start">
-              <h1 className="scroll-m-24 text-3xl font-semibold tracking-tight sm:text-3xl">
+              <h1 className="scroll-m-24 text-3xl font-medium tracking-tight sm:text-3xl">
                 {title}
               </h1>
               <div className="docs-nav flex items-center gap-2">

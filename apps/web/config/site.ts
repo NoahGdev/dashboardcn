@@ -18,7 +18,7 @@ export const siteConfig = {
 
 export const META_THEME_COLORS = {
   light: "#ffffff",
-  dark: "#0a0a0a",
+  dark: "#191919",
 }
 
 /** Production origin. Used wherever a URL leaves the site (installs, agents). */

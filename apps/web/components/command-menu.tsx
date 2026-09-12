@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { useRouter } from "next/navigation"
-import { CornerDownLeft, FileText, LayoutTemplate, SquareDashed } from "lucide-react"
+import { CornerDownLeft, FileText, LayoutTemplate, Search, SquareDashed } from "lucide-react"
 
 import { BLOCK_PAGES, COMPONENT_PAGES, SECTIONS } from "@/lib/docs"
 import { cn } from "@/lib/utils"
@@ -18,6 +18,7 @@ import {
 
 export function CommandMenu({
   navItems,
+  className,
   ...props
 }: React.ComponentProps<typeof Button> & {
   navItems: { href: string; label: string }[]
@@ -53,19 +54,14 @@ export function CommandMenu({
   return (
     <>
       <Button
-        variant="secondary"
-        className={cn(
-          "bg-surface text-surface-foreground/60 dark:bg-card relative h-8 w-full justify-start pl-2.5 font-normal shadow-none sm:pr-12 md:w-40 lg:w-56 xl:w-64"
-        )}
+        variant="ghost"
+        size="icon-sm"
+        className={cn("text-muted-foreground", className)}
         onClick={() => setOpen(true)}
         {...props}
       >
-        <span className="hidden lg:inline-flex">Search documentation...</span>
-        <span className="inline-flex lg:hidden">Search...</span>
-        <div className="absolute top-1.5 right-1.5 hidden gap-1 sm:flex">
-          <CommandMenuKbd>⌘</CommandMenuKbd>
-          <CommandMenuKbd className="aspect-square">K</CommandMenuKbd>
-        </div>
+        <Search />
+        <span className="sr-only">Search documentation</span>
       </Button>
       <CommandDialog
         open={open}
