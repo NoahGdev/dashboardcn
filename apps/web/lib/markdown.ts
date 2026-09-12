@@ -1,6 +1,6 @@
 import { getComponentDoc } from "@/config/docs"
 import { docOverviews } from "@/config/docs-overviews"
-import { publicUrl, registryItemUrl, siteConfig } from "@/config/site"
+import { publicUrl, registryItemName, registryItemUrl, siteConfig } from "@/config/site"
 import { consumerPath, getRegistryItem, readSource } from "@/lib/source"
 
 function fence(code: string, lang = "tsx") {
@@ -53,7 +53,7 @@ export async function renderItemMarkdown(name: string) {
     doc.description,
     docOverviews[doc.name] ?? "",
     "## Installation",
-    fence(`npx shadcn@latest add ${registryItemUrl(doc.name)}`, "bash"),
+    fence(`npx shadcn@latest add ${registryItemName(doc.name)}`, "bash"),
     registryDeps.length
       ? `Also installs ${list(registryDeps)} from shadcn/ui if missing.`
       : "",
@@ -105,12 +105,21 @@ export function renderInstallationMarkdown() {
     "## Prerequisites",
     "You need a project with shadcn/ui initialized. If you do not have one yet, run:",
     fence("npx shadcn@latest init", "bash"),
-    "## Add a component by URL",
+    "## Add a component",
     "Every component page shows its install command. The CLI downloads the files, installs any npm dependencies, and pulls in the shadcn/ui components it needs.",
+    fence(`npx shadcn@latest add ${registryItemName("kpi-card")}`, "bash"),
+    "`@dashboardcn` is listed in the [shadcn registry directory](https://ui.shadcn.com/docs/directory), so the CLI resolves the namespace without any setup in `components.json`.",
+    "## Add by URL",
+    "Older versions of the CLI do not know the namespace. Pass the item URL instead:",
     fence(`npx shadcn@latest add ${registryItemUrl("kpi-card")}`, "bash"),
     `The URL form is \`${registryItemUrl("<name>")}\`.`,
-    "## Add the registry namespace",
-    "To use the shorter `@dashboardcn/` form, register the namespace once in your `components.json`:",
+    "## Agents",
+    `Every docs page is available as Markdown by appending \`.md\` to its URL, and [llms.txt](${publicUrl}/llms.txt) indexes them all.`,
+    "A skill teaches a coding agent how to pick, install, and compose the components. Install it into `.claude/skills` with the shadcn CLI:",
+    fence(`npx shadcn@latest add ${registryItemName("skill")}`, "bash"),
+    "Or for any agent, with the skills CLI:",
+    fence(`npx skills add ${siteConfig.links.githubRepo}`, "bash"),
+    "shadcn's MCP server searches the registries in `components.json`. Add the namespace there to include this registry:",
     fence(
       JSON.stringify(
         { registries: { "@dashboardcn": `${publicUrl}/r/{name}.json` } },
@@ -119,15 +128,6 @@ export function renderInstallationMarkdown() {
       ),
       "json"
     ),
-    "Then install by name:",
-    fence("npx shadcn@latest add @dashboardcn/kpi-card", "bash"),
-    "## Agents",
-    `Every docs page is available as Markdown by appending \`.md\` to its URL, and [llms.txt](${publicUrl}/llms.txt) indexes them all.`,
-    "A skill teaches a coding agent how to pick, install, and compose the components. With the namespace registered, install it into `.claude/skills` with the shadcn CLI:",
-    fence("npx shadcn@latest add @dashboardcn/skill", "bash"),
-    "Or for any agent, with the skills CLI:",
-    fence(`npx skills add ${siteConfig.links.githubRepo}`, "bash"),
-    "shadcn's MCP server reads every registry in `components.json`, so once the namespace is registered it can search and install from this registry too:",
     fence("npx shadcn@latest mcp init --client claude", "bash"),
   ].join("\n\n") + "\n"
 }

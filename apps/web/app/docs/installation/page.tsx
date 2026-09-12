@@ -14,8 +14,8 @@ export const metadata = pageMetadata({
 
 const toc = [
   { title: "Prerequisites", url: "#prerequisites", depth: 2 },
-  { title: "Add a component by URL", url: "#add-a-component-by-url", depth: 2 },
-  { title: "Add the registry namespace", url: "#add-the-registry-namespace", depth: 2 },
+  { title: "Add a component", url: "#add-a-component", depth: 2 },
+  { title: "Add by URL", url: "#add-by-url", depth: 2 },
   { title: "Agents", url: "#agents", depth: 2 },
 ]
 
@@ -39,7 +39,7 @@ export default function InstallationPage() {
         bun="bunx --bun shadcn@latest init"
       />
 
-      <H2>Add a component by URL</H2>
+      <H2>Add a component</H2>
       <p>
         Every component page shows its install command. The CLI downloads the
         files, installs any npm dependencies, and pulls in the shadcn/ui
@@ -47,30 +47,21 @@ export default function InstallationPage() {
       </p>
       <InstallCommand name="kpi-card" />
       <p>
-        The URL form is <code>{registryItemUrl("<name>")}</code>.
+        <code>@dashboardcn</code> is listed in the{" "}
+        <a href="https://ui.shadcn.com/docs/directory">shadcn registry directory</a>,
+        so the CLI resolves the namespace without any setup in{" "}
+        <code>components.json</code>.
       </p>
 
-      <H2>Add the registry namespace</H2>
+      <H2>Add by URL</H2>
       <p>
-        To use the shorter <code>@dashboardcn/</code> form, register the
-        namespace once in your <code>components.json</code>:
+        Older versions of the CLI do not know the namespace. Pass the item URL
+        instead:
       </p>
-      <CodeBlock
-        language="json"
-        title="components.json"
-        code={`{
-  "registries": {
-    "@dashboardcn": "https://dashboardcn.com/r/{name}.json"
-  }
-}`}
-      />
-      <p>Then install by name:</p>
-      <ShellCommand
-        npm="npx shadcn@latest add @dashboardcn/kpi-card"
-        yarn="yarn dlx shadcn@latest add @dashboardcn/kpi-card"
-        pnpm="pnpm dlx shadcn@latest add @dashboardcn/kpi-card"
-        bun="bunx --bun shadcn@latest add @dashboardcn/kpi-card"
-      />
+      <InstallCommand name="kpi-card" url />
+      <p>
+        The URL form is <code>{registryItemUrl("<name>")}</code>.
+      </p>
 
       <H2>Agents</H2>
       <p>
@@ -80,22 +71,26 @@ export default function InstallationPage() {
       </p>
       <p>
         A skill teaches a coding agent how to pick, install, and compose the
-        components. With the namespace registered, install it into{" "}
-        <code>.claude/skills</code> with the shadcn CLI:
+        components. Install it into <code>.claude/skills</code> with the shadcn
+        CLI:
       </p>
-      <ShellCommand
-        npm="npx shadcn@latest add @dashboardcn/skill"
-        yarn="yarn dlx shadcn@latest add @dashboardcn/skill"
-        pnpm="pnpm dlx shadcn@latest add @dashboardcn/skill"
-        bun="bunx --bun shadcn@latest add @dashboardcn/skill"
-      />
+      <InstallCommand name="skill" />
       <p>Or for any agent, with the skills CLI:</p>
       <CodeBlock language="bash" code={`npx skills add ${siteConfig.links.githubRepo}`} />
       <p>
-        shadcn&apos;s MCP server reads every registry in{" "}
-        <code>components.json</code>, so once the namespace is registered it
-        can search and install from this registry too:
+        shadcn&apos;s MCP server searches the registries in{" "}
+        <code>components.json</code>. Add the namespace there to include this
+        registry:
       </p>
+      <CodeBlock
+        language="json"
+        title="components.json"
+        code={`{
+  "registries": {
+    "@dashboardcn": "${publicUrl}/r/{name}.json"
+  }
+}`}
+      />
       <CodeBlock language="bash" code="npx shadcn@latest mcp init --client claude" />
     </DocsPage>
   )

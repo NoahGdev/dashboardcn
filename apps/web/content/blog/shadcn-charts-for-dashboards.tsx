@@ -1,6 +1,6 @@
 import Link from "next/link"
 
-import { registryItemUrl } from "@/config/site"
+import { registryItemName } from "@/config/site"
 import { CodeBlock } from "@/components/code-block"
 import { ComponentPreview } from "@/components/component-preview"
 import { H2 } from "@/components/docs-heading"
@@ -37,7 +37,7 @@ export default function ShadcnChartsForDashboards() {
         including a horizontal layout and dot-grid fills for a softer look.
       </p>
       <ComponentPreview name="trend-chart-demo" />
-      <CodeBlock language="bash" code={`npx shadcn@latest add ${registryItemUrl("trend-chart")}`} />
+      <CodeBlock language="bash" code={`npx shadcn@latest add ${registryItemName("trend-chart")}`} />
 
       <H2>Composed chart</H2>
       <p>

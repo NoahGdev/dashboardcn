@@ -1,4 +1,4 @@
-import { publicUrl } from "@/config/site"
+import { publicUrl, registryItemName } from "@/config/site"
 import { BLOCK_DOCS, COMPONENT_DOCS } from "@/lib/docs"
 
 /**
@@ -15,7 +15,7 @@ export function buildAgentPrompt() {
     "Help me build a dashboard with dashboardcn, a shadcn/ui registry of dashboard components.",
     "",
     "Install any item with the shadcn CLI:",
-    `npx shadcn@latest add ${publicUrl}/r/<name>.json`,
+    `npx shadcn@latest add ${registryItemName("<name>")}`,
     "",
     "Read an item's docs as Markdown before you use it:",
     `${publicUrl}/docs/components/<name>.md`,

@@ -8,8 +8,11 @@ Every component is distributed through a shadcn-compatible registry, so you own
 the code once it lands in your project.
 
 ```bash
-npx shadcn@latest add https://dashboardcn.com/r/kpi-card.json
+npx shadcn@latest add @dashboardcn/kpi-card
 ```
+
+`@dashboardcn` is listed in the [shadcn registry directory](https://ui.shadcn.com/docs/directory).
+With an older CLI, pass the URL instead: `https://dashboardcn.com/r/kpi-card.json`.
 
 ## Why
 

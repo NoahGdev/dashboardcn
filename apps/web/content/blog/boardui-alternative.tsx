@@ -1,6 +1,6 @@
 import Link from "next/link"
 
-import { registryItemUrl, siteConfig } from "@/config/site"
+import { registryItemName, siteConfig } from "@/config/site"
 import { BLOCK_DOCS, COMPONENT_DOCS } from "@/lib/docs"
 import { CodeBlock } from "@/components/code-block"
 import { ComponentPreview } from "@/components/component-preview"
@@ -72,10 +72,10 @@ export default function BoardUiAlternative() {
         component needs, like Card and Tooltip, and any npm dependencies, like
         recharts.
       </p>
-      <CodeBlock language="bash" code={`npx shadcn@latest add ${registryItemUrl("kpi-card")}`} />
+      <CodeBlock language="bash" code={`npx shadcn@latest add ${registryItemName("kpi-card")}`} />
       <p>
-        Or register the <code>@dashboardcn</code> namespace once and install by
-        name. Details are in{" "}
+        <code>@dashboardcn</code> is listed in the shadcn registry directory,
+        so there is nothing to configure first. Details are in{" "}
         <Link href="/docs/installation">Installation</Link>.
       </p>
 

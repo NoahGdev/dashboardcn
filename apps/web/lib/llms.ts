@@ -1,5 +1,5 @@
 import { blogHref, blogPosts } from "@/config/blog"
-import { publicUrl, registryItemUrl, siteConfig } from "@/config/site"
+import { publicUrl, registryItemName, registryItemUrl, siteConfig } from "@/config/site"
 import { BLOCK_DOCS, COMPONENT_DOCS, docHref } from "@/lib/docs"
 import {
   renderInstallationMarkdown,
@@ -23,12 +23,14 @@ export function renderLlmsIndex() {
     `# ${siteConfig.name}`,
     `> ${siteConfig.description}`,
     "Every item installs with the shadcn CLI: `npx shadcn@latest add " +
+      registryItemName("<name>") +
+      "` (or pass the item URL, `" +
       registryItemUrl("<name>") +
-      "`. The code is copied into the project, so edit it rather than wrapping it. Blocks are cards composed from the component primitives.",
+      "`). The code is copied into the project, so edit it rather than wrapping it. Blocks are cards composed from the component primitives.",
     "## Docs",
     [
       entry("Introduction", md("/docs"), "What dashboardcn is, why it exists, and what it is built on."),
-      entry("Installation", md("/docs/installation"), "Prerequisites, install by URL, and the @dashboardcn registry namespace."),
+      entry("Installation", md("/docs/installation"), "Prerequisites, install with the @dashboardcn namespace or by URL, and agent setup."),
     ].join("\n"),
     "## Components",
     COMPONENT_DOCS.map((doc) => entry(doc.title, md(docHref(doc)), doc.description)).join("\n"),

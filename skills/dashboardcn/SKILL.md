@@ -32,14 +32,12 @@ they need (`card`, `tabs`, `tooltip`, `table`, ...) and npm dependencies
    matches the request. Drop to primitives when composing something custom.
 3. **Install everything in one command.**
    ```bash
-   npx shadcn@latest add https://dashboardcn.com/r/kpi-row-card.json https://dashboardcn.com/r/trend-chart.json
-   ```
-   Or register the namespace once in `components.json` and use short names:
-   ```json
-   { "registries": { "@dashboardcn": "https://dashboardcn.com/r/{name}.json" } }
-   ```
-   ```bash
    npx shadcn@latest add @dashboardcn/kpi-row-card @dashboardcn/trend-chart
+   ```
+   `@dashboardcn` is in the shadcn registry directory, so no `components.json`
+   setup is needed. If an older CLI does not recognize the namespace, use URLs:
+   ```bash
+   npx shadcn@latest add https://dashboardcn.com/r/kpi-row-card.json https://dashboardcn.com/r/trend-chart.json
    ```
 4. **Read the docs for anything unfamiliar.** `references/api.md` in this
    skill summarizes every prop. The full page with examples and source is at

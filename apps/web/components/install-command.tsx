@@ -1,15 +1,18 @@
-import { registryItemUrl } from "@/config/site"
+import { registryItemName, registryItemUrl } from "@/config/site"
 import { CodeBlockCommand } from "@/components/code-block-command"
 
-/** Package-manager tabs for a `shadcn add` command, in shadcn's code figure. */
-export function InstallCommand({ name }: { name: string }) {
-  const url = registryItemUrl(name)
+/**
+ * Package-manager tabs for a `shadcn add` command, in shadcn's code figure.
+ * `url` switches from the `@dashboardcn/<name>` form to the full item URL.
+ */
+export function InstallCommand({ name, url = false }: { name: string; url?: boolean }) {
+  const item = url ? registryItemUrl(name) : registryItemName(name)
   return (
     <ShellCommand
-      npm={`npx shadcn@latest add ${url}`}
-      yarn={`yarn dlx shadcn@latest add ${url}`}
-      pnpm={`pnpm dlx shadcn@latest add ${url}`}
-      bun={`bunx --bun shadcn@latest add ${url}`}
+      npm={`npx shadcn@latest add ${item}`}
+      yarn={`yarn dlx shadcn@latest add ${item}`}
+      pnpm={`pnpm dlx shadcn@latest add ${item}`}
+      bun={`bunx --bun shadcn@latest add ${item}`}
     />
   )
 }

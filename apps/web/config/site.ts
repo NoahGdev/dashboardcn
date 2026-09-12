@@ -28,3 +28,11 @@ export const publicUrl = "https://dashboardcn.com"
 export function registryItemUrl(name: string) {
   return `${publicUrl}/r/${name}.json`
 }
+
+/**
+ * Namespaced item name for `shadcn add`. `@dashboardcn` is in shadcn's registry
+ * directory, so it resolves without a `registries` entry in components.json.
+ */
+export function registryItemName(name: string) {
+  return `@dashboardcn/${name}`
+}

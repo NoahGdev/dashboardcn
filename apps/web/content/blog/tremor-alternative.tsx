@@ -1,6 +1,6 @@
 import Link from "next/link"
 
-import { registryItemUrl, siteConfig } from "@/config/site"
+import { registryItemName, siteConfig } from "@/config/site"
 import { BLOCK_DOCS, COMPONENT_DOCS } from "@/lib/docs"
 import { CodeBlock } from "@/components/code-block"
 import { ComponentPreview } from "@/components/component-preview"
@@ -51,7 +51,7 @@ export default function TremorAlternative() {
         shadcn CLI, because that is how shadcn/ui works and it means the code
         is yours to edit.
       </p>
-      <CodeBlock language="bash" code={`npx shadcn@latest add ${registryItemUrl("trend-chart")}`} />
+      <CodeBlock language="bash" code={`npx shadcn@latest add ${registryItemName("trend-chart")}`} />
       <p>
         That command copies <code>trend-chart.tsx</code> into your components
         folder, installs recharts if you do not have it, and adds
