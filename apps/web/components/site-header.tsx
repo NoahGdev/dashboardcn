@@ -24,7 +24,7 @@ export function SiteHeader() {
         <CommandMenu navItems={siteConfig.navItems} className="hidden lg:inline-flex" />
         <GitHubLink className="hidden sm:inline-flex" />
         <ModeSwitcher />
-        <Button asChild className="-mr-1">
+        <Button asChild className="hidden md:flex">
           <Link href="/docs/installation">Get started</Link>
         </Button>
         <MobileNav items={siteConfig.navItems} className="flex md:hidden" />

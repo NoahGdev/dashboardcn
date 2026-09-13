@@ -22,7 +22,7 @@ const palette = ["#e234a2", "#305dde", "#14b8a6", "#f97316", "#8b5cf6", "#10b981
  */
 export function BlockShowcase({ items }: { items: BlockShowcaseItem[] }) {
   return (
-    <ul className="grid gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <ul className="grid gap-4 sm:gap-6 lg:grid-cols-2">
       {items.map(({ name, preview, color }, index) => {
         const doc = getComponentDoc(name)
         if (!doc) return null
@@ -30,7 +30,7 @@ export function BlockShowcase({ items }: { items: BlockShowcaseItem[] }) {
         return (
           <li
             key={name}
-            className="group bg-surface relative flex min-w-0 flex-col overflow-hidden rounded-md p-6 sm:p-8"
+            className="group bg-surface relative flex min-w-0 flex-col overflow-hidden rounded-2xl p-6 sm:p-8"
           >
             <div inert className="flex flex-1 items-center">
               <div className="w-full">{preview}</div>

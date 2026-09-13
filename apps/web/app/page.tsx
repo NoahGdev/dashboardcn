@@ -3,7 +3,6 @@ import {
   Activity,
   ArrowRight,
   BarChart3,
-  ChevronRight,
   Filter,
   Gauge,
   Gem,
@@ -17,7 +16,6 @@ import {
   Table2,
   TrendingUp,
   Triangle,
-  Unlock,
   type LucideIcon,
 } from "lucide-react"
 
@@ -27,7 +25,6 @@ import { faqJsonLd } from "@/lib/seo"
 import { BLOCK_DOCS, COMPONENT_DOCS, docHref } from "@/lib/docs"
 import { Button } from "@/components/ui/button"
 import { BlockShowcase } from "@/components/block-showcase"
-import { DashboardShowcase } from "@/components/dashboard-showcase"
 import { FaqAccordion } from "@/components/faq-accordion"
 import { JsonLd } from "@/components/json-ld"
 import { OpenInAgent } from "@/components/open-in-agent"
@@ -322,7 +319,6 @@ const featured = Object.keys(componentMeta)
 const included = [
   `${COMPONENT_DOCS.length} components`,
   `${BLOCK_DOCS.length} composed blocks`,
-  "3 dashboards and 3 sidebars",
   "Markdown docs and llms.txt",
   "Radix or Base UI",
   "MIT license, commercial use included",
@@ -334,12 +330,6 @@ const reasons = [
     color: "#e11d48",
     title: "How it usually works",
     text: "Dashboard kits sell the good parts. The free tier is a teaser, the charts and tables sit behind a Pro plan, and the license key decides how many projects you may use them in.",
-  },
-  {
-    icon: Unlock,
-    color: "#305dde",
-    title: "How this works",
-    text: "Every component here is MIT licensed and installed as source with the shadcn CLI. There is no account, no key, and no tier. The file lands in your project and it is yours to change.",
   },
   {
     icon: ScrollText,
@@ -359,16 +349,6 @@ export default function Home() {
         <div className="relative pt-6 sm:pt-10">
           <div className="mx-auto mt-7 max-w-4xl text-center">
             <Reveal delay={80}>
-              <Link
-                href="/blocks/dashboard"
-                className="group border-border bg-card hover:border-foreground/25 focus-visible:ring-ring mx-auto mb-6 flex h-8 w-fit items-center gap-2 rounded-full border py-1 pr-3 pl-1 text-sm transition-colors outline-none focus-visible:ring-2"
-              >
-                <span className="bg-primary rounded-full px-2 py-1 text-[10px] font-medium tracking-wider text-white uppercase">
-                  New
-                </span>
-                <span className="text-foreground/80">Full dashboard layouts</span>
-                <ChevronRight className="text-muted-foreground size-3.5 transition-transform group-hover:translate-x-0.5" />
-              </Link>
               <h1 className="text-[#454545] text-3xl leading-[1.1] font-medium tracking-tight text-balance sm:text-6xl sm:leading-[1.06] dark:text-foreground/85">
                 Dashboard components,{" "}
                 <span className="text-primary">built for shadcn/ui</span>
@@ -377,7 +357,7 @@ export default function Home() {
             <Reveal delay={160}>
               <p className="text-muted-foreground mx-auto mt-5 max-w-2xl text-lg leading-7 text-pretty sm:text-2xl sm:leading-8">
                 KPI cards, charts, funnels and tables, installed with the CLI{" "}
-                <span className="bg-primary/10 text-primary rounded-md px-1 py-0.5 box-decoration-clone">
+                <span className="bg-primary/10 text-primary rounded-2xl px-1 py-0.5 box-decoration-clone">
                   so you own the code
                 </span>
                 . Free, MIT licensed, no Pro tier.
@@ -405,23 +385,23 @@ export default function Home() {
         {/* Hero bento */}
         <Reveal delay={240} className="mt-12 lg:mt-16 xl:-mx-8 min-[90rem]:-mx-24">
           <ul className="grid gap-4 sm:gap-6 lg:grid-cols-3">
-            <li className="group bg-surface relative flex min-w-0 flex-col overflow-hidden rounded-md p-6 sm:p-8">
-              <div inert className="relative flex h-52 flex-col gap-3 overflow-hidden pt-1 [mask-image:linear-gradient(to_bottom,#000_62%,transparent_97%)] sm:h-60">
+            <li className="group bg-surface relative flex min-w-0 flex-col overflow-hidden rounded-2xl p-6 sm:p-8">
+              <div inert className="relative flex h-52 flex-col gap-3 overflow-hidden pt-1 mask-[linear-gradient(to_bottom,#000_62%,transparent_97%)] sm:h-60">
                 <KpiCard label="Revenue" value={84_120} format="currency" delta={0.124} deltaLabel="vs. last 30 days" trend={[42, 48, 45, 52, 58, 55, 61, 67, 64, 72, 78, 84]} />
                 <KpiCard label="Active users" value={1_305} format="compact" delta={0.004} deltaLabel="vs. last 30 days" trend={[1200, 1260, 1250, 1300, 1310, 1290, 1280, 1300, 1295, 1310, 1300, 1305]} />
               </div>
               <p className="mt-3 text-lg font-medium tracking-tight" style={{ color: "#e234a2" }}>KPI cards</p>
               <p className="mt-2.5 text-lg leading-7 tracking-tight">Value, delta and sparkline in one card, formatted for currency, percent or counts.</p>
             </li>
-            <li className="group bg-surface relative flex min-w-0 flex-col overflow-hidden rounded-md p-6 sm:p-8">
+            <li className="group bg-surface relative flex min-w-0 flex-col overflow-hidden rounded-2xl p-6 sm:p-8">
               <div inert className="relative flex h-52 flex-col justify-center overflow-hidden pt-1 sm:h-60">
                 {dotPlotCard}
               </div>
               <p className="mt-3 text-lg font-medium tracking-tight" style={{ color: "#305dde" }}>Distribution cards</p>
               <p className="mt-2.5 text-lg leading-7 tracking-tight">A big number, the shape of the week behind it, and the peak called out.</p>
             </li>
-            <li className="group bg-surface relative flex min-w-0 flex-col overflow-hidden rounded-md p-6 sm:p-8">
-              <div inert className="relative flex h-52 flex-col justify-center overflow-hidden pt-1 [mask-image:linear-gradient(to_bottom,#000_75%,transparent_98%)] sm:h-60">
+            <li className="group bg-surface relative flex min-w-0 flex-col overflow-hidden rounded-2xl p-6 sm:p-8">
+              <div inert className="relative flex h-52 flex-col justify-center overflow-hidden pt-1 [mask-image:linear-gradient(to_bottom,#000_75%,transparent_98%)]` can be written as `mask-[linear-gradient(to_bottom,#000_75%,transparent_98%)] sm:h-60">
                 {dualMetricCard}
               </div>
               <p className="mt-3 text-lg font-medium tracking-tight" style={{ color: "#14b8a6" }}>Paired metrics</p>
@@ -430,27 +410,6 @@ export default function Home() {
           </ul>
         </Reveal>
       </div>
-
-      {/* Layouts */}
-      <section id="layouts" className="scroll-mt-16">
-        <div className="pt-12 pb-12 sm:pt-16 sm:pb-16">
-          <Reveal className="px-4 sm:px-6">
-            <SectionHeading muted="Three dashboards and three sidebars, each a single install.">
-              Whole pages, not just cards.
-            </SectionHeading>
-          </Reveal>
-          <Reveal delay={120} className="mt-12 sm:mt-16">
-            <DashboardShowcase />
-          </Reveal>
-          <Reveal delay={160} className="mt-8 flex justify-center">
-            <Button variant="secondary" size="lg" asChild>
-              <Link href="/blocks/dashboard">
-                Browse layouts <ArrowRight />
-              </Link>
-            </Button>
-          </Reveal>
-        </div>
-      </section>
 
       {/* Blocks */}
       <section id="blocks" className="scroll-mt-16">
@@ -487,7 +446,7 @@ export default function Home() {
                 const meta = componentMeta[doc.name]!
                 const Icon = meta.icon
                 return (
-                  <li key={doc.name} className="bg-surface relative flex min-w-0 flex-col rounded-md p-6 sm:p-8">
+                  <li key={doc.name} className="bg-surface relative flex min-w-0 flex-col rounded-2xl p-6 sm:p-8">
                     <span className="bg-card flex size-10 items-center justify-center rounded-full">
                       <Icon className="size-4.5" style={{ color: meta.color }} />
                     </span>
@@ -522,13 +481,13 @@ export default function Home() {
           </Reveal>
           <Reveal delay={120} className="mt-12 sm:mt-16">
             <div className="grid gap-4 sm:gap-6 lg:grid-cols-[1.4fr_1fr] lg:items-start">
-              <div className="bg-surface flex min-w-0 flex-col justify-between rounded-md p-6 sm:p-8">
+              <div className="bg-surface flex min-w-0 flex-col justify-between rounded-2xl p-6 sm:p-8">
                 <div className="space-y-5 text-xl leading-8 tracking-tight sm:text-2xl sm:leading-9">
                   <p>
                     This project started from a gap. When building a product dashboard, there was no obvious
                     place to find components for presenting data well: KPI tiles, trend charts, funnels, ranked
                     lists, and the cards that combine them.{" "}
-                    <span className="bg-primary/10 text-primary rounded-md px-1 py-0.5 box-decoration-clone">
+                    <span className="bg-primary/10 text-primary rounded-2xl px-1 py-0.5 box-decoration-clone">
                       Where such collections existed, they were sold behind a license.
                     </span>
                   </p>
@@ -553,7 +512,7 @@ export default function Home() {
                 {reasons.map((reason) => {
                   const Icon = reason.icon
                   return (
-                    <li key={reason.title} className="bg-surface flex min-w-0 flex-col rounded-md p-6 sm:p-8">
+                    <li key={reason.title} className="bg-surface flex min-w-0 flex-col rounded-2xl p-6 sm:p-8">
                       <span className="bg-card flex size-10 items-center justify-center rounded-full">
                         <Icon className="size-4.5" style={{ color: reason.color }} />
                       </span>
@@ -577,7 +536,7 @@ export default function Home() {
             <SectionHeading muted="We will never charge for it.">Free forever.</SectionHeading>
           </Reveal>
           <Reveal delay={120} className="mx-auto mt-12 w-full max-w-md sm:mt-16">
-            <div className="bg-surface flex flex-col rounded-md p-6 sm:p-8">
+            <div className="bg-surface flex flex-col rounded-2xl p-6 sm:p-8">
               <div className="flex items-center justify-between">
                 <span className="eyebrow text-foreground/70">Everything</span>
                 <span className="eyebrow">One plan</span>
@@ -623,7 +582,7 @@ export default function Home() {
       {/* Final CTA */}
       <section
         id="get-started"
-        className="bg-ink-dark mb-4 scroll-mt-16 overflow-hidden rounded-md border border-[#8f8f8f]/25 p-2 sm:p-3"
+        className="bg-ink-dark mb-4 scroll-mt-16 overflow-hidden rounded-2xl border border-[#8f8f8f]/25 p-2 sm:p-3"
       >
         <div className="flex flex-col items-center px-4 py-16 text-center sm:px-6 sm:py-14">
           <Reveal>
@@ -632,7 +591,7 @@ export default function Home() {
             </span>
           </Reveal>
           <Reveal delay={120}>
-            <h2 className="mt-8 max-w-4xl text-3xl font-normal tracking-tight text-balance text-white sm:text-4xl">
+            <h2 className="mt-8 select-none max-w-4xl text-3xl font-normal tracking-tight text-balance text-white sm:text-4xl">
               Your next dashboard is one command away.{" "}
               <span className="text-white/55">The source is yours to keep.</span>
             </h2>
