@@ -397,7 +397,7 @@ export default function Home() {
               <div inert className="relative flex h-52 flex-col justify-center overflow-hidden pt-1 sm:h-60">
                 {dotPlotCard}
               </div>
-              <p className="mt-3 text-lg font-medium tracking-tight" style={{ color: "#305dde" }}>Distribution cards</p>
+              <p className="text-primary mt-3 text-lg font-medium tracking-tight">Distribution cards</p>
               <p className="mt-2.5 text-lg leading-7 tracking-tight">A big number, the shape of the week behind it, and the peak called out.</p>
             </li>
             <li className="group bg-surface relative flex min-w-0 flex-col overflow-hidden rounded-2xl p-6 sm:p-8">

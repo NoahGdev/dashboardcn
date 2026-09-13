@@ -14,7 +14,7 @@ export interface BlockShowcaseItem {
   color?: string
 }
 
-const palette = ["#e234a2", "#305dde", "#14b8a6", "#f97316", "#8b5cf6", "#10b981"]
+const palette = ["#e234a2", "var(--primary)", "#14b8a6", "#f97316", "#8b5cf6", "#10b981"]
 
 /**
  * A grid of live block previews on soft surface tiles. Each tile links to the

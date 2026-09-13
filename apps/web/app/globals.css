@@ -74,7 +74,7 @@
   --card-foreground: var(--ink);
   --popover: #ffffff;
   --popover-foreground: var(--ink);
-  --primary: #305dde;
+  --primary: #2f5bff;
   --primary-foreground: #ffffff;
   --secondary: #e9e9e9;
   --secondary-foreground: var(--ink);
@@ -87,7 +87,7 @@
   --border: color-mix(in srgb, var(--ink) 12%, transparent);
   --input: color-mix(in srgb, var(--ink) 16%, transparent);
   --ring: #3ba6f1;
-  --chart-1: #296ff0;
+  --chart-1: var(--primary);
   --chart-2: var(--color-teal-600);
   --chart-3: var(--color-cyan-900);
   --chart-4: var(--color-amber-400);
@@ -119,7 +119,7 @@
   --card-foreground: var(--ink);
   --popover: #242424;
   --popover-foreground: var(--ink);
-  --primary: #296ff0;
+  --primary: #2f5bff;
   --primary-foreground: #ffffff;
   --secondary: #2e2e2e;
   --secondary-foreground: var(--ink);
@@ -132,7 +132,7 @@
   --border: color-mix(in srgb, var(--ink) 14%, transparent);
   --input: color-mix(in srgb, var(--ink) 16%, transparent);
   --ring: #3ba6f1;
-  --chart-1: #296ff0;
+  --chart-1: var(--primary);
   --chart-2: var(--color-emerald-500);
   --chart-3: var(--color-amber-500);
   --chart-4: var(--color-purple-500);

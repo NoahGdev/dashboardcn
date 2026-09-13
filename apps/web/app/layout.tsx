@@ -6,7 +6,6 @@ import { META_THEME_COLORS, siteConfig } from "@/config/site"
 import { DOCS_SIDEBAR_SCROLL_RESTORE_SCRIPT } from "@/lib/docs-sidebar-scroll"
 import { siteJsonLd } from "@/lib/seo"
 import { cn } from "@/lib/utils"
-import { AccentPicker } from "@/components/accent-picker"
 import { JsonLd } from "@/components/json-ld"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
@@ -117,7 +116,6 @@ export default function RootLayout({
               <SiteFooter />
             </div>
           </TooltipProvider>
-          {process.env.NODE_ENV === "development" ? <AccentPicker /> : null}
         </ThemeProvider>
         <Analytics />
       </body>
