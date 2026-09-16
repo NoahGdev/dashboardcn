@@ -23,6 +23,25 @@ export interface SparklineProps extends React.ComponentProps<"div"> {
   color?: string
   curve?: "monotone" | "linear" | "step"
   strokeWidth?: number
+  /** Animate after hydration and when data changes. Respects reduced motion. */
+  animate?: boolean
+  animationDuration?: number
+}
+
+const reducedMotionQuery = "(prefers-reduced-motion: reduce)"
+
+function subscribeToReducedMotion(onChange: () => void) {
+  const query = window.matchMedia(reducedMotionQuery)
+  query.addEventListener("change", onChange)
+  return () => query.removeEventListener("change", onChange)
+}
+
+function getReducedMotionSnapshot() {
+  return window.matchMedia(reducedMotionQuery).matches
+}
+
+function getReducedMotionServerSnapshot() {
+  return true
 }
 
 /** Area shape that masks the fill to a dot grid while keeping the stroke solid. */
@@ -47,10 +66,18 @@ function Sparkline({
   color = "var(--primary)",
   curve = "monotone",
   strokeWidth = 1.5,
+  animate = true,
+  animationDuration = 500,
   className,
   ...props
 }: SparklineProps) {
   const id = React.useId()
+  const reducedMotion = React.useSyncExternalStore(
+    subscribeToReducedMotion,
+    getReducedMotionSnapshot,
+    getReducedMotionServerSnapshot
+  )
+  const animationActive = animate && !reducedMotion
   const dots = variant === "area" && fill === "dots"
   const points = React.useMemo(() => data.map((y, i) => ({ i, y })), [data])
   const margin = { top: 2, right: 0, bottom: 0, left: 0 }
@@ -71,7 +98,9 @@ function Sparkline({
               stroke={color}
               strokeWidth={strokeWidth}
               dot={false}
-              isAnimationActive={false}
+              isAnimationActive={animationActive}
+              animationDuration={animationDuration}
+              animationEasing="ease-out"
             />
           </LineChart>
         ) : (
@@ -112,7 +141,9 @@ function Sparkline({
               fill={`url(#${id})`}
               fillOpacity={dots ? 1 : undefined}
               dot={false}
-              isAnimationActive={false}
+              isAnimationActive={animationActive}
+              animationDuration={animationDuration}
+              animationEasing="ease-out"
               shape={
                 dots
                   ? (shapeProps: AreaRevealShapeProps) => (

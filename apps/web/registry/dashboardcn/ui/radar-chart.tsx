@@ -47,6 +47,25 @@ export interface RadarChartProps
   /** Recharts domain for the value axis, e.g. [0, 100]. Defaults to [0, "auto"]. */
   domain?: React.ComponentProps<typeof PolarRadiusAxis>["domain"]
   valueFormatter?: (value: number) => string
+  /** Animate polygons after hydration and when data changes. Respects reduced motion. */
+  animate?: boolean
+  animationDuration?: number
+}
+
+const reducedMotionQuery = "(prefers-reduced-motion: reduce)"
+
+function subscribeToReducedMotion(onChange: () => void) {
+  const query = window.matchMedia(reducedMotionQuery)
+  query.addEventListener("change", onChange)
+  return () => query.removeEventListener("change", onChange)
+}
+
+function getReducedMotionSnapshot() {
+  return window.matchMedia(reducedMotionQuery).matches
+}
+
+function getReducedMotionServerSnapshot() {
+  return true
 }
 
 /** A radar chart on shadcn's chart primitives: filled, outlined, or dotted, with one polygon per series. */
@@ -62,9 +81,16 @@ function RadarChart({
   showTooltip = true,
   domain,
   valueFormatter = (value) => formatNumber(value, { format: "compact" }),
+  animate = true,
+  animationDuration = 500,
   className,
   ...props
 }: RadarChartProps) {
+  const reducedMotion = React.useSyncExternalStore(
+    subscribeToReducedMotion,
+    getReducedMotionSnapshot,
+    getReducedMotionServerSnapshot
+  )
   const config = Object.fromEntries(
     series.map((s, index) => [
       s.key,
@@ -131,7 +157,9 @@ function RadarChart({
               fillOpacity={variant === "filled" ? 0.25 : 0}
               dot={variant === "dots" ? { r: 3, fill: color, strokeWidth: 0 } : false}
               activeDot={{ r: 4, fill: color, stroke: "var(--background)", strokeWidth: 2 }}
-              isAnimationActive={false}
+              isAnimationActive={animate && !reducedMotion}
+              animationDuration={animationDuration}
+              animationEasing="ease-out"
             />
           )
         })}

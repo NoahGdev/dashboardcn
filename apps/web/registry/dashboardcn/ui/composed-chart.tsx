@@ -72,8 +72,28 @@ export interface ComposedChartProps
   yFormatter?: (value: number) => string
   rightYFormatter?: (value: number) => string
   barRadius?: number
+  /** Animate series after hydration and when their data changes. Respects reduced motion. */
+  animate?: boolean
+  animationDuration?: number
   /** "zero" starts the y-axis at 0; "auto" fits it to the data. */
   yDomain?: "zero" | "auto" | [number, number]
+}
+
+const reducedMotionQuery = "(prefers-reduced-motion: reduce)"
+
+function subscribeToReducedMotion(onChange: () => void) {
+  const query = window.matchMedia(reducedMotionQuery)
+  query.addEventListener("change", onChange)
+  return () => query.removeEventListener("change", onChange)
+}
+
+function getReducedMotionSnapshot() {
+  return window.matchMedia(reducedMotionQuery).matches
+}
+
+/** The server snapshot disables motion so hydration starts from identical markup. */
+function getReducedMotionServerSnapshot() {
+  return true
 }
 
 function defaultXFormatter(value: unknown) {
@@ -100,11 +120,18 @@ function ComposedChart({
   yFormatter,
   rightYFormatter,
   barRadius = 4,
+  animate = true,
+  animationDuration = 500,
   yDomain = "zero",
   className,
   ...props
 }: ComposedChartProps) {
   const id = React.useId()
+  const reducedMotion = React.useSyncExternalStore(
+    subscribeToReducedMotion,
+    getReducedMotionSnapshot,
+    getReducedMotionServerSnapshot
+  )
   const config = Object.fromEntries(
     series.map((s, index) => [
       s.key,
@@ -226,7 +253,9 @@ function ComposedChart({
             dataKey: s.key,
             yAxisId: s.axis ?? "left",
             stackId: s.stackId,
-            isAnimationActive: false,
+            isAnimationActive: animate && !reducedMotion,
+            animationDuration,
+            animationEasing: "ease-out" as const,
           }
           if (s.type === "bar") {
             return (

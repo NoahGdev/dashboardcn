@@ -62,6 +62,25 @@ export interface ScatterChartProps
   xDomain?: React.ComponentProps<typeof XAxis>["domain"]
   /** Recharts domain for the y-axis, e.g. ["auto", "auto"]. Defaults to [0, "auto"]. */
   yDomain?: React.ComponentProps<typeof YAxis>["domain"]
+  /** Animate points after hydration and when data changes. Respects reduced motion. */
+  animate?: boolean
+  animationDuration?: number
+}
+
+const reducedMotionQuery = "(prefers-reduced-motion: reduce)"
+
+function subscribeToReducedMotion(onChange: () => void) {
+  const query = window.matchMedia(reducedMotionQuery)
+  query.addEventListener("change", onChange)
+  return () => query.removeEventListener("change", onChange)
+}
+
+function getReducedMotionSnapshot() {
+  return window.matchMedia(reducedMotionQuery).matches
+}
+
+function getReducedMotionServerSnapshot() {
+  return true
 }
 
 /** Hidden key stamped onto each row so the tooltip can find the point's series. */
@@ -140,9 +159,16 @@ function ScatterChart({
   sizeRange = [40, 400],
   xDomain,
   yDomain,
+  animate = true,
+  animationDuration = 500,
   className,
   ...props
 }: ScatterChartProps) {
+  const reducedMotion = React.useSyncExternalStore(
+    subscribeToReducedMotion,
+    getReducedMotionSnapshot,
+    getReducedMotionServerSnapshot
+  )
   const resolved = React.useMemo(
     () =>
       series.map((s, index) => {
@@ -220,7 +246,9 @@ function ScatterChart({
               fillOpacity={0.35}
               stroke={color}
               strokeWidth={1.5}
-              isAnimationActive={false}
+              isAnimationActive={animate && !reducedMotion}
+              animationDuration={animationDuration}
+              animationEasing="ease-out"
             />
           )
         })}

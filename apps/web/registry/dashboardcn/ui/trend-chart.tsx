@@ -60,6 +60,25 @@ export interface TrendChartProps
   yDomain?: React.ComponentProps<typeof YAxis>["domain"]
   xFormatter?: (value: unknown) => string
   yFormatter?: (value: number) => string
+  /** Animate series after hydration and when data changes. Respects reduced motion. */
+  animate?: boolean
+  animationDuration?: number
+}
+
+const reducedMotionQuery = "(prefers-reduced-motion: reduce)"
+
+function subscribeToReducedMotion(onChange: () => void) {
+  const query = window.matchMedia(reducedMotionQuery)
+  query.addEventListener("change", onChange)
+  return () => query.removeEventListener("change", onChange)
+}
+
+function getReducedMotionSnapshot() {
+  return window.matchMedia(reducedMotionQuery).matches
+}
+
+function getReducedMotionServerSnapshot() {
+  return true
 }
 
 function defaultXFormatter(value: unknown) {
@@ -129,10 +148,22 @@ function TrendChart({
   yDomain,
   xFormatter = defaultXFormatter,
   yFormatter,
+  animate = true,
+  animationDuration = 500,
   className,
   ...props
 }: TrendChartProps) {
   const id = React.useId()
+  const reducedMotion = React.useSyncExternalStore(
+    subscribeToReducedMotion,
+    getReducedMotionSnapshot,
+    getReducedMotionServerSnapshot
+  )
+  const animationProps = {
+    isAnimationActive: animate && !reducedMotion,
+    animationDuration,
+    animationEasing: "ease-out" as const,
+  }
   const dots = type === "area" && fill === "dots"
   const horizontal = type === "bar" && layout === "horizontal"
   const hasNegative = React.useMemo(
@@ -277,6 +308,7 @@ function TrendChart({
           {series.map((s, index) => (
             <Bar
               key={s.key}
+              {...animationProps}
               dataKey={s.key}
               fill={`var(--color-${s.key})`}
               barSize={barSize}
@@ -298,6 +330,7 @@ function TrendChart({
           {series.map((s) => (
             <Line
               key={s.key}
+              {...animationProps}
               type="monotone"
               dataKey={s.key}
               stroke={`var(--color-${s.key})`}
@@ -361,6 +394,7 @@ function TrendChart({
           {series.map((s) => (
             <Area
               key={s.key}
+              {...animationProps}
               type="monotone"
               dataKey={s.key}
               stroke={`var(--color-${s.key})`}

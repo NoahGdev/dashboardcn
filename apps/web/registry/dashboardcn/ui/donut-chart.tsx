@@ -38,6 +38,25 @@ export interface DonutChartProps
   /** Total sweep in degrees. 180 draws a half donut. */
   sweep?: number
   paddingAngle?: number
+  /** Animate slices after hydration and when data changes. Respects reduced motion. */
+  animate?: boolean
+  animationDuration?: number
+}
+
+const reducedMotionQuery = "(prefers-reduced-motion: reduce)"
+
+function subscribeToReducedMotion(onChange: () => void) {
+  const query = window.matchMedia(reducedMotionQuery)
+  query.addEventListener("change", onChange)
+  return () => query.removeEventListener("change", onChange)
+}
+
+function getReducedMotionSnapshot() {
+  return window.matchMedia(reducedMotionQuery).matches
+}
+
+function getReducedMotionServerSnapshot() {
+  return true
 }
 
 function DonutChart({
@@ -51,9 +70,16 @@ function DonutChart({
   startAngle = 90,
   sweep = 360,
   paddingAngle = 2,
+  animate = true,
+  animationDuration = 500,
   className,
   ...props
 }: DonutChartProps) {
+  const reducedMotion = React.useSyncExternalStore(
+    subscribeToReducedMotion,
+    getReducedMotionSnapshot,
+    getReducedMotionServerSnapshot
+  )
   const total = data.reduce((sum, slice) => sum + slice.value, 0)
   const slices = data.map((slice, index) => ({
     ...slice,
@@ -103,7 +129,9 @@ function DonutChart({
           paddingAngle={paddingAngle}
           strokeWidth={0}
           cornerRadius={2}
-          isAnimationActive={false}
+          isAnimationActive={animate && !reducedMotion}
+          animationDuration={animationDuration}
+          animationEasing="ease-out"
         >
           {innerRadius > 0 && (center || centerLabel) ? (
             <Label

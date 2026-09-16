@@ -53,6 +53,9 @@ export interface BarChartProps
   /** Draw a hollow ring on top of the hovered bar. */
   showActiveMarker?: boolean
   barRadius?: number
+  /** Animate bars after hydration and when data changes. Respects reduced motion. */
+  animate?: boolean
+  animationDuration?: number
   /** Horizontal lines, e.g. a goal or an average. The y-axis extends to fit them. */
   referenceLines?: BarReferenceLine[]
   xFormatter?: (value: unknown) => string
@@ -60,6 +63,22 @@ export interface BarChartProps
   /** Secondary line of the tooltip. Defaults to the formatted x value. */
   tooltipLabel?: (row: BarRow, index: number) => React.ReactNode
   onBarClick?: (row: BarRow, index: number) => void
+}
+
+const reducedMotionQuery = "(prefers-reduced-motion: reduce)"
+
+function subscribeToReducedMotion(onChange: () => void) {
+  const query = window.matchMedia(reducedMotionQuery)
+  query.addEventListener("change", onChange)
+  return () => query.removeEventListener("change", onChange)
+}
+
+function getReducedMotionSnapshot() {
+  return window.matchMedia(reducedMotionQuery).matches
+}
+
+function getReducedMotionServerSnapshot() {
+  return true
 }
 
 function defaultXFormatter(value: unknown) {
@@ -109,6 +128,8 @@ function BarChart({
   showTooltip = true,
   showActiveMarker = true,
   barRadius = 6,
+  animate = true,
+  animationDuration = 500,
   referenceLines = [],
   xFormatter = defaultXFormatter,
   yFormatter,
@@ -118,6 +139,11 @@ function BarChart({
   ...props
 }: BarChartProps) {
   const id = React.useId()
+  const reducedMotion = React.useSyncExternalStore(
+    subscribeToReducedMotion,
+    getReducedMotionSnapshot,
+    getReducedMotionServerSnapshot
+  )
   const isHighlighted = React.useCallback(
     (index: number) => (highlight ? highlight(data[index]!, index) : true),
     [data, highlight]
@@ -260,7 +286,9 @@ function BarChart({
         <Bar
           dataKey={yKey}
           radius={barRadius}
-          isAnimationActive={false}
+          isAnimationActive={animate && !reducedMotion}
+          animationDuration={animationDuration}
+          animationEasing="ease-out"
           activeBar={activeBar}
           onClick={
             onBarClick

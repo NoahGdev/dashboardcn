@@ -151,11 +151,11 @@ function MetricTabsChartCard({
               data-state={isSelected ? "active" : "inactive"}
               onClick={() => select(metric.key)}
               className={cn(
-                "flex flex-[1_0_auto] flex-col gap-1.5 border-t-2 px-4 py-3 text-left outline-none transition-colors",
+                "flex flex-[1_0_auto] flex-col gap-1.5 px-4 py-3 text-left outline-none transition-colors",
                 "focus-visible:ring-ring/50 focus-visible:ring-2 focus-visible:ring-inset",
                 isSelected
-                  ? "border-t-foreground bg-card"
-                  : "hover:bg-muted/50 border-t-transparent"
+                  ? "bg-muted"
+                  : "hover:bg-muted/50"
               )}
             >
               <span className="text-muted-foreground text-sm whitespace-nowrap">{metric.label}</span>
