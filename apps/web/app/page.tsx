@@ -362,7 +362,7 @@ export default function Home() {
                 </span>
                 . Free, MIT licensed, no Pro tier.
               </p>
-              <div className="mt-7 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center">
+              <div className="mt-7 flex flex-row flex-wrap items-center justify-center gap-3">
                 <Button size="lg" className="group sm:pr-1.5 sm:pl-4" asChild>
                   <Link href="/docs/installation">
                     Get started
@@ -389,14 +389,21 @@ export default function Home() {
               <div inert className="flex w-full flex-1 items-center py-1">
                 <div className="w-full">
                   <StatusGaugeCard
-                    title="Platform health"
-                    status="Operational"
+                    title="Performance metrics"
+                    status="Stable"
                     metricLabel="Service uptime"
                     value={0.997}
                     color="var(--color-emerald-500)"
                     gaugeSize={144}
                     segments={32}
                     thickness={11}
+                    people={[
+                      { name: "shadcn", src: "https://github.com/shadcn.png" },
+                      { name: "Kai" },
+                      { name: "Max Leiter", src: "https://github.com/maxleiter.png" },
+                    ]}
+                    peopleLabel="6 reviewers"
+                    action={{ label: "Details", href: "#" }}
                   />
                 </div>
               </div>
