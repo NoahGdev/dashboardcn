@@ -38,7 +38,7 @@ import { DualMetricCard } from "@/registry/dashboardcn/blocks/dual-metric-card"
 import { FunnelChartCard } from "@/registry/dashboardcn/blocks/funnel-chart-card"
 import { InsightCard } from "@/registry/dashboardcn/blocks/insight-card"
 import { PeriodBarChartCard } from "@/registry/dashboardcn/blocks/period-bar-chart-card"
-import { KpiCard } from "@/registry/dashboardcn/ui/kpi-card"
+import { StatusGaugeCard } from "@/registry/dashboardcn/blocks/status-gauge-card"
 
 const faq = [
   {
@@ -388,11 +388,20 @@ export default function Home() {
             <li className="group bg-surface relative flex min-w-0 flex-col overflow-hidden rounded-2xl p-6 sm:p-8 md:hidden xl:flex">
               <div inert className="flex w-full flex-1 items-center py-1">
                 <div className="w-full">
-                  <KpiCard label="Revenue" value={84_120} format="currency" delta={0.124} deltaLabel="vs. last 30 days" trend={[42, 48, 45, 52, 58, 55, 61, 67, 64, 72, 78, 84]} />
+                  <StatusGaugeCard
+                    title="Platform health"
+                    status="Operational"
+                    metricLabel="Service uptime"
+                    value={0.997}
+                    color="var(--color-emerald-500)"
+                    gaugeSize={144}
+                    segments={32}
+                    thickness={11}
+                  />
                 </div>
               </div>
-              <p className="mt-3 text-lg font-medium tracking-tight" style={{ color: "#e234a2" }}>KPI cards</p>
-              <p className="mt-2.5 text-lg leading-7 tracking-tight">Value, delta and sparkline in one card, formatted for currency, percent or counts.</p>
+              <p className="mt-3 text-lg font-medium tracking-tight text-emerald-600 dark:text-emerald-400">Status gauges</p>
+              <p className="mt-2.5 text-lg leading-7 tracking-tight">A clear health signal, supporting metric, and segmented gauge in one glance.</p>
             </li>
             <li className="group bg-surface relative flex min-w-0 flex-col overflow-hidden rounded-2xl p-6 sm:p-8">
               <div inert className="flex w-full flex-1 items-center py-1">
