@@ -384,25 +384,26 @@ export default function Home() {
 
         {/* Hero bento */}
         <Reveal delay={240} className="mt-12 lg:mt-16 xl:-mx-8 min-[90rem]:-mx-24">
-          <ul className="grid gap-4 sm:gap-6 lg:grid-cols-3">
+          <ul className="grid gap-4 sm:gap-6 md:grid-cols-2 xl:grid-cols-3">
             <li className="group bg-surface relative flex min-w-0 flex-col overflow-hidden rounded-2xl p-6 sm:p-8">
-              <div inert className="relative flex h-52 flex-col gap-3 overflow-hidden pt-1 mask-[linear-gradient(to_bottom,#000_62%,transparent_97%)] sm:h-60">
-                <KpiCard label="Revenue" value={84_120} format="currency" delta={0.124} deltaLabel="vs. last 30 days" trend={[42, 48, 45, 52, 58, 55, 61, 67, 64, 72, 78, 84]} />
-                <KpiCard label="Active users" value={1_305} format="compact" delta={0.004} deltaLabel="vs. last 30 days" trend={[1200, 1260, 1250, 1300, 1310, 1290, 1280, 1300, 1295, 1310, 1300, 1305]} />
+              <div inert className="flex w-full flex-1 items-center py-1">
+                <div className="w-full">
+                  <KpiCard label="Revenue" value={84_120} format="currency" delta={0.124} deltaLabel="vs. last 30 days" trend={[42, 48, 45, 52, 58, 55, 61, 67, 64, 72, 78, 84]} />
+                </div>
               </div>
               <p className="mt-3 text-lg font-medium tracking-tight" style={{ color: "#e234a2" }}>KPI cards</p>
               <p className="mt-2.5 text-lg leading-7 tracking-tight">Value, delta and sparkline in one card, formatted for currency, percent or counts.</p>
             </li>
             <li className="group bg-surface relative flex min-w-0 flex-col overflow-hidden rounded-2xl p-6 sm:p-8">
-              <div inert className="relative flex h-52 flex-col justify-center overflow-hidden pt-1 sm:h-60">
-                {dotPlotCard}
+              <div inert className="flex w-full flex-1 items-center py-1">
+                <div className="w-full">{dotPlotCard}</div>
               </div>
               <p className="text-primary mt-3 text-lg font-medium tracking-tight">Distribution cards</p>
               <p className="mt-2.5 text-lg leading-7 tracking-tight">A big number, the shape of the week behind it, and the peak called out.</p>
             </li>
             <li className="group bg-surface relative flex min-w-0 flex-col overflow-hidden rounded-2xl p-6 sm:p-8">
-              <div inert className="relative flex h-52 flex-col justify-center overflow-hidden pt-1 [mask-image:linear-gradient(to_bottom,#000_75%,transparent_98%)]` can be written as `mask-[linear-gradient(to_bottom,#000_75%,transparent_98%)] sm:h-60">
-                {dualMetricCard}
+              <div inert className="flex w-full flex-1 items-center py-1">
+                <div className="w-full">{dualMetricCard}</div>
               </div>
               <p className="mt-3 text-lg font-medium tracking-tight" style={{ color: "#14b8a6" }}>Paired metrics</p>
               <p className="mt-2.5 text-lg leading-7 tracking-tight">Two numbers side by side, each with its meter, its share, and one supporting fact.</p>

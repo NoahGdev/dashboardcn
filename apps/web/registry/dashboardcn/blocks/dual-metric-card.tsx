@@ -120,7 +120,7 @@ function DualMetricCard({
       </CardHeader>
       <CardContent className="@container py-5">
         <TooltipProvider>
-          <div className="grid gap-6 @xs:grid-cols-2 @xs:gap-0 @xs:divide-x">
+          <div className="grid gap-6 @min-[16rem]:grid-cols-2 @min-[16rem]:gap-0 @min-[16rem]:divide-x">
             {metrics.map((metric, index) => {
               const color = metric.color ?? defaultColors[index % defaultColors.length]
               const share = total ? metric.value / total : 0
@@ -129,7 +129,7 @@ function DualMetricCard({
                 <div
                   key={metric.label}
                   data-slot="dual-metric"
-                  className="flex min-w-0 flex-col gap-1 @xs:px-5 @xs:first:pl-0 @xs:last:pr-0"
+                  className="flex min-w-0 flex-col gap-1 @min-[16rem]:px-5 @min-[16rem]:first:pl-0 @min-[16rem]:last:pr-0"
                 >
                   <div className="flex flex-wrap items-center gap-2">
                     <MetricValue
