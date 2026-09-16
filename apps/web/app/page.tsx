@@ -385,7 +385,7 @@ export default function Home() {
         {/* Hero bento */}
         <Reveal delay={240} className="mt-12 lg:mt-16 xl:-mx-8 min-[90rem]:-mx-24">
           <ul className="grid gap-4 sm:gap-6 md:grid-cols-2 xl:grid-cols-3">
-            <li className="group bg-surface relative flex min-w-0 flex-col overflow-hidden rounded-2xl p-6 sm:p-8">
+            <li className="group bg-surface relative flex min-w-0 flex-col overflow-hidden rounded-2xl p-6 sm:p-8 md:hidden xl:flex">
               <div inert className="flex w-full flex-1 items-center py-1">
                 <div className="w-full">
                   <KpiCard label="Revenue" value={84_120} format="currency" delta={0.124} deltaLabel="vs. last 30 days" trend={[42, 48, 45, 52, 58, 55, 61, 67, 64, 72, 78, 84]} />
