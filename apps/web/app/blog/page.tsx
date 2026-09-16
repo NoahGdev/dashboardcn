@@ -15,7 +15,7 @@ export default function BlogIndexPage() {
     <div className="container-wrapper flex flex-1 flex-col px-4">
       <div className="mx-auto flex w-full max-w-160 flex-col gap-8 py-8 lg:py-12">
         <div className="flex flex-col gap-2">
-          <h1 className="text-3xl font-semibold tracking-tight">Blog</h1>
+          <h1 className="text-3xl font-medium tracking-tight">Blog</h1>
           <p className="text-muted-foreground text-balance">
             Guides and comparisons for building dashboards with shadcn/ui.
           </p>

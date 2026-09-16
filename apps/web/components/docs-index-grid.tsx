@@ -10,7 +10,7 @@ export function DocsIndexGrid({ docs }: { docs: ComponentDoc[] }) {
         <Link
           key={doc.name}
           href={docHref(doc)}
-          className="hover:bg-muted/50 flex h-full flex-col gap-1 rounded-lg border p-4 text-sm transition-colors"
+          className="bg-surface hover:bg-secondary flex h-full flex-col gap-1 rounded-md p-5 text-sm transition-colors"
         >
           <span className="font-medium">{doc.title}</span>
           <span className="text-muted-foreground">{doc.description}</span>

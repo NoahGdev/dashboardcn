@@ -1,39 +1,34 @@
 import Link from "next/link"
 
 import { siteConfig } from "@/config/site"
+import { Button } from "@/components/ui/button"
 import { CommandMenu } from "@/components/command-menu"
 import { GitHubLink } from "@/components/github-link"
 import { Logo } from "@/components/logo"
 import { MainNav } from "@/components/main-nav"
 import { MobileNav } from "@/components/mobile-nav"
 import { ModeSwitcher } from "@/components/mode-switcher"
-import { Separator } from "@/components/ui/separator"
+import { SiteHeaderShell } from "@/components/site-header-shell"
 
 export function SiteHeader() {
   return (
-    <header className="bg-background sticky top-0 z-50 w-full">
-      <div className="container-wrapper px-6">
-        <div className="flex h-(--header-height) items-center **:data-[slot=separator]:h-4!">
-          <MobileNav items={siteConfig.navItems} className="mr-2 flex lg:hidden" />
-          <Link
-            href="/"
-            className="mr-4 flex items-center gap-2 font-semibold"
-          >
-            <Logo />
-            <span>{siteConfig.name}</span>
-          </Link>
-          <MainNav items={siteConfig.navItems} className="hidden lg:flex" />
-          <div className="ml-auto flex items-center gap-2 md:flex-1 md:justify-end">
-            <div className="hidden w-full flex-1 md:flex md:w-auto md:flex-none">
-              <CommandMenu navItems={siteConfig.navItems} />
-            </div>
-            <Separator orientation="vertical" className="ml-2 hidden lg:block" />
-            <GitHubLink />
-            <Separator orientation="vertical" />
-            <ModeSwitcher />
-          </div>
-        </div>
+    <SiteHeaderShell>
+      <div className="relative z-10 flex items-center gap-7">
+        <Link href="/" className="flex items-center gap-2 transition-transform active:scale-95">
+          <Logo />
+          <span className="text-base font-medium tracking-tight">{siteConfig.name}</span>
+        </Link>
+        <MainNav items={siteConfig.navItems} className="hidden md:flex" />
       </div>
-    </header>
+      <div className="relative z-10 flex items-center gap-2">
+        <CommandMenu navItems={siteConfig.navItems} className="hidden lg:inline-flex" />
+        <GitHubLink className="hidden sm:inline-flex" />
+        <ModeSwitcher />
+        <Button asChild className="hidden md:flex">
+          <Link href="/docs/installation">Get started</Link>
+        </Button>
+        <MobileNav items={siteConfig.navItems} className="flex md:hidden" />
+      </div>
+    </SiteHeaderShell>
   )
 }

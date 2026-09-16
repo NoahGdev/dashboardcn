@@ -1,23 +1,44 @@
 import Link from "next/link"
-import { ArrowRight, Ellipsis, Gem, Hexagon, Triangle } from "lucide-react"
+import {
+  Activity,
+  ArrowRight,
+  BarChart3,
+  Filter,
+  Gauge,
+  Gem,
+  Grid3x3,
+  Hexagon,
+  KeyRound,
+  LayoutGrid,
+  ListOrdered,
+  ScrollText,
+  Sparkles,
+  Table2,
+  TrendingUp,
+  Triangle,
+  type LucideIcon,
+} from "lucide-react"
 
-import { registryItemUrl } from "@/config/site"
+import { siteConfig } from "@/config/site"
 import { buildAgentPrompt } from "@/lib/agent-prompt"
 import { faqJsonLd } from "@/lib/seo"
 import { BLOCK_DOCS, COMPONENT_DOCS, docHref } from "@/lib/docs"
 import { Button } from "@/components/ui/button"
-import { JsonLd } from "@/components/json-ld"
 import { BlockShowcase } from "@/components/block-showcase"
-import { ShellCommand } from "@/components/install-command"
+import { FaqAccordion } from "@/components/faq-accordion"
+import { JsonLd } from "@/components/json-ld"
 import { OpenInAgent } from "@/components/open-in-agent"
+import { Reveal } from "@/components/reveal"
+import { SectionHeading } from "@/components/section-heading"
 import { AllocationCard } from "@/registry/dashboardcn/blocks/allocation-card"
 import { BreakdownCard } from "@/registry/dashboardcn/blocks/breakdown-card"
 import { DistributionCard } from "@/registry/dashboardcn/blocks/distribution-card"
 import { DotPlotCard } from "@/registry/dashboardcn/blocks/dot-plot-card"
 import { DualMetricCard } from "@/registry/dashboardcn/blocks/dual-metric-card"
+import { FunnelChartCard } from "@/registry/dashboardcn/blocks/funnel-chart-card"
 import { InsightCard } from "@/registry/dashboardcn/blocks/insight-card"
-
-const url = registryItemUrl("kpi-card")
+import { PeriodBarChartCard } from "@/registry/dashboardcn/blocks/period-bar-chart-card"
+import { StatusGaugeCard } from "@/registry/dashboardcn/blocks/status-gauge-card"
 
 const faq = [
   {
@@ -50,13 +71,102 @@ const faq = [
     answer:
       "Yes. Every docs page is available as Markdown, llms.txt indexes them, and there is a skill that teaches an agent how to pick, install, and compose the components. shadcn's MCP server can install from the registry once the namespace is registered.",
   },
+  {
+    question: "What happens when a component is updated?",
+    answer:
+      "Nothing, unless you want it to. The source is copied into your project, so there is no package to bump and nothing changes underneath you. Run the install command again to pull the newer version over the old file.",
+  },
 ]
 
 const menu = (
-  <Button variant="outline" size="icon-sm" className="text-muted-foreground rounded-full">
-    <Ellipsis />
+  <Button variant="outline" size="icon-sm" className="text-muted-foreground">
+    <span className="text-lg leading-none">···</span>
     <span className="sr-only">More</span>
   </Button>
+)
+
+const funnelColors = {
+  opened: "var(--color-lime-400)",
+  started: "var(--color-blue-500)",
+  completed: "var(--color-violet-500)",
+  converted: "var(--color-pink-500)",
+}
+
+const funnelRanges = [
+  {
+    value: "7d",
+    label: "Last 7 days",
+    delta: 0.052,
+    steps: [
+      { name: "Link opened", value: 197, color: funnelColors.opened },
+      { name: "Started", value: 110, color: funnelColors.started },
+      { name: "Completed", value: 77, color: funnelColors.completed },
+      { name: "Converted", value: 38, color: funnelColors.converted },
+    ],
+  },
+  {
+    value: "30d",
+    label: "Last 30 days",
+    delta: 0.118,
+    steps: [
+      { name: "Link opened", value: 842, color: funnelColors.opened },
+      { name: "Started", value: 512, color: funnelColors.started },
+      { name: "Completed", value: 301, color: funnelColors.completed },
+      { name: "Converted", value: 129, color: funnelColors.converted },
+    ],
+  },
+]
+
+const months = ["Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May", "Jun"]
+const spending = months.flatMap((month, m) =>
+  Array.from({ length: 4 }, (_, w) => ({
+    week: `${month} week ${w + 1}`,
+    month,
+    spend: month === "Mar" ? 1_900 + w * 470 : 800 + Math.round(Math.abs(Math.sin(m * 4 + w)) * 600),
+  }))
+)
+
+const dotPlotCard = (
+  <DotPlotCard
+    title="Transactions"
+    value={106_000}
+    format="compact"
+    data={[1, 1, 2, 1, 2, 4, 6, 4, 2, 1, 2, 1, 1, 1]}
+    labels={["Sat", "Sun", "Mon", "Tue", "Tue", "Wed", "Wed", "Wed", "Thu", "Thu", "Fri", "Fri", "Sat", "Sat"]}
+    delta={34_002}
+    deltaLabel="vs last period"
+    color="var(--color-green-600)"
+    action={menu}
+  />
+)
+
+const dualMetricCard = (
+  <DualMetricCard
+    title="Leads overview"
+    options={[
+      { value: "month", label: "This month" },
+      { value: "quarter", label: "This quarter" },
+      { value: "year", label: "This year" },
+    ]}
+    defaultValue="month"
+    metrics={[
+      {
+        label: "New leads",
+        value: 54,
+        showShare: true,
+        meter: "bar",
+        color: "var(--color-violet-500)",
+        detail: { label: "Top source", value: "LinkedIn" },
+      },
+      {
+        label: "Returning leads",
+        value: 198,
+        meter: "ticks",
+        color: "var(--color-emerald-500)",
+        detail: { label: "Conversion rate", value: "12.8%" },
+      },
+    ]}
+  />
 )
 
 const showcase = [
@@ -122,49 +232,36 @@ const showcase = [
     ),
   },
   {
-    name: "dot-plot-card",
+    name: "funnel-chart-card",
     preview: (
-      <DotPlotCard
-        title="Transactions"
-        value={106_000}
-        format="compact"
-        data={[1, 1, 2, 1, 2, 4, 6, 4, 2, 1, 2, 1, 1, 1]}
-        labels={["Sat", "Sun", "Mon", "Tue", "Tue", "Wed", "Wed", "Wed", "Thu", "Thu", "Fri", "Fri", "Sat", "Sat"]}
-        delta={34_002}
-        deltaLabel="vs last period"
-        color="var(--color-green-600)"
-        action={menu}
+      <FunnelChartCard
+        className="w-full"
+        title="Sign-up funnel"
+        deltaLabel="vs previous period"
+        ranges={funnelRanges}
       />
     ),
   },
   {
-    name: "dual-metric-card",
+    name: "period-bar-chart-card",
     preview: (
-      <DualMetricCard
-        title="Leads overview"
-        options={[
-          { value: "month", label: "This month" },
-          { value: "quarter", label: "This quarter" },
-          { value: "year", label: "This year" },
+      <PeriodBarChartCard
+        className="w-full"
+        title="Spending"
+        data={spending}
+        xKey="week"
+        yKey="spend"
+        groupKey="month"
+        valueLabel="spending"
+        color="var(--color-orange-500)"
+        grid="none"
+        defaultSelected="Mar"
+        ranges={[
+          { value: "6m", label: "6M", points: 24 },
+          { value: "3m", label: "3M", points: 12 },
+          { value: "1m", label: "1M", points: 4 },
         ]}
-        defaultValue="month"
-        metrics={[
-          {
-            label: "New leads",
-            value: 54,
-            showShare: true,
-            meter: "bar",
-            color: "var(--color-violet-500)",
-            detail: { label: "Top source", value: "LinkedIn" },
-          },
-          {
-            label: "Returning leads",
-            value: 198,
-            meter: "ticks",
-            color: "var(--color-emerald-500)",
-            detail: { label: "Conversion rate", value: "12.8%" },
-          },
-        ]}
+        defaultRange="6m"
       />
     ),
   },
@@ -202,107 +299,334 @@ const showcase = [
   },
 ]
 
+/** Icon and tint per component, so the grid reads like a feature list. */
+const componentMeta: Record<string, { icon: LucideIcon; color: string }> = {
+  "kpi-card": { icon: TrendingUp, color: "#0ea5e9" },
+  "trend-chart": { icon: Activity, color: "#f97316" },
+  "data-table": { icon: Table2, color: "#8b5cf6" },
+  "funnel-chart": { icon: Filter, color: "#10b981" },
+  "bar-chart": { icon: BarChart3, color: "#e11d48" },
+  "radial-gauge": { icon: Gauge, color: "#6366f1" },
+  "activity-heatmap": { icon: Grid3x3, color: "#14b8a6" },
+  "bar-list": { icon: ListOrdered, color: "#e234a2" },
+  "composed-chart": { icon: LayoutGrid, color: "#f59e0b" },
+}
+
+const featured = Object.keys(componentMeta)
+  .map((name) => COMPONENT_DOCS.find((doc) => doc.name === name))
+  .filter((doc): doc is NonNullable<typeof doc> => Boolean(doc))
+
+const included = [
+  `${COMPONENT_DOCS.length} components`,
+  `${BLOCK_DOCS.length} composed blocks`,
+  "Markdown docs and llms.txt",
+  "Radix or Base UI",
+  "MIT license, commercial use included",
+]
+
+const reasons = [
+  {
+    icon: KeyRound,
+    color: "#e11d48",
+    title: "How it usually works",
+    text: "Dashboard kits sell the good parts. The free tier is a teaser, the charts and tables sit behind a Pro plan, and the license key decides how many projects you may use them in.",
+  },
+  {
+    icon: ScrollText,
+    color: "#10b981",
+    title: "Why we bother",
+    text: "shadcn/ui set the expectation that user interface code should be free. dashboardcn extends that to the data-heavy parts of a product, which is where the paywalls usually start.",
+  },
+]
+
 export default function Home() {
   return (
-    <div className="container-wrapper flex flex-1 flex-col">
-      <div className="container flex flex-col gap-16 py-12 lg:py-20">
-        <section className="flex max-w-2xl flex-col gap-5">
-          <h1 className="text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
-            Dashboard components for shadcn/ui.
-          </h1>
-          <p className="text-muted-foreground text-lg text-balance">
-            KPI cards, charts, funnels, tables, and the pieces around them.
-            Built on the same foundations as shadcn/ui and installed the same
-            way. You own the code.
-          </p>
-          <div className="flex flex-wrap items-center gap-2">
-            <Button size="sm" asChild>
-              <Link href="/docs">
-                Get started <ArrowRight />
-              </Link>
-            </Button>
-            <Button size="sm" variant="ghost" asChild>
-              <Link href="/docs/components">Browse components</Link>
-            </Button>
-          </div>
-          <div className="max-w-xl">
-            <ShellCommand
-              npm={`npx shadcn@latest add ${url}`}
-              yarn={`yarn dlx shadcn@latest add ${url}`}
-              pnpm={`pnpm dlx shadcn@latest add ${url}`}
-              bun={`bunx --bun shadcn@latest add ${url}`}
-            />
-          </div>
-          <OpenInAgent prompt={buildAgentPrompt()} />
-        </section>
+    <div className="container-page flex flex-1 flex-col">
+      <JsonLd data={faqJsonLd(faq)} />
 
-        <section className="flex flex-col gap-8">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <div className="flex max-w-2xl flex-col gap-1">
-              <h2 className="text-xl font-semibold tracking-tight">Featured Blocks</h2>
-              <p className="text-muted-foreground text-balance">
-                Complete cards composed from the primitives. Drop one in and
-                pass your data. Every block links to the components it is built
-                from.
+      {/* Hero */}
+      <div className="relative flex flex-col">
+        <div className="relative pt-6 sm:pt-10">
+          <div className="mx-auto mt-7 max-w-4xl text-center">
+            <Reveal delay={80}>
+              <h1 className="text-[#454545] text-3xl leading-[1.1] font-medium tracking-tight text-balance sm:text-6xl sm:leading-[1.06] dark:text-foreground/85">
+                Dashboard components,{" "}
+                <span className="text-primary">built for shadcn/ui</span>
+              </h1>
+            </Reveal>
+            <Reveal delay={160}>
+              <p className="text-muted-foreground mx-auto mt-5 max-w-2xl text-lg leading-7 text-pretty sm:text-2xl sm:leading-8">
+                KPI cards, charts, funnels and tables, installed with the CLI{" "}
+                <span className="bg-primary/10 text-primary rounded-2xl px-1 py-0.5 box-decoration-clone">
+                  so you own the code
+                </span>
+                . Free, MIT licensed, no Pro tier.
               </p>
-            </div>
-            <Button size="sm" variant="ghost" asChild>
+              <div className="mt-7 flex flex-row flex-wrap items-center justify-center gap-3">
+                <Button size="lg" className="group sm:pr-1.5 sm:pl-4" asChild>
+                  <Link href="/docs/installation">
+                    Get started
+                    <span className="relative ml-1 hidden size-7 shrink-0 items-center justify-center overflow-hidden rounded-full bg-white p-2 sm:inline-flex">
+                      <ArrowRight className="text-primary size-3.5 transition-transform group-hover:translate-x-0.5" />
+                    </span>
+                  </Link>
+                </Button>
+                <Button size="lg" variant="secondary" asChild>
+                  <Link href="/docs/components">Browse components</Link>
+                </Button>
+              </div>
+              <div className="mt-8 flex flex-col items-center gap-3 sm:mt-10 [&>div>div]:justify-center [&>div>p]:text-center">
+                <OpenInAgent prompt={buildAgentPrompt()} />
+              </div>
+            </Reveal>
+          </div>
+        </div>
+
+        {/* Hero bento */}
+        <Reveal delay={240} className="mt-12 lg:mt-16 xl:-mx-8 min-[90rem]:-mx-24">
+          <ul className="grid gap-4 sm:gap-6 md:grid-cols-2 xl:grid-cols-3">
+            <li className="group bg-surface relative flex min-w-0 flex-col overflow-hidden rounded-2xl p-6 sm:p-8 md:hidden xl:flex">
+              <div inert className="flex w-full flex-1 items-center py-1">
+                <div className="w-full">
+                  <StatusGaugeCard
+                    title="Performance metrics"
+                    status="Stable"
+                    metricLabel="Service uptime"
+                    value={0.997}
+                    color="var(--color-emerald-500)"
+                    gaugeSize={144}
+                    segments={32}
+                    thickness={11}
+                    people={[
+                      { name: "shadcn", src: "https://github.com/shadcn.png" },
+                      { name: "Kai" },
+                      { name: "Max Leiter", src: "https://github.com/maxleiter.png" },
+                    ]}
+                    peopleLabel="6 reviewers"
+                    action={{ label: "Details", href: "#" }}
+                  />
+                </div>
+              </div>
+              <p className="mt-3 text-lg font-medium tracking-tight text-emerald-600 dark:text-emerald-400">Status gauges</p>
+              <p className="mt-2.5 text-lg leading-7 tracking-tight">A clear health signal, supporting metric, and segmented gauge in one glance.</p>
+            </li>
+            <li className="group bg-surface relative flex min-w-0 flex-col overflow-hidden rounded-2xl p-6 sm:p-8">
+              <div inert className="flex w-full flex-1 items-center py-1">
+                <div className="w-full">{dotPlotCard}</div>
+              </div>
+              <p className="text-primary mt-3 text-lg font-medium tracking-tight">Distribution cards</p>
+              <p className="mt-2.5 text-lg leading-7 tracking-tight">A big number, the shape of the week behind it, and the peak called out.</p>
+            </li>
+            <li className="group bg-surface relative flex min-w-0 flex-col overflow-hidden rounded-2xl p-6 sm:p-8">
+              <div inert className="flex w-full flex-1 items-center py-1">
+                <div className="w-full">{dualMetricCard}</div>
+              </div>
+              <p className="mt-3 text-lg font-medium tracking-tight" style={{ color: "#14b8a6" }}>Paired metrics</p>
+              <p className="mt-2.5 text-lg leading-7 tracking-tight">Two numbers side by side, each with its meter, its share, and one supporting fact.</p>
+            </li>
+          </ul>
+        </Reveal>
+      </div>
+
+      {/* Blocks */}
+      <section id="blocks" className="scroll-mt-16">
+        <div className="py-12 sm:py-16">
+          <Reveal className="px-4 sm:px-6">
+            <SectionHeading muted="Drop one in and pass your data.">
+              Complete cards, composed from the primitives.
+            </SectionHeading>
+          </Reveal>
+          <Reveal delay={120} className="mt-12 sm:mt-16">
+            <BlockShowcase items={showcase} />
+          </Reveal>
+          <Reveal delay={160} className="mt-8 flex justify-center">
+            <Button variant="secondary" size="lg" asChild>
               <Link href="/docs/blocks">
                 All {BLOCK_DOCS.length} blocks <ArrowRight />
               </Link>
             </Button>
-          </div>
-          <BlockShowcase items={showcase} />
-        </section>
+          </Reveal>
+        </div>
+      </section>
 
-        <section className="flex flex-col gap-4">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <h2 className="text-xl font-semibold tracking-tight">
-              {COMPONENT_DOCS.length} components and counting
-            </h2>
-            <Button size="sm" variant="ghost" asChild>
+      {/* Components */}
+      <section id="components" className="scroll-mt-16">
+        <div className="py-12 sm:py-16">
+          <Reveal className="px-4 sm:px-6">
+            <SectionHeading muted="and none of it costs extra.">
+              {COMPONENT_DOCS.length} components and counting,
+            </SectionHeading>
+          </Reveal>
+          <Reveal delay={120} className="mt-12 sm:mt-16">
+            <ul className="grid gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
+              {featured.map((doc) => {
+                const meta = componentMeta[doc.name]!
+                const Icon = meta.icon
+                return (
+                  <li key={doc.name} className="bg-surface relative flex min-w-0 flex-col rounded-2xl p-6 sm:p-8">
+                    <span className="bg-card flex size-10 items-center justify-center rounded-full">
+                      <Icon className="size-4.5" style={{ color: meta.color }} />
+                    </span>
+                    <Link
+                      href={docHref(doc)}
+                      className="mt-3 text-lg font-medium tracking-tight after:absolute after:inset-0 after:content-['']"
+                      style={{ color: meta.color }}
+                    >
+                      {doc.title}
+                    </Link>
+                    <p className="text-muted-foreground mt-2.5 text-lg leading-7 tracking-tight">{doc.description}</p>
+                  </li>
+                )
+              })}
+            </ul>
+          </Reveal>
+          <Reveal delay={160} className="mt-8 flex justify-center">
+            <Button variant="secondary" size="lg" asChild>
               <Link href="/docs/components">
-                Browse components <ArrowRight />
+                Browse all {COMPONENT_DOCS.length} components <ArrowRight />
               </Link>
             </Button>
-          </div>
-          <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {COMPONENT_DOCS.map((doc) => (
-              <li key={doc.name}>
-                <Link
-                  href={docHref(doc)}
-                  className="hover:bg-muted/50 flex h-full flex-col gap-1 rounded-lg border p-4 transition-colors"
-                >
-                  <span className="font-medium">{doc.title}</span>
-                  <span className="text-muted-foreground text-sm">
-                    {doc.description}
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
+          </Reveal>
+        </div>
+      </section>
 
-        <section className="flex flex-col gap-6">
-          <JsonLd data={faqJsonLd(faq)} />
-          <div className="flex flex-col gap-1">
-            <h2 className="text-xl font-semibold tracking-tight">Questions</h2>
-            <p className="text-muted-foreground text-balance">
-              What people ask before adding dashboardcn to a shadcn/ui project.
-            </p>
-          </div>
-          <dl className="grid gap-x-8 gap-y-6 sm:grid-cols-2">
-            {faq.map((item) => (
-              <div key={item.question} className="flex flex-col gap-1.5">
-                <dt className="font-medium">{item.question}</dt>
-                <dd className="text-muted-foreground text-sm leading-relaxed">
-                  {item.answer}
-                </dd>
+      {/* Why free */}
+      <section id="why" className="scroll-mt-16">
+        <div className="py-12 sm:py-16">
+          <Reveal className="px-4 sm:px-6">
+            <SectionHeading muted="All of it.">User interface code should be free.</SectionHeading>
+          </Reveal>
+          <Reveal delay={120} className="mt-12 sm:mt-16">
+            <div className="grid gap-4 sm:gap-6 lg:grid-cols-[1.4fr_1fr] lg:items-start">
+              <div className="bg-surface flex min-w-0 flex-col justify-between rounded-2xl p-6 sm:p-8">
+                <div className="space-y-5 text-xl leading-8 tracking-tight sm:text-2xl sm:leading-9">
+                  <p>
+                    This project started from a gap. When building a product dashboard, there was no obvious
+                    place to find components for presenting data well: KPI tiles, trend charts, funnels, ranked
+                    lists, and the cards that combine them.{" "}
+                    <span className="bg-primary/10 text-primary rounded-2xl px-1 py-0.5 box-decoration-clone">
+                      Where such collections existed, they were sold behind a license.
+                    </span>
+                  </p>
+                  <p className="text-muted-foreground">
+                    shadcn/ui set the expectation that the base primitives are free. {siteConfig.name} extends
+                    it to the data-heavy parts of a product. Everything here is MIT licensed, copied into your
+                    project as source, and yours to change.
+                  </p>
+                </div>
+                <div className="mt-8 flex flex-wrap items-center gap-2">
+                  <Button asChild>
+                    <a href={siteConfig.links.github} target="_blank" rel="noreferrer">
+                      Read the source on GitHub
+                    </a>
+                  </Button>
+                  <Button variant="secondary" asChild>
+                    <Link href="/docs">Read the docs</Link>
+                  </Button>
+                </div>
               </div>
-            ))}
-          </dl>
-        </section>
-      </div>
+              <ul className="grid gap-4 sm:gap-6">
+                {reasons.map((reason) => {
+                  const Icon = reason.icon
+                  return (
+                    <li key={reason.title} className="bg-surface flex min-w-0 flex-col rounded-2xl p-6 sm:p-8">
+                      <span className="bg-card flex size-10 items-center justify-center rounded-full">
+                        <Icon className="size-4.5" style={{ color: reason.color }} />
+                      </span>
+                      <p className="mt-3 text-lg font-medium tracking-tight" style={{ color: reason.color }}>
+                        {reason.title}
+                      </p>
+                      <p className="text-muted-foreground mt-2.5 text-base leading-6 tracking-tight">{reason.text}</p>
+                    </li>
+                  )
+                })}
+              </ul>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Pricing */}
+      <section id="pricing" className="scroll-mt-16">
+        <div className="py-12 sm:py-16">
+          <Reveal className="px-4 sm:px-6">
+            <SectionHeading muted="We will never charge for it.">Free forever.</SectionHeading>
+          </Reveal>
+          <Reveal delay={120} className="mx-auto mt-12 w-full max-w-md sm:mt-16">
+            <div className="bg-surface flex flex-col rounded-2xl p-6 sm:p-8">
+              <div className="flex items-center justify-between">
+                <span className="eyebrow text-foreground/70">Everything</span>
+                <span className="eyebrow">One plan</span>
+              </div>
+              <p className="mt-6 flex items-baseline gap-1">
+                <span className="text-6xl font-medium tracking-tight tabular-nums">$0</span>
+                <span className="text-muted-foreground text-sm">forever</span>
+              </p>
+              <p className="text-muted-foreground mt-3 text-base leading-6 tracking-tight">
+                No Pro tier, no license key, no seat count, no account. Not now, not later.
+              </p>
+              <ul className="mt-6 space-y-2.5 text-sm">
+                {included.map((item) => (
+                  <li key={item} className="flex items-center gap-2.5">
+                    <span className="bg-primary size-2 rounded-full" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <Button className="mt-8 w-full" size="lg" asChild>
+                <Link href="/docs/installation">Install a component</Link>
+              </Button>
+              <p className="text-muted-foreground mt-3 text-center text-xs">
+                Star the repo if it saves you a week. That is the whole price.
+              </p>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-16">
+        <div className="py-12 sm:py-16">
+          <Reveal className="px-4 sm:px-6">
+            <SectionHeading muted="before they install.">What people ask</SectionHeading>
+          </Reveal>
+          <Reveal delay={120} className="mx-auto mt-12 w-full max-w-2xl sm:mt-16">
+            <FaqAccordion items={faq} />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section
+        id="get-started"
+        className="bg-ink-dark mb-4 scroll-mt-16 overflow-hidden rounded-2xl border border-[#8f8f8f]/25 p-2 sm:p-3"
+      >
+        <div className="flex flex-col items-center px-4 py-16 text-center sm:px-6 sm:py-14">
+          <Reveal>
+            <span aria-hidden className="flex size-24 items-center justify-center rounded-full bg-white/8 ring-1 ring-white/10">
+              <Sparkles className="size-9 text-white/80" />
+            </span>
+          </Reveal>
+          <Reveal delay={120}>
+            <h2 className="mt-8 select-none max-w-4xl text-3xl font-normal tracking-tight text-balance text-white sm:text-4xl">
+              Your next dashboard is one command away.{" "}
+              <span className="text-white/55">The source is yours to keep.</span>
+            </h2>
+          </Reveal>
+          <Reveal delay={200}>
+            <Button
+              size="lg"
+              variant="outline"
+              className="bg-ink-dark mt-8 border-white/25 text-white shadow-none hover:bg-[#3a3a3f] hover:text-white"
+              asChild
+            >
+              <Link href="/docs/installation">
+                Install your first component <ArrowRight />
+              </Link>
+            </Button>
+          </Reveal>
+        </div>
+      </section>
     </div>
   )
 }

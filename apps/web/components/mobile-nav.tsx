@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation"
 import { BLOCK_PAGES, COMPONENT_PAGES, SECTIONS } from "@/lib/docs"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import { useHeaderMenuOpen } from "@/components/site-header-shell"
 import {
   Popover,
   PopoverContent,
@@ -21,9 +22,20 @@ export function MobileNav({
   className?: string
 }) {
   const [open, setOpen] = React.useState(false)
+  const setHeaderMenuOpen = useHeaderMenuOpen()
+
+  const onOpenChange = React.useCallback(
+    (next: boolean) => {
+      setOpen(next)
+      setHeaderMenuOpen(next)
+    },
+    [setHeaderMenuOpen]
+  )
+
+  React.useEffect(() => () => setHeaderMenuOpen(false), [setHeaderMenuOpen])
 
   return (
-    <Popover open={open} onOpenChange={setOpen}>
+    <Popover open={open} onOpenChange={onOpenChange}>
       <PopoverTrigger asChild>
         <Button
           variant="ghost"
@@ -52,18 +64,18 @@ export function MobileNav({
         </Button>
       </PopoverTrigger>
       <PopoverContent
-        className="no-scrollbar bg-background/90 h-(--radix-popper-available-height) w-(--radix-popper-available-width) overflow-y-auto rounded-none border-none p-0 shadow-none backdrop-blur duration-100 data-open:animate-none!"
+        className="no-scrollbar bg-background h-(--radix-popper-available-height) w-(--radix-popper-available-width) overflow-y-auto rounded-none border-none p-0 shadow-none duration-100 data-open:animate-none!"
         align="start"
         side="bottom"
         alignOffset={-16}
-        sideOffset={14}
+        sideOffset={11}
       >
         <div className="flex flex-col gap-12 overflow-auto px-6 py-6">
           <div className="flex flex-col gap-4">
             <div className="text-muted-foreground text-sm font-medium">Menu</div>
             <div className="flex flex-col gap-3">
               {items.map((item) => (
-                <MobileLink key={item.href} href={item.href} onOpenChange={setOpen}>
+                <MobileLink key={item.href} href={item.href} onOpenChange={onOpenChange}>
                   {item.label}
                 </MobileLink>
               ))}
@@ -75,7 +87,7 @@ export function MobileNav({
             </div>
             <div className="flex flex-col gap-3">
               {SECTIONS.map((page) => (
-                <MobileLink key={page.href} href={page.href} onOpenChange={setOpen}>
+                <MobileLink key={page.href} href={page.href} onOpenChange={onOpenChange}>
                   {page.title}
                 </MobileLink>
               ))}
@@ -87,7 +99,7 @@ export function MobileNav({
             </div>
             <div className="flex flex-col gap-3">
               {COMPONENT_PAGES.map((page) => (
-                <MobileLink key={page.href} href={page.href} onOpenChange={setOpen}>
+                <MobileLink key={page.href} href={page.href} onOpenChange={onOpenChange}>
                   {page.title}
                 </MobileLink>
               ))}
@@ -99,7 +111,7 @@ export function MobileNav({
             </div>
             <div className="flex flex-col gap-3">
               {BLOCK_PAGES.map((page) => (
-                <MobileLink key={page.href} href={page.href} onOpenChange={setOpen}>
+                <MobileLink key={page.href} href={page.href} onOpenChange={onOpenChange}>
                   {page.title}
                 </MobileLink>
               ))}

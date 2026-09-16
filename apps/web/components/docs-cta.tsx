@@ -5,8 +5,8 @@ import { Button } from "@/components/ui/button"
 
 export function DocsCta() {
   return (
-    <div className="bg-surface text-surface-foreground group relative flex flex-col gap-2 rounded-lg p-6 text-sm">
-      <div className="text-base leading-tight font-semibold text-balance">
+    <div className="bg-surface text-surface-foreground group relative flex flex-col gap-2 rounded-md p-6 text-sm">
+      <div className="text-base leading-tight font-medium tracking-tight text-balance">
         Your dashboard, your code.
       </div>
       <div className="text-muted-foreground">

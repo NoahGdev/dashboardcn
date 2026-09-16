@@ -29,7 +29,7 @@ export function ComponentPreviewTabs({
       data-slot="component-preview"
       data-not-typeset
       className={cn(
-        "group relative mt-4 mb-12 flex flex-col overflow-hidden rounded-2xl border",
+        "group bg-surface relative mt-4 mb-12 flex flex-col overflow-hidden rounded-md",
         className
       )}
       {...props}
