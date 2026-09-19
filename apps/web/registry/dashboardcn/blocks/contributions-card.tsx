@@ -111,7 +111,7 @@ function ContributionsCard({
   return (
     <Card
       data-slot="contributions-card"
-      className={cn("@container/card gap-5", className)}
+      className={cn("max-w-fit gap-5", className)}
       {...props}
     >
       <CardHeader>
@@ -127,30 +127,35 @@ function ContributionsCard({
       </CardHeader>
       <CardContent className="flex flex-col gap-5">
         {stats?.length ? (
-          <dl className="grid grid-cols-2 gap-2 @md/card:grid-cols-4">
-            {stats.map((stat) => (
-              <div
-                key={stat.label}
-                className="flex min-w-0 flex-col gap-0.5 rounded-lg border px-3 py-2.5"
-              >
-                <dd className="order-1 truncate text-lg font-semibold tabular-nums tracking-tight">
-                  {typeof stat.value === "number"
-                    ? formatNumber(stat.value, {
-                        format: stat.format,
-                        currency: stat.currency,
-                        maximumFractionDigits: stat.format ? undefined : 1,
-                      })
-                    : stat.value}
-                  {stat.unit ? (
-                    <span className="text-muted-foreground ml-1 text-sm font-normal">
-                      {stat.unit}
-                    </span>
-                  ) : null}
-                </dd>
-                <dt className="text-muted-foreground order-2 truncate text-xs">{stat.label}</dt>
-              </div>
-            ))}
-          </dl>
+          // The query context sits here rather than on the card so the card
+          // itself can still size to the heatmap — an inline-size container
+          // contributes no intrinsic width to its own box.
+          <div className="@container/card">
+            <dl className="grid grid-cols-2 gap-2 @md/card:grid-cols-4">
+              {stats.map((stat) => (
+                <div
+                  key={stat.label}
+                  className="flex min-w-0 flex-col gap-0.5 rounded-lg border px-3 py-2.5"
+                >
+                  <dd className="order-1 truncate text-lg font-semibold tabular-nums tracking-tight">
+                    {typeof stat.value === "number"
+                      ? formatNumber(stat.value, {
+                          format: stat.format,
+                          currency: stat.currency,
+                          maximumFractionDigits: stat.format ? undefined : 1,
+                        })
+                      : stat.value}
+                    {stat.unit ? (
+                      <span className="text-muted-foreground ml-1 text-sm font-normal">
+                        {stat.unit}
+                      </span>
+                    ) : null}
+                  </dd>
+                  <dt className="text-muted-foreground order-2 truncate text-xs">{stat.label}</dt>
+                </div>
+              ))}
+            </dl>
+          </div>
         ) : null}
         <div className="flex flex-col gap-3">
           {heatmapLabel || periods?.length ? (
