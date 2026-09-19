@@ -1236,7 +1236,7 @@ const [period, setPeriod] = React.useState("month")
     title: "Revenue Ring Card",
     isNew: true,
     description:
-      "A centered revenue metric inside a dense segmented ring, with a dotted legend, full-width action, and a reduced-motion-safe entrance.",
+      "A centered revenue metric inside a dense segmented ring, with a dotted legend, full-width action, and a reduced-motion-safe chart reveal.",
     examples: [{ name: "revenue-ring-card-demo" }],
     usage: `import { RevenueRingCard } from "@/components/revenue-ring-card"
 
@@ -1254,7 +1254,7 @@ const [period, setPeriod] = React.useState("month")
     title: "Payment Summary Card",
     isNew: true,
     description:
-      "A segmented customer metric above a compact payment or record summary with status, action, and a reduced-motion-safe entrance.",
+      "A segmented customer metric above a compact payment or record summary with status, action, and a reduced-motion-safe meter reveal.",
     examples: [{ name: "payment-summary-card-demo" }],
     usage: `import { PaymentSummaryCard } from "@/components/payment-summary-card"
 

@@ -51,14 +51,11 @@ function PaymentSummaryCard({
   return (
     <Card
       data-slot="payment-summary-card"
-      className={cn(
-        "gap-0 overflow-hidden py-0 motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-2 motion-safe:duration-500",
-        className
-      )}
+      className={cn("gap-0 overflow-hidden py-0", className)}
       {...props}
     >
       <CardHeader className="gap-3 border-b py-5 [.border-b]:pb-5">
-        <div className="border-l-2 pl-3 motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-left-2 motion-safe:duration-500">
+        <div className="border-l-2 pl-3">
           <span className="text-muted-foreground block text-sm">{metricLabel}</span>
           <MetricValue
             value={value}
@@ -67,7 +64,7 @@ function PaymentSummaryCard({
             className="text-3xl font-semibold tracking-tight"
           />
         </div>
-        <div className="relative pt-1 motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-left-3 motion-safe:delay-150 motion-safe:duration-700">
+        <div className="relative pt-1">
           {progressLabel ? (
             <span
               className="absolute -top-4 text-xs font-medium tabular-nums"
@@ -76,7 +73,13 @@ function PaymentSummaryCard({
               {progressLabel}
             </span>
           ) : null}
-          <TickBar value={progress} segments={segments} className="h-9 gap-[3px]" />
+          <TickBar
+            value={progress}
+            segments={segments}
+            animate
+            animationDuration={800}
+            className="h-9 gap-[3px]"
+          />
         </div>
         {legend.length ? (
           <div className="flex gap-5">
@@ -89,7 +92,7 @@ function PaymentSummaryCard({
           </div>
         ) : null}
       </CardHeader>
-      <CardContent className="grid gap-4 py-5 motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-1 motion-safe:delay-200 motion-safe:duration-500">
+      <CardContent className="grid gap-4 py-5">
         <h3 className="text-muted-foreground text-sm font-medium">{title}</h3>
         <dl className="grid gap-3 text-sm">
           {rows.map((row) => (
@@ -107,7 +110,7 @@ function PaymentSummaryCard({
         </dl>
       </CardContent>
       {action ? (
-        <CardFooter className="pb-5 motion-safe:animate-in motion-safe:fade-in motion-safe:delay-300 motion-safe:duration-500">
+        <CardFooter className="pb-5">
           <Button variant="secondary" className="w-full" asChild={Boolean(action.href)} onClick={action.onClick}>
             {action.href ? <a href={action.href}>{action.label}<ArrowRight /></a> : <>{action.label}<ArrowRight /></>}
           </Button>

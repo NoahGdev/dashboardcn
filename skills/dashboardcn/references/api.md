@@ -67,10 +67,10 @@ computeDelta(current: number, previous: number): number  // fractional; 0 when p
 `data: { name, value, href?, icon?, key? }[]`, `valueFormatter?`, `sortOrder?: "descending" | "ascending" | "none"`, `color?`, `showPercentage?`, `onItemClick?: (item) => void`.
 
 ### tick-bar — `TickBar`
-`value: number`, `max?: number` (default 100), `segments?: number`, `color?`, `trackColor?`, `shape?: "tick" | "pill"`.
+`value: number`, `max?: number` (default 100), `segments?: number`, `color?`, `trackColor?`, `shape?: "tick" | "pill"`, `animate?: boolean`, `animationDuration?: number`.
 
 ### radial-gauge — `RadialGauge`
-`value: number`, `min?`, `max?`, `size?: number` (px diameter), `thickness?: number`, `segments?: number` (0 is continuous), `gap?: number` (degrees), `startAngle?`, `sweep?` (180 semicircle, 360 ring), `color?`, `trackColor?`, `children?` rendered in the middle.
+`value: number`, `min?`, `max?`, `size?: number` (px diameter), `thickness?: number`, `segments?: number` (0 is continuous), `gap?: number` (degrees), `startAngle?`, `sweep?` (180 semicircle, 360 ring), `color?`, `trackColor?`, `animate?: boolean`, `animationDuration?: number`, `children?` rendered in the middle.
 
 ### segmented-meter — `SegmentedMeter`
 `value: number`, `zones: { label?, from, to, color? }[]`, `highlightActive?`, `showTicks?`, `showLabels?`, `showMarker?`, `tickFormatter?`.

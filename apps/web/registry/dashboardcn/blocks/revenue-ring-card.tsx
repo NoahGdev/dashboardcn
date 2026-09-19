@@ -48,10 +48,7 @@ function RevenueRingCard({
   return (
     <Card
       data-slot="revenue-ring-card"
-      className={cn(
-        "@container/card gap-5 overflow-hidden motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-2 motion-safe:duration-500",
-        className
-      )}
+      className={cn("@container/card gap-5 overflow-hidden", className)}
       {...props}
     >
       <CardContent className="flex flex-col items-center gap-5">
@@ -65,7 +62,9 @@ function RevenueRingCard({
           size={250}
           color={color}
           trackColor={trackColor}
-          className="max-w-full motion-safe:animate-in motion-safe:fade-in motion-safe:zoom-in-95 motion-safe:duration-700"
+          animate
+          animationDuration={800}
+          className="max-w-full"
         >
           <span className="bg-muted/70 mb-3 flex size-11 items-center justify-center rounded-full [&>svg]:size-4">
             {icon ?? <WalletCards />}
@@ -80,7 +79,7 @@ function RevenueRingCard({
         </RadialGauge>
 
         {legend.length ? (
-          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-1 motion-safe:delay-200 motion-safe:duration-500">
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
             {legend.map((item) => (
               <span
                 key={item.label}
@@ -97,7 +96,7 @@ function RevenueRingCard({
         ) : null}
 
         {action ? (
-          <Button className="w-full motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-1 motion-safe:delay-300 motion-safe:duration-500" asChild={Boolean(action.href)} onClick={action.onClick}>
+          <Button className="w-full" asChild={Boolean(action.href)} onClick={action.onClick}>
             {action.href ? (
               <a href={action.href}>
                 {action.label}

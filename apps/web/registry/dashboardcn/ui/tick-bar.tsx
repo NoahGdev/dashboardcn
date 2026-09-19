@@ -14,6 +14,10 @@ export interface TickBarProps extends React.ComponentProps<"div"> {
   trackColor?: string
   /** "tick" draws thin bars; "pill" draws wide rounded ones. */
   shape?: "tick" | "pill"
+  /** Reveal filled ticks in sequence when the bar mounts. */
+  animate?: boolean
+  /** Total reveal time in milliseconds. */
+  animationDuration?: number
 }
 
 /** A progress bar drawn as a row of ticks, lit up to the current value. */
@@ -24,6 +28,8 @@ function TickBar({
   color = "var(--chart-1)",
   trackColor,
   shape = "tick",
+  animate = false,
+  animationDuration = 700,
   className,
   ...props
 }: TickBarProps) {
@@ -53,11 +59,31 @@ function TickBar({
             key={index}
             data-filled={lit}
             className={cn(
-              "bg-muted h-full min-w-0 flex-1 transition-colors",
+              "bg-muted relative h-full min-w-0 flex-1 overflow-hidden transition-colors",
               shape === "tick" ? "rounded-[1.5px]" : "rounded-full"
             )}
-            style={{ backgroundColor: lit ? color : trackColor }}
-          />
+            style={{ backgroundColor: trackColor }}
+          >
+            {lit ? (
+              <span
+                className={cn(
+                  "absolute inset-0",
+                  shape === "tick" ? "rounded-[1.5px]" : "rounded-full",
+                  animate && "motion-safe:animate-in motion-safe:fade-in"
+                )}
+                style={{
+                  backgroundColor: color,
+                  ...(animate
+                    ? {
+                        animationDelay: `${(index / Math.max(1, filled)) * animationDuration * 0.8}ms`,
+                        animationDuration: `${Math.max(120, animationDuration * 0.25)}ms`,
+                        animationFillMode: "both",
+                      }
+                    : null),
+                }}
+              />
+            ) : null}
+          </span>
         )
       })}
     </div>

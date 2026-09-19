@@ -21,6 +21,10 @@ export interface RadialGaugeProps extends React.ComponentProps<"div"> {
   /** Any CSS color. Defaults to chart-1. */
   color?: string
   trackColor?: string
+  /** Reveal filled segments in sequence when the gauge mounts. */
+  animate?: boolean
+  /** Total reveal time in milliseconds. */
+  animationDuration?: number
   /** Content rendered in the middle of the gauge. */
   children?: React.ReactNode
 }
@@ -52,6 +56,8 @@ function RadialGauge({
   sweep = 180,
   color = "var(--chart-1)",
   trackColor = "var(--muted)",
+  animate = false,
+  animationDuration = 700,
   className,
   children,
   ...props
@@ -99,16 +105,44 @@ function RadialGauge({
         aria-hidden="true"
       >
         {segments > 0 ? (
-          arcs.map((arc, index) => (
-            <path
-              key={index}
-              d={arcPath(cx, cy, r, arc.from, arc.to)}
-              fill="none"
-              stroke={arc.filled ? color : trackColor}
-              strokeWidth={thickness}
-              strokeLinecap="butt"
-            />
-          ))
+          arcs.map((arc, index) => {
+            const path = arcPath(cx, cy, r, arc.from, arc.to)
+            const filledCount = Math.max(1, Math.round(fraction * segments))
+            const delay = (index / filledCount) * animationDuration * 0.8
+
+            return (
+              <g key={index}>
+                <path
+                  d={path}
+                  fill="none"
+                  stroke={trackColor}
+                  strokeWidth={thickness}
+                  strokeLinecap="butt"
+                />
+                {arc.filled ? (
+                  <path
+                    d={path}
+                    fill="none"
+                    stroke={color}
+                    strokeWidth={thickness}
+                    strokeLinecap="butt"
+                    className={cn(
+                      animate && "motion-safe:animate-in motion-safe:fade-in"
+                    )}
+                    style={
+                      animate
+                        ? {
+                            animationDelay: `${delay}ms`,
+                            animationDuration: `${Math.max(120, animationDuration * 0.25)}ms`,
+                            animationFillMode: "both",
+                          }
+                        : undefined
+                    }
+                  />
+                ) : null}
+              </g>
+            )
+          })
         ) : (
           <>
             <path
@@ -125,7 +159,15 @@ function RadialGauge({
                 stroke={color}
                 strokeWidth={thickness}
                 strokeLinecap="round"
-                className="transition-[d] duration-500"
+                className={cn(
+                  "transition-[d] duration-500",
+                  animate && "motion-safe:animate-in motion-safe:fade-in"
+                )}
+                style={
+                  animate
+                    ? { animationDuration: `${animationDuration}ms` }
+                    : undefined
+                }
               />
             ) : null}
           </>
