@@ -13,11 +13,62 @@ export interface ComponentDoc {
   kind?: "component" | "block"
   title: string
   description: string
+  /** Show a new-item indicator in navigation surfaces. */
+  isNew?: boolean
   examples: ComponentExample[]
   usage: string
 }
 
 export const componentDocs: ComponentDoc[] = [
+  {
+    name: "corner-frame",
+    title: "Corner Frame",
+    isNew: true,
+    description:
+      "A quiet content frame with configurable registration marks at all four corners.",
+    examples: [{ name: "corner-frame-demo" }],
+    usage: `import { CornerFrame } from "@/components/ui/corner-frame"
+
+<CornerFrame cornerColor="var(--color-sky-500)" className="p-8">
+  Framed content
+</CornerFrame>`,
+  },
+  {
+    name: "command-palette",
+    title: "Command Palette",
+    isNew: true,
+    description:
+      "A data-driven Command+K menu with dialog and inline variants, grouped results, metadata, shortcuts, and a replaceable footer.",
+    examples: [
+      { name: "command-palette-demo", title: "Dialog" },
+      {
+        name: "command-palette-inline-demo",
+        title: "Inline",
+        description: "variant=\"inline\" embeds the same searchable command surface in a page or popover.",
+      },
+      {
+        name: "command-palette-compact-demo",
+        title: "Compact settings menu",
+        description: "density=\"compact\" tightens the rows for navigation-heavy menus. The keycaps are optional hints defined by your application.",
+      },
+      {
+        name: "command-palette-grid-demo",
+        title: "App launcher",
+        description: "layout=\"grid\" turns the same command data into a searchable workspace launcher.",
+      },
+    ],
+    usage: `import { CommandPalette, useCommandPaletteShortcut } from "@/components/ui/command-palette"
+
+const [open, setOpen] = React.useState(false)
+useCommandPaletteShortcut(setOpen)
+
+<CommandPalette
+  open={open}
+  onOpenChange={setOpen}
+  groups={groups}
+  onSelect={() => setOpen(false)}
+/>`,
+  },
   {
     name: "kpi-card",
     title: "KPI Card",
@@ -1177,6 +1228,61 @@ const [period, setPeriod] = React.useState("month")
     { value: "month", label: "Month" },
   ]}
   onPeriodChange={setPeriod}
+/>`,
+  },
+  {
+    name: "revenue-ring-card",
+    kind: "block",
+    title: "Revenue Ring Card",
+    isNew: true,
+    description:
+      "A centered revenue metric inside a dense segmented ring, with a dotted legend, full-width action, and a reduced-motion-safe entrance.",
+    examples: [{ name: "revenue-ring-card-demo" }],
+    usage: `import { RevenueRingCard } from "@/components/revenue-ring-card"
+
+<RevenueRingCard
+  label="Total revenue"
+  value={284920}
+  progress={82}
+  legend={[{ label: "Subscriptions" }, { label: "Usage & services" }]}
+  action={{ label: "View details", href: "#" }}
+/>`,
+  },
+  {
+    name: "payment-summary-card",
+    kind: "block",
+    title: "Payment Summary Card",
+    isNew: true,
+    description:
+      "A segmented customer metric above a compact payment or record summary with status, action, and a reduced-motion-safe entrance.",
+    examples: [{ name: "payment-summary-card-demo" }],
+    usage: `import { PaymentSummaryCard } from "@/components/payment-summary-card"
+
+<PaymentSummaryCard
+  metricLabel="Active customers"
+  value={2540}
+  progress={78}
+  progressLabel="78%"
+  title="Federal income tax"
+  rows={[{ label: "Amount", value: "$1,450.00" }]}
+  status="Completed"
+/>`,
+  },
+  {
+    name: "commerce-kpi-row",
+    kind: "block",
+    title: "Commerce KPI Row",
+    isNew: true,
+    description:
+      "A responsive metric strip with dotted sparklines, semantic deltas, and registration-mark corners.",
+    examples: [{ name: "commerce-kpi-row-demo" }],
+    usage: `import { CommerceKpiRow } from "@/components/commerce-kpi-row"
+
+<CommerceKpiRow
+  metrics={[
+    { label: "Revenue", value: 284920, format: "currency", delta: 0.082, trend: [2, 4, 6, 9, 8] },
+    { label: "Orders", value: 1842, delta: 0.041, trend: [3, 7, 5, 10, 9] },
+  ]}
 />`,
   },
 ]

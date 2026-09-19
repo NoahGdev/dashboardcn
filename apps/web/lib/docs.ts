@@ -3,6 +3,7 @@ import { componentDocs } from "@/config/docs"
 export interface DocPage {
   title: string
   href: string
+  isNew?: boolean
 }
 
 export const SECTIONS: DocPage[] = [
@@ -32,11 +33,13 @@ export function docHref(doc: { name: string; kind?: "component" | "block" }) {
 export const COMPONENT_PAGES: DocPage[] = COMPONENT_DOCS.map((doc) => ({
   title: doc.title,
   href: docHref(doc),
+  isNew: doc.isNew,
 }))
 
 export const BLOCK_PAGES: DocPage[] = BLOCK_DOCS.map((doc) => ({
   title: doc.title,
   href: docHref(doc),
+  isNew: doc.isNew,
 }))
 
 /** Reading order used for previous/next navigation. */

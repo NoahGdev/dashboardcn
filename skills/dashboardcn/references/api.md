@@ -24,6 +24,12 @@ computeDelta(current: number, previous: number): number  // fractional; 0 when p
 
 ## Components (`@/components/ui/<name>`)
 
+### corner-frame — `CornerFrame`
+`cornerSize?: number`, `cornerColor?: string`, `bordered?: boolean`, `children?`. Extends `div`.
+
+### command-palette — `CommandPalette`, `CommandPaletteKbd`, `useCommandPaletteShortcut`
+`groups: { heading?, items: { id, label, description?, icon?, shortcut?, keywords?, disabled?, onSelect? }[] }[]`, `variant?: "dialog" | "inline"`, `layout?: "list" | "grid"`, `density?: "compact" | "default"`, `size?: "compact" | "default" | "wide"`, `open?`, `onOpenChange?`, `placeholder?`, `emptyLabel?`, `title?`, `description?`, `footer?`, `onSelect?`. `CommandPaletteShortcutKeys` renders optional application-defined shortcut hints as keycaps; it does not register those shortcuts. Pass a React state setter to `useCommandPaletteShortcut` for Command/Ctrl+K toggling.
+
 ### kpi-card — `KpiCard`
 `label: string`, `value: number | string`, `delta?: number` (fraction), `deltaLabel?: string`, `trend?: number[]`, `format?: NumberFormat`, `currency?: string`, `invertDelta?: boolean`, `icon?: ReactNode`, `children?: ReactNode`. Extends `Card`.
 
@@ -102,6 +108,15 @@ Compositional. `TimelineItem` takes `status?: "default" | "current" | "done"`. P
 `DataTableColumnHeader` takes `column`, `title`, `align?: "left" | "right"`.
 
 ## Blocks (`@/components/<name>`)
+
+### revenue-ring-card — `RevenueRingCard`
+`label`, `value: number`, `format?`, `currency?`, `progress: number` (0-100), `segments?`, `color?`, `trackColor?`, `icon?`, `legend?: { label, color? }[]`, `action?: { label, href?, onClick? }`.
+
+### payment-summary-card — `PaymentSummaryCard`
+`metricLabel`, `value: number`, `format?`, `currency?`, `progress: number` (0-100), `progressLabel?`, `segments?`, `legend?: { label, color? }[]`, `title`, `rows: { label, value: ReactNode }[]`, `status?`, `action?: { label, href?, onClick? }`.
+
+### commerce-kpi-row — `CommerceKpiRow`
+`metrics: { label, value: number, format?, currency?, delta?, deltaLabel?, invertDelta?, trend?, icon? }[]`, `cornerColor?`. Each metric renders in its own responsive `corner-frame` tile.
 
 ### kpi-row-card — `KpiRowCard`
 `title`, `description?`, `metrics: { label, value, delta?, note?, trend?, format?, currency?, invertDelta?, icon? }[]`, `periods?: PeriodOption[]`, `period?`, `defaultPeriod?`, `onPeriodChange?`, `footer?: ReactNode`, `action?: { label, href }`.

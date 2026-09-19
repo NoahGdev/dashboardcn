@@ -1,6 +1,6 @@
 ---
 name: dashboardcn
-description: Build dashboards and analytics UI in React with dashboardcn, a shadcn/ui registry of KPI cards, trend, bar, donut, radar, scatter, sankey, and composed charts, funnels, ranked lists, gauges, activity rings, heatmaps, data tables, and composed cards. Use when asked for a dashboard, analytics page, metrics, KPI tiles, charts, or data tables in a project that uses shadcn/ui and Tailwind.
+description: Build dashboards and analytics UI in React with dashboardcn, a shadcn/ui registry of KPI cards, charts, command palettes, decorative frames, gauges, heatmaps, data tables, and composed cards. Use when asked for a dashboard, analytics page, metrics, command menu, KPI tiles, charts, or data tables in a project that uses shadcn/ui and Tailwind.
 ---
 
 # dashboardcn
@@ -51,7 +51,11 @@ they need (`card`, `tabs`, `tooltip`, `table`, ...) and npm dependencies
 | Need | Reach for |
 | --- | --- |
 | One headline number with a delta | `kpi-card`; `metric-value` for the number alone |
-| A row of numbers in one card | `kpi-row-card` (sparklines), `ring-kpi-card` (rings), `tick-kpi-card` (progress out of a whole), `metric-list` (compact rows) |
+| A row of numbers in one card | `kpi-row-card` (sparklines), `commerce-kpi-row` (separate corner-mark tiles), `ring-kpi-card` (rings), `tick-kpi-card` (progress out of a whole), `metric-list` (compact rows) |
+| A large ring around one revenue metric | `revenue-ring-card` |
+| A headline customer metric plus payment details | `payment-summary-card` |
+| Command+K or embedded command search | `command-palette` |
+| Registration-mark corner decoration | `corner-frame` |
 | Trend over time | `trend-chart` (area, line, bar, stacked, horizontal); `sparkline` inline |
 | Current vs previous period, switchable metrics | `metric-tabs-chart-card` |
 | A balance or price with a chart | `balance-chart-card` |

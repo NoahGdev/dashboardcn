@@ -78,6 +78,14 @@ import SankeyChartDemo from "@/registry/dashboardcn/examples/sankey-chart-demo"
 import SankeyChartCashflowDemo from "@/registry/dashboardcn/examples/sankey-chart-cashflow-demo"
 import ScoreGaugeCardDemo from "@/registry/dashboardcn/examples/score-gauge-card-demo"
 import GoalChartCardDemo from "@/registry/dashboardcn/examples/goal-chart-card-demo"
+import RevenueRingCardDemo from "@/registry/dashboardcn/examples/revenue-ring-card-demo"
+import PaymentSummaryCardDemo from "@/registry/dashboardcn/examples/payment-summary-card-demo"
+import CommerceKpiRowDemo from "@/registry/dashboardcn/examples/commerce-kpi-row-demo"
+import CornerFrameDemo from "@/registry/dashboardcn/examples/corner-frame-demo"
+import CommandPaletteDemo from "@/registry/dashboardcn/examples/command-palette-demo"
+import CommandPaletteInlineDemo from "@/registry/dashboardcn/examples/command-palette-inline-demo"
+import CommandPaletteCompactDemo from "@/registry/dashboardcn/examples/command-palette-compact-demo"
+import CommandPaletteGridDemo from "@/registry/dashboardcn/examples/command-palette-grid-demo"
 
 export interface ExampleEntry {
   component: React.ComponentType
@@ -166,6 +174,14 @@ export const examples = {
   "sankey-chart-cashflow-demo": { component: SankeyChartCashflowDemo, path: `${base}/sankey-chart-cashflow-demo.tsx` },
   "score-gauge-card-demo": { component: ScoreGaugeCardDemo, path: `${base}/score-gauge-card-demo.tsx` },
   "goal-chart-card-demo": { component: GoalChartCardDemo, path: `${base}/goal-chart-card-demo.tsx` },
+  "revenue-ring-card-demo": { component: RevenueRingCardDemo, path: `${base}/revenue-ring-card-demo.tsx` },
+  "payment-summary-card-demo": { component: PaymentSummaryCardDemo, path: `${base}/payment-summary-card-demo.tsx` },
+  "commerce-kpi-row-demo": { component: CommerceKpiRowDemo, path: `${base}/commerce-kpi-row-demo.tsx` },
+  "corner-frame-demo": { component: CornerFrameDemo, path: `${base}/corner-frame-demo.tsx` },
+  "command-palette-demo": { component: CommandPaletteDemo, path: `${base}/command-palette-demo.tsx` },
+  "command-palette-inline-demo": { component: CommandPaletteInlineDemo, path: `${base}/command-palette-inline-demo.tsx` },
+  "command-palette-compact-demo": { component: CommandPaletteCompactDemo, path: `${base}/command-palette-compact-demo.tsx` },
+  "command-palette-grid-demo": { component: CommandPaletteGridDemo, path: `${base}/command-palette-grid-demo.tsx` },
 } satisfies Record<string, ExampleEntry>
 
 export type ExampleName = keyof typeof examples

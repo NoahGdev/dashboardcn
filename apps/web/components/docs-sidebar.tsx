@@ -20,6 +20,16 @@ import {
 const itemClassName =
   "relative h-[30px] w-fit overflow-visible border border-transparent text-[0.8rem] font-medium after:absolute after:inset-x-0 after:-inset-y-1 after:z-0 after:rounded-md data-[active=true]:border-accent data-[active=true]:bg-accent"
 
+function NewItemDot() {
+  return (
+    <span
+      aria-label="New"
+      title="New"
+      className="relative z-10 ml-0.5 size-2 shrink-0 rounded-full bg-blue-500 ring-2 ring-blue-500/20 dark:bg-blue-400 dark:ring-blue-400/25"
+    />
+  )
+}
+
 function readScrollState() {
   try {
     return JSON.parse(
@@ -159,6 +169,7 @@ export function DocsSidebar(props: React.ComponentProps<typeof Sidebar>) {
                     <Link href={page.href}>
                       <span className="absolute inset-0 flex w-(--sidebar-menu-width) bg-transparent" />
                       {page.title}
+                      {page.isNew ? <NewItemDot /> : null}
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -182,6 +193,7 @@ export function DocsSidebar(props: React.ComponentProps<typeof Sidebar>) {
                     <Link href={page.href}>
                       <span className="absolute inset-0 flex w-(--sidebar-menu-width) bg-transparent" />
                       {page.title}
+                      {page.isNew ? <NewItemDot /> : null}
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>

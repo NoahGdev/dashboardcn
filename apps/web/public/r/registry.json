@@ -1307,6 +1307,147 @@
       ]
     },
     {
+      "name": "corner-frame",
+      "type": "registry:ui",
+      "title": "Corner Frame",
+      "description": "A content frame with configurable registration marks at every corner.",
+      "files": [
+        {
+          "path": "registry/dashboardcn/ui/corner-frame.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "command-palette",
+      "type": "registry:ui",
+      "title": "Command Palette",
+      "description": "A data-driven Command+K menu with dialog and inline variants, grouped results, metadata, shortcuts, and a replaceable footer.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "command"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboardcn/ui/command-palette.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "revenue-ring-card",
+      "type": "registry:block",
+      "title": "Revenue Ring Card",
+      "description": "A centered revenue metric inside a dense segmented ring, with a legend and full-width action.",
+      "categories": [
+        "dashboard",
+        "charts"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "card",
+        "button",
+        "tooltip"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboardcn/blocks/revenue-ring-card.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/dashboardcn/ui/radial-gauge.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/ui/metric-value.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/lib/format.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "payment-summary-card",
+      "type": "registry:block",
+      "title": "Payment Summary Card",
+      "description": "A segmented customer metric above a compact payment or record summary with status and action.",
+      "categories": [
+        "dashboard"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "badge",
+        "button",
+        "card",
+        "tooltip"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboardcn/blocks/payment-summary-card.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/dashboardcn/ui/tick-bar.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/ui/metric-value.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/lib/format.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "commerce-kpi-row",
+      "type": "registry:block",
+      "title": "Commerce KPI Row",
+      "description": "A responsive metric strip with dotted sparklines, semantic deltas, and registration-mark corners.",
+      "categories": [
+        "dashboard",
+        "charts"
+      ],
+      "dependencies": [
+        "lucide-react",
+        "recharts"
+      ],
+      "registryDependencies": [
+        "tooltip"
+      ],
+      "files": [
+        {
+          "path": "registry/dashboardcn/blocks/commerce-kpi-row.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/dashboardcn/ui/corner-frame.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/ui/sparkline.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/ui/metric-value.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/dashboardcn/lib/format.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
       "name": "skill",
       "type": "registry:file",
       "title": "Agent skill",
