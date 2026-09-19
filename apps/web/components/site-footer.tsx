@@ -11,8 +11,6 @@ const columns = [
       { href: "/explore", label: "Explore" },
       { href: "/docs/components", label: "Components" },
       { href: "/docs/blocks", label: "Blocks" },
-      { href: "/blocks/dashboard", label: "Dashboards" },
-      { href: "/blocks/sidebar", label: "Sidebars" },
     ],
   },
   {
