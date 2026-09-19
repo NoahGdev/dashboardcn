@@ -60,13 +60,17 @@ function CommerceKpiRow({ metrics, cornerColor, className, ...props }: CommerceK
                   className="block truncate text-3xl font-semibold tracking-tight"
                 />
                 {metric.delta !== undefined ? (
-                  <span className="text-muted-foreground mt-2 flex items-center gap-1 text-xs">
-                    <DeltaIcon className="size-3.5" style={{ color: accent }} />
-                    <span className="font-medium tabular-nums" style={{ color: accent }}>
-                      {Math.abs(metric.delta * 100).toFixed(1)}%
+                  <div className="text-muted-foreground mt-2 text-xs">
+                    <span className="flex items-center gap-1">
+                      <DeltaIcon className="size-3.5" style={{ color: accent }} />
+                      <span className="font-medium tabular-nums" style={{ color: accent }}>
+                        {Math.abs(metric.delta * 100).toFixed(1)}%
+                      </span>
                     </span>
-                    {metric.deltaLabel}
-                  </span>
+                    {metric.deltaLabel ? (
+                      <span className="mt-0.5 block truncate">{metric.deltaLabel}</span>
+                    ) : null}
+                  </div>
                 ) : null}
               </div>
               {metric.trend && metric.trend.length > 1 ? (
