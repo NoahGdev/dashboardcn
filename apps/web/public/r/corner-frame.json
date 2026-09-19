@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "corner-frame",
+  "title": "Corner Frame",
+  "description": "A content frame with configurable registration marks at every corner.",
+  "files": [
+    {
+      "path": "registry/dashboardcn/ui/corner-frame.tsx",
+      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\nexport interface CornerFrameProps extends React.ComponentProps<\"div\"> {\n  /** Length of each registration mark, in pixels. */\n  cornerSize?: number\n  /** Any CSS color used for the corner marks. */\n  cornerColor?: string\n  /** Show a quiet hairline around the framed content. */\n  bordered?: boolean\n}\n\n/** A content frame with small registration marks at every corner. */\nfunction CornerFrame({\n  cornerSize = 10,\n  cornerColor = \"var(--muted-foreground)\",\n  bordered = true,\n  className,\n  children,\n  style,\n  ...props\n}: CornerFrameProps) {\n  const cornerStyle = {\n    \"--corner-size\": `${cornerSize}px`,\n    \"--corner-color\": cornerColor,\n    ...style,\n  } as React.CSSProperties\n\n  return (\n    <div\n      data-slot=\"corner-frame\"\n      className={cn(\"relative\", bordered && \"border\", className)}\n      style={cornerStyle}\n      {...props}\n    >\n      {children}\n      {([\"top-left\", \"top-right\", \"bottom-right\", \"bottom-left\"] as const).map(\n        (corner) => (\n          <span\n            key={corner}\n            data-corner={corner}\n            aria-hidden=\"true\"\n            className={cn(\n              \"pointer-events-none absolute z-10 size-(--corner-size)\",\n              \"before:absolute before:bg-(--corner-color) after:absolute after:bg-(--corner-color)\",\n              \"before:top-1/2 before:h-px before:w-full before:-translate-y-1/2 after:left-1/2 after:h-full after:w-px after:-translate-x-1/2\",\n              corner === \"top-left\" &&\n                \"top-0 left-0 -translate-x-1/2 -translate-y-1/2\",\n              corner === \"top-right\" &&\n                \"top-0 right-0 translate-x-1/2 -translate-y-1/2\",\n              corner === \"bottom-right\" &&\n                \"right-0 bottom-0 translate-x-1/2 translate-y-1/2\",\n              corner === \"bottom-left\" &&\n                \"bottom-0 left-0 -translate-x-1/2 translate-y-1/2\"\n            )}\n          />\n        )\n      )}\n    </div>\n  )\n}\n\nexport { CornerFrame }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}
